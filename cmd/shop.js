@@ -19,7 +19,7 @@ let bot = client.user.username;
   //message.author;
   
   const items = new db.crearDB("Tienda")
-  let it = await items.obtener("Tienda")
+  let it = await items.obtener("Items")
 
   if (!args[0])
     return message.channel.send(
