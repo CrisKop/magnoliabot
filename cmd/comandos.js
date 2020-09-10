@@ -18,7 +18,7 @@ let prefix_db = new db.crearDB("prefixes")
       .setAuthor( `${client.user.username} Panel Comandos`, client.user.displayAvatarURL())
       .addField("Comandos/Eco:", "`Economia:` **"+prefix+"comandos eco**")
       .addField("Comandos/Staff:", "`Staff:` **"+prefix+"comandos staff**")
-      .addField("Comandos/Info:", "`Info:` **"+prefix+"*comandos info**")
+      .addField("Comandos/Info:", "`Info:` **"+prefix+"comandos info**")
       .setTimestamp()
       .setFooter(`Pedido por: ${message.author.tag}`, message.author.displayAvatarURL({dynamic: true}))
     );
