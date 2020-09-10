@@ -75,4 +75,16 @@ client.on("message", async message => {
   }
 });
 
+client.on("guildMemberAdd", async guild => {
+  
+  guild.owner.send(
+new Discord.MessageEmbed()
+    .setDescription(`Muchas Gracias ${guild.owner.tag} Por agregar nuestro bot **${client.user.username}** a tu Servidor: **${guild.name}**\nNo tiene ni la menor idea lo agradecidos que estamos...`)
+    .addField("Servidores Actuales:" +client.guilds.cache.size)
+    .addField("Usuarios Actuales:", +client.users.cache.size)
+    .setFooter(guild.name)
+ );
+  
+});
+
 client.login(process.env.TOKEN)
