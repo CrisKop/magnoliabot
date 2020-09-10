@@ -5,9 +5,19 @@ exports.run = async (client, message, args) => {
   let user = message.author;
   const vips_db = new db.crearDB("Vips");
   const vip = await vips_db.obtener("Vips");
+  
+  let prefix_db = new db.crearDB("prefixes") 
+  
+  var prefix;
+  if (prefix_db.tiene(`${message.guild.id}`)) {
+    prefix = await prefix_db.obtener(`${message.guild.id}`);
+  } else {
+    prefix = "f/";
+  }
+  
   if (vip.includes(user.id) == false)
     return message.channel.send(
-      new Discord.RichEmbed()
+      new Discord.MessageEmbed()
         .setDescription(
           "❌ No eres VIP y por lo tanto no puedes ejecutar este comando"
         )
@@ -17,23 +27,23 @@ exports.run = async (client, message, args) => {
 
   if (!args.join(" "))
     return message.channel.send(
-      new Discord.RichEmbed()
+      new Discord.MessageEmbed()
         .setDescription("❌ `|` **Debes Especificar El enlace de la imagen**")
         .setColor("RED")
     );
 
   if (!message.content.includes("http"))
     return message.channel.send(
-      new Discord.RichEmbed()
-        .setDescription("Debe ser un enlace")
+      new Discord.MessageEmbed()
+        .setDescription("❌ `|` **Debe ser un enlace**")
         .setColor("RED")
     );
 
-  img_db.establecer(`${message.guild.id}.${user.id}`, args.join(" "));
+  img_db.establecer(`${message.author.id}`, args.join(" "));
 
   message.channel.send(
-    new Discord.RichEmbed()
-      .setDescription("Imagen para tu prefil seleccionado")
+    new Discord.MessageEmbed()
+      .setDescription("☑️ `|` **Imagen para tu prefil seleccionado** `usa "+ `${prefix}perfil`+"`")
       .setColor("GREEN")
   );
 };

@@ -32,7 +32,7 @@ module.exports = {
             message.member
           }, **Subiste al nivel:** ${parseInt(nivel + 1)} 🟢`
         )
-        .then(m => m.delete(6000));
+        .then(m => m.delete({ timeout: 6000 }));
       dinero.sumar(`${message.guild.id}.${message.author.id}`, rdm);
     } else {
       levels_db.sumar(`${message.guild.id}.${message.author.id}.xp`, randomxp);

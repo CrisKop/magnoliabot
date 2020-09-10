@@ -67,13 +67,17 @@ exports.run = async (client, message, args) => {
   let colorxd = await color.obtener(`${user.id}`);
   //color 
   
+  //imagen//
+  const img_db = new db.crearDB("img");
+  const il = await img_db.obtener(`${user.id}`, args.join(" "))
+  
 const embed = new Discord.MessageEmbed()
     .setAuthor(
       `🍺 Perfil de ${user.username} [${user.id}]`,
       client.user.displayAvatarURL()
     )
     .setDescription(`🚀 ${note ? `**${note}**` : "**No Tiene Descripcion**"}`)
-    .setThumbnail(user.displayAvatarURL())
+    .setThumbnail(il)
     .setColor(colorxd)
     .addField(
       "🤑 `|` **__Dinero/Banco:__**",
