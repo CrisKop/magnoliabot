@@ -4,6 +4,18 @@ exports.run = async (client, message, args) => {
   let db = require("megadb");
   const ms = require("parse-ms"); //exacto
   const dinero = new db.crearDB("Dinero");
+  
+  let user = message.author;
+  let author = await dbs.fetch(`rob_${message.guild.id}_${user.id}`);
+  let timeout = 1800000;
+  if (author !== null && timeout - (Date.now() - author) > 0) {
+    let time = ms(timeout - (Date.now() - author));
+
+    let timeEmbed = new Discord.MessageEmbed()
+      .setColor("RED")
+      .setDescription(`❌ Ya has trabajado, tomate un descanso \n\nIntenta de nuevo en: ${time.minutes}m ${time.seconds}s `);
+    message.channel.send(timeEmbed);
+  } else {
 
   let user = message.mentions.users.first();
   
@@ -13,7 +25,7 @@ exports.run = async (client, message, args) => {
 
   const mencion = await dinero.obtener(`${message.guild.id}.${user.id}`);
   const authorcmd = await dinero.obtener(
-    `${message.guild.id}.${message.author}`
+    `${message.guild.id}.${message.author.id}`
   );
 
   if (!user)
@@ -47,4 +59,6 @@ exports.run = async (client, message, args) => {
   message.channel.send(embed)
   dinero.restar(`${message.guild.id}.${user.id}`, random)
   dinero.sumar(`${message.guild.id}.${message.author.id}`, random)
+  dbs.set(`rob_${message.guild.id}_${user.id}`, Date.now());
 };
+}

@@ -18,7 +18,7 @@ let bot = client.user.username;
   //client.users.get(args[0]) ||
   //message.author;
   
-  const items = new db.crearDB("Tienda")//saca 200 con f/with
+  const items = new db.crearDB("Tienda")
   let it = await items.obtener("Tienda")
 
   if (!args[0])
