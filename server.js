@@ -17,13 +17,13 @@ const { nivelesFunc } = require("./niveles.js");
 client.on("ready", () => {
   console.log("Estoy listo!");
   setInterval(function() {
-    let statuses = [`f/ayuda 🎸 ${client.guilds.cache.size}`, `f/comandos 👤 ${client.users.cache.size}`];
+    let statuses = [`f/ayuda 🎸 ${client.guilds.cache.size} Servidores`, `f/comandos 👤 ${client.users.cache.size} Usuarios`];
     let status = Math.floor(Math.random() * statuses.length);
     let dstatus = statuses[status];
     client.user.setPresence({
       activity: {
         name: `${dstatus}`,
-        type: "LISTENING"
+        type: "LISTENING"//pq volvimos a glitch?
       },
       status: "online"
     });
@@ -58,7 +58,7 @@ client.on("message", async message => {
         .setDescription("`Comando que uso no existe en mi base de datos`")
         .addField(
           "`Trata usando el siguiente comando`",
-          "☑️ **" + prefix + "comandos**"
+          "**" + prefix + "comandos**"
         )
     );
   } finally {
