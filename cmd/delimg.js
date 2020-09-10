@@ -12,7 +12,7 @@ const vips_db = new db.crearDB("Vips");
 )
     const img_db = new db.crearDB("img");
   
-  if(!)
+  if(!img_db.tiene(message.author.id)) return message.channel.send("❌ `|` **No tienes ninguna imagen** `No puedes borrar algo que no tienes`")
 
     img_db.delete(`${message.author.id}`, args.join(" "));
 

@@ -7,7 +7,7 @@ exports.run = async (client, message, args) => {
   );
 
   var toNote = args.join(" ");
-  //if(!toNote) return message.channel.send("❌ Debes colocar algo para subirlo a tu //descripcion");
+  if(!desc.tiene(message.author.id)) return message.channel.send("❌ `|` **No tienes ninguna descripcion** `No puedes borrar algo que no tienes`");
 
   if (regex) {
     message.channel.send("☑️ Tu descripcion ha sido **eliminada** con exito");
