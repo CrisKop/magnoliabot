@@ -31,6 +31,7 @@ client.on("ready", () => {
 });
 
 client.on("message", async message => { 
+  
   const db = require("megadb");
   let prefix_db = new db.crearDB("prefixes") 
   
