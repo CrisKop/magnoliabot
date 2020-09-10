@@ -24,4 +24,7 @@ if (!dev.includes(message.author.id)) return message.channel.send("❌ `|` **No 
 
     await vips_db.extract("Vips", user.id);
     message.channel.send("✅ `|` **Usuario eliminado correctamente en la base de datos de los Usuarios Vips del bot**")
+  client.users.cache.get(user.id).send("❌ `|` **Has sido eliminado correctamente en la base de datos de los Vips del bot**").catch(e => {
+     message.channel.send("❌ `|` **Hubo un error...** "+ e)
+   })
 }

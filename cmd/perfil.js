@@ -51,6 +51,7 @@ exports.run = async (client, message, args) => {
   }
   //staff//
 
+
   //vips//
   const vips_db = new db.crearDB("Vips");
   let vip = await vips_db.obtener("Vips");
@@ -70,6 +71,26 @@ exports.run = async (client, message, args) => {
   //imagen//
   const img_db = new db.crearDB("img");
   const il = await img_db.obtener(`${user.id}`, args.join(" "))
+  
+  
+  //badges//
+  let badges = {
+      DISCORD_EMPLOYEE: "<:Empleado:739216383841140878> **Empleado Discord**",
+      DISCORD_PARTNER: "<:Partner:739216383103205406> **Partner Discord**",
+      HYPESQUAD_EVENTS: "<:HypeSquad:739216383547539456> **Eventos HypeSquad**",
+      BUGHUNTER_LEVEL_1: "<:BugHunter:739224970101653514> **BugHunter 1**",
+      HOUSE_BRAVERY: "<:Bravery:739216376211701810> **House Bravery**",
+      HOUSE_BRILLIANCE: "<:Brilliance:739216380007809104> **House Brilliance**",
+      HOUSE_BALANCE: "<:balance:739216375477829733> **House Balance**",
+      EARLY_SUPPORTER: "<:soporte:739216384851968050> **Soporte**",
+      TEAM_USER: "<:team:739216384999030835> **Usuario Team**",
+      SYSTEM: "<:sistema:739216385095237713> **Sistema**",
+      BUGHUNTER_LEVEL_2: "<:BugHunter:739224970101653514> **BugHunter 2**",
+      VERIFIED_BOT: "<:botverificado:739216382985764864> **Bot Verificado**",
+      VERIFIED_DEVELOPER: "<:dev:739214087732592731> **Developer Verificado**"
+    };
+  //badges
+  
   
 const embed = new Discord.MessageEmbed()
     .setAuthor(
@@ -95,5 +116,6 @@ const embed = new Discord.MessageEmbed()
       true
     )
     .addField("🎻 `|` **__Staff/Vip:__**", `**Staff:** ${skere2} \n**Vip:** ${skere}`, true)
+    .addField("🦡 `|` **__Badges:__**", user.flags.toArray().length > 0 ? user.flags.toArray().map(flag => badges[flag]) : "**No tiene Insignias**")
   message.channel.send(embed);
 };

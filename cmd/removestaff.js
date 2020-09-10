@@ -24,4 +24,7 @@ if (!dev.includes(message.author.id)) return message.channel.send("❌ `|` **No 
 
     await developers_db.extract("Developers", user.id);
     message.channel.send("✅ `|` **Usuario eliminado correctamente en la base de datos de los STAFFS del bot**")
+  client.users.cache.get(user.id).send("❌ `|` **Has sido eliminado correctamente en la base de datos de los Desarrolladores del bot**").catch(e => {
+     message.channel.send("❌ `|` **Hubo un error...** "+ e)
+   })
 }
