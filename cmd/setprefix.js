@@ -6,11 +6,10 @@ exports.run = async (client, message, args) => {
   
   let X = args.join(" ")
   
-  prefix_db.establecer(`${message.guild.id}`, X)
   
-  if(X < 5) return message.channel.send("**El Prefix no puede contener mas de 5 Caracteres**")
   
   if(!args.join(" ")) return message.channel.send("**Coloca un Prefix**")
   
-  
+  prefix_db.establecer(`${message.guild.id}`, X) 
+  await message.channel.send("**Prefix Colocado como: " + X + "**")
 }

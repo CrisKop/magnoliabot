@@ -30,8 +30,17 @@ client.on("ready", () => {
   }, 5000);
 });
 
-client.on("message", async message => {
-  let prefix = "f/";
+client.on("message", async message => { 
+  const db = require("megadb");
+  let prefix_db = new db.crearDB("prefixes") 
+  
+  var prefix;
+  if (prefix_db.tiene(`${message.guild.id}`)) {
+    prefix = await prefix_db.obtener(`${message.guild.id}`);
+  } else {
+    prefix = "f/";
+  }
+  
   if (message.author.bot) return;
   if (message.content.indexOf(prefix) !== 0) {
     nivelesFunc(message);
