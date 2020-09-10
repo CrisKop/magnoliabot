@@ -11,6 +11,8 @@ const vips_db = new db.crearDB("Vips");
 .setColor("RED")
 )
     const img_db = new db.crearDB("img");
+  
+  if(!)
 
     img_db.delete(`${message.author.id}`, args.join(" "));
 
