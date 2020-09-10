@@ -1,15 +1,21 @@
 const Discord = require("discord.js");
+const db = require("megadb")
+let prefix_db = new db.crearDB("prefixes");
+
 exports.run = async (client, message, args) => {
-  const db = require("megadb");
-  
-  let prefix_db = new db.crearDB("prefixes");
-  
-  let X = args.join(" ")
-  
-  
-  
-  if(!args.join(" ")) return message.channel.send("**Coloca un Prefix**")
-  
-  prefix_db.establecer(`${message.guild.id}`, X) 
-  await message.channel.send("**Prefix Colocado como: " + X + "**")
+    
+    let perms = message.member.hasPermission("ADMINISTRATOR");
+
+    if (!perms)
+      return message.channel.send(
+        "❌ No tienes permisos de `Administrador`."
+      );
+
+    if(!args[0]) return message.channel.send("❌ Debes colocar un prefix");
+    if(args[0].length > 4) return message.channel.send("❌ El prefix debe contener menos de 4 caracteres");
+    await message.channel.send("❌ `|` **Cambiando prefix...**").then(m => m.delete({ timeout: 2000 }))
+    await message.channel.send("❌ `|` **Verificando servidor...**").then(m => m.delete({ timeout: 2000 }))
+    await message.channel.send("❌ `|` **Verificando que no eres un robot...**").then(m => m.delete({ timeout: 2000 }))
+    prefix_db.establecer(`${message.guild.id}`, args[0]);
+    message.channel.send("☑️ El prefix fue cambiado a `" + args[0] + "`");
 }

@@ -1,24 +1,39 @@
-const db = require("megadb");
-const im = new db.crearDB("Imgs");
-exports.run = async (client, message, args, color, prefix) => {
-
-  const regex = /(https\:\/\/)?(www\.)?(discord(\.|dot|\(dot\))(gg|io|me|li)|discordapp\.com\/invite)\/.+[a-z]/gi.test(message.content);
-
-  var toNote = args.join(" ");
-  if (!toNote)
+let Discord = require("discord.js");
+exports.run = async (client, message, args) => {
+  const db = require("megadb");
+  let Discord = require("discord.js");
+  let user = message.author;
+  const vips_db = new db.crearDB("Vips");
+  const vip = await vips_db.obtener("Vips");
+  if (vip.includes(user.id) == false)
     return message.channel.send(
-      "❌ Debe especificar un link"
+      new Discord.RichEmbed()
+        .setDescription(
+          "❌ No eres VIP y por lo tanto no puedes ejecutar este comando"
+        )
+        .setColor("RED")
     );
-if(!message.content.includes("https://")) return message.channel.send("Ponga algun Link")
-  
-  if (regex) {
-    message.channel.send("☑️ Tu Imagen ha sido **cambiada** con exito");
-    im.establecer(
-      `${message.author.id}`,
-      "Estan prohibidas las invitaciones"
+  const img_db = new db.crearDB("img");
+
+  if (!args.join(" "))
+    return message.channel.send(
+      new Discord.RichEmbed()
+        .setDescription("❌ `|` **Debes Especificar El enlace de la imagen**")
+        .setColor("RED")
     );
-  } else {
-    message.channel.send("☑️ Tu Imagen ha sido **cambiada** con exito");
-    im.establecer(`${message.author.id}`, toNote);
-  }
+
+  if (!message.content.includes("http"))
+    return message.channel.send(
+      new Discord.RichEmbed()
+        .setDescription("Debe ser un enlace")
+        .setColor("RED")
+    );
+
+  img_db.establecer(`${message.guild.id}.${user.id}`, args.join(" "));
+
+  message.channel.send(
+    new Discord.RichEmbed()
+      .setDescription("Imagen para tu prefil seleccionado")
+      .setColor("GREEN")
+  );
 };
