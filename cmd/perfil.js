@@ -101,12 +101,22 @@ exports.run = async (client, message, args) => {
   let r = await rep.obtener(`${message.guild.id}.${user.id}`)
   //reps//
 
+  //emoji//
+  const emojis = new db.crearDB("EmojisInter");
+  let emoji = await emojis.obtener(`${user.id}`)
+  let em;
+  em = `${emoji}`;
+  if (emojis.includes(user.id) == false) {
+  em = "`No`";
+  }
+  //emoji//
+  
 const embed = new Discord.MessageEmbed()
     .setAuthor(
       `🍺 Perfil de ${user.username} [${user.id}]`,
       client.user.displayAvatarURL()
     )
-    .setDescription(`🚀 ${note ? `**${note}**` : "**No Tiene Descripcion**"}`)
+    .setDescription(`${em} ${note ? `**${note}**` : "**No Tiene Descripcion**"}`)
     .setThumbnail(il)
     .setColor(colorxd)
     .addField(
