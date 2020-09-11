@@ -104,11 +104,6 @@ exports.run = async (client, message, args) => {
   //emoji//
   const emojis = new db.crearDB("EmojisInter");
   let emoji = await emojis.obtener(`${user.id}`)
-  let em;
-  em = `${emoji}`;
-  if (emojis.includes(user.id) == false) {
-  em = "`No`";
-  }
   //emoji//
   
 const embed = new Discord.MessageEmbed()
@@ -116,7 +111,7 @@ const embed = new Discord.MessageEmbed()
       `🍺 Perfil de ${user.username} [${user.id}]`,
       client.user.displayAvatarURL()
     )
-    .setDescription(`${em} ${note ? `**${note}**` : "**No Tiene Descripcion**"}`)
+    .setDescription(`${emoji ? `${emoji}` : "No"} ${note ? `**${note}**` : "**No Tiene Descripcion**"}`)
     .setThumbnail(il)
     .setColor(colorxd)
     .addField(
@@ -138,5 +133,6 @@ const embed = new Discord.MessageEmbed()
     .addField("🦡 `|` **__Badges:__**", user.flags.toArray().length > 0 ? user.flags.toArray().map(flag => badges[flag]) : "**No tiene Insignias**", true)
     .addField("♥ `|` **__Casad@ con:__**", `${marr ? `${marr}` : "No esta casad@"}`, true)  
     .addField("🔥 `|` **__Reputaciones:__**", `${r ? `${r}` : "No tienes reputaciones"}`, true)
+    .addField("💠 `|` **__Emoji:__**", `${emoji ? `${emoji}` : "No tiene emoji"}`)
 message.channel.send(embed);
 };
