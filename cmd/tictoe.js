@@ -1,6 +1,4 @@
 const tresenraya = require("tresenraya");
-const db = require("megadb");
-const puntos = new db.crearDB("PuntosTresEnRaya");
 exports.run = async (client, message, args) => {
   const user = message.mentions.users.first();
   if (!user) return message.channel.send("Menciona a alguien");
@@ -28,12 +26,6 @@ exports.run = async (client, message, args) => {
         client.users.cache.get(partida.perdedor).username +
         "... 😦"
     );
-
-    if (!puntos.tiene(`${user.id}`)) {
-      puntos.establecer(`${user.id}`, []);
-    }
-    puntos.sumar(message.author.id, 1);
-    puntos.restar(user.id, 1);
   });
 
   partida.on("empate", (jugadores, tablero, paso) => {

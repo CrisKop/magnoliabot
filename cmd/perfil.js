@@ -101,10 +101,6 @@ exports.run = async (client, message, args) => {
   let r = await rep.obtener(`${message.guild.id}.${user.id}`)
   //reps//
 
-//puntos//
-  const puntos = new db.crearDB("PuntosTresEnRaya")
-  let points = await puntos.obtener(`${user.id}`)
-  
 const embed = new Discord.MessageEmbed()
     .setAuthor(
       `🍺 Perfil de ${user.username} [${user.id}]`,
@@ -132,6 +128,5 @@ const embed = new Discord.MessageEmbed()
     .addField("🦡 `|` **__Badges:__**", user.flags.toArray().length > 0 ? user.flags.toArray().map(flag => badges[flag]) : "**No tiene Insignias**", true)
     .addField("♥ `|` **__Casad@ con:__**", `${marr ? `${marr}` : "No esta casad@"}`, true)  
     .addField("🔥 `|` **__Reputaciones:__**", `${r ? `${r}` : "No tienes reputaciones"}`, true)
-    .addField("`|` **__Puntos (3 en raya):__**", `${points ? `${points}` : "No tienes puntos"}`)
 message.channel.send(embed);
 };
