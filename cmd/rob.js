@@ -50,6 +50,8 @@ exports.run = async (client, message, args) => {
         .setColor("RED")
     );
   }
+    
+  if(message.author.id === user.id) return message.channel.send("No puedes robarte a ti mismo")
 
   let random = Math.floor(Math.random() * 200) + 1;
   
