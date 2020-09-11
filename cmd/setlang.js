@@ -17,5 +17,6 @@ exports.run = async (client, message, args) => {
     await message.channel.send("English getting are lang official the guild")
   }
   
+  idioma.push(`${message.guild.id}`, `${args[0]}`)
   
 }

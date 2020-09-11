@@ -28,8 +28,8 @@ let prefix_db = new db.crearDB("prefixes")
     .setThumbnail("https://cdn.discordapp.com/attachments/753270513069195337/753353150454431764/2017585.png")
     .setColor("RANDOM")
     .setAuthor(`Economia de ${client.user.username}`, client.user.displayAvatarURL())
-    .addField("Comandos/Eco:", "`rob` - `addmoney` - `crime` - `rep` - `dep` - `with` - `work` - `daily` - `weekly` - `perfil` - `setinfo` - `delinfo` - `ruleta` - `setcolor` - `resetcolor`")
-    .addField("Comandos/Eco(VIP):", "`setimg` - `delimg` - `configvip`")
+    .addField("Comandos/Eco:", "`buy` - `shop2` - `rob` - `addmoney` - `crime` - `rep` - `dep` - `with` - `work` - `daily` - `weekly` - `perfil` - `setinfo` - `delinfo` - `ruleta` - `setcolor` - `resetcolor`")
+    .addField("Comandos/Eco(VIP):", "`setimg` - `delimg` - `configvip` - `setemoji` - `setemojioff`")
     message.channel.send(embed)
   }
   

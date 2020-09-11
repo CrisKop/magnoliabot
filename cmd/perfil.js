@@ -106,12 +106,37 @@ exports.run = async (client, message, args) => {
   let emoji = await emojis.obtener(`${user.id}`)
   //emoji//
   
+  //medallas//
+  const inventario = new db.crearDB("inventarios");
+   let medallas;
+  medallas = await inventario.obtener(`${message.guild.id}.${user.id}`);
+
+  if (!inventario.tiene(`${message.guild.id}.${user.id}`)) {
+    await inventario.set(`${message.guild.id}.${user.id}`, []); //Esto se ocupa
+    return (medallas = "No tiene medallas");
+  }
+  let med = await inventario.get(`${message.guild.id}.${user.id}`);
+
+  let medails;
+  if (!inventario.tiene(`${message.guild.id}.${user.id}`)) {
+    medails = "No tiene medallas";
+  }
+  if (medallas == "No tiene medallas") {
+    medails = "No tiene medallas";
+  }
+  if (med.length == 0) {
+    medails = "No tiene medallas";
+  } else {
+    medails = med.join(" | ");
+  }
+  ///
+  
 const embed = new Discord.MessageEmbed()
     .setAuthor(
       `🍺 Perfil de ${user.username} [${user.id}]`,
       client.user.displayAvatarURL()
     )
-    .setDescription(`${emoji ? `${emoji}` : "No"} ${note ? `**${note}**` : "**No Tiene Descripcion**"}`)
+    .setDescription(`${emoji ? `${emoji}` : "No"} **|** ${note ? `${note}` : "**No Tiene Descripcion**"}`)
     .setThumbnail(il)
     .setColor(colorxd)
     .addField(
@@ -133,6 +158,7 @@ const embed = new Discord.MessageEmbed()
     .addField("🦡 `|` **__Badges:__**", user.flags.toArray().length > 0 ? user.flags.toArray().map(flag => badges[flag]) : "**No tiene Insignias**", true)
     .addField("♥ `|` **__Casad@ con:__**", `${marr ? `${marr}` : "No esta casad@"}`, true)  
     .addField("🔥 `|` **__Reputaciones:__**", `${r ? `${r}` : "No tienes reputaciones"}`, true)
-    .addField("💠 `|` **__Emoji:__**", `${emoji ? `${emoji}` : "No tiene emoji"}`)
+    .addField("💠 `|` **__Emoji:__**", `${emoji ? `${emoji}` : "No tiene emoji"}`, true)
+    .addField("👝 `|` **__Medallas:__**", medails, true)
 message.channel.send(embed);
 };

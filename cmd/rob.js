@@ -35,13 +35,13 @@ exports.run = async (client, message, args) => {
         .setColor("RED")
     );
 
-  if (authorcmd <= 250) {
-    return message.channel.send(
-      new Discord.MessageEmbed()
-        .setDescription("❌ Necesitas 250$ de dinero en el bolsillo para robar")
-        .setColor("RED")
-    );
-  }
+  // if (authorcmd <= 250) {
+  //   return message.channel.send(
+  //     new Discord.MessageEmbed()
+  //       .setDescription("❌ Necesitas 250$ de dinero en el bolsillo para robar")
+  //       .setColor("RED")
+  //   );
+  // }
   
   if(mencion <= 0) {
     return message.channel.send(

@@ -6,18 +6,17 @@ exports.run = async (client, message, args) => {
   const userbalance = await dinero.obtener(`${message.guild.id}.${message.author.id}`);
   const userinventario = await inventario.obtener(`${message.guild.id}.${message.author.id}`)
   let bot = client.user.username;
-  const prefix_db = new db.crearDB("prefixes");
+let prefix_db = new db.crearDB("prefixes")
 
-  //bases//
-  let prefix;
+    let prefix;
   if (prefix_db.tiene(`${message.guild.id}`)) {
     prefix = await prefix_db.obtener(`${message.guild.id}`);
   } else {
-    prefix = "x!";
+    prefix = "f/";
   }
-  const embed = new Discord.RichEmbed()
+  const embed = new Discord.MessageEmbed()
 
-    .setAuthor(bot + " ┊ Buy", client.user.avatarURL)
+    .setAuthor(bot + " ┊ Buy", client.user.avatarURL())
     .setDescription("Ejemplo: `" + prefix + "buy` [objeto]")
     .setColor("RANDOM")
     .setThumbnail(
@@ -40,7 +39,7 @@ exports.run = async (client, message, args) => {
     const userinventarioxd = await inventario.obtener(`${message.guild.id}.${message.author.id}`);
     if (userinventarioxd.includes("⚽"))
       return message.channel.send(
-        new Discord.RichEmbed()
+        new Discord.MessageEmbed()
           .setDescription("❌ Ya tienes esta medalla")
           .setColor("RED")
       );
