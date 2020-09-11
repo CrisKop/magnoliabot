@@ -96,6 +96,9 @@ exports.run = async (client, message, args) => {
   const marr = await marry.obtener(`${message.guild.id}.${user.id}`);
   //matrimonio
   
+  //reps//
+  const rep = new db.crearDB("rep")
+  let r = await rep.obtener(`${message.guild.id}.${user.id}`)
   
 const embed = new Discord.MessageEmbed()
     .setAuthor(
@@ -122,6 +125,7 @@ const embed = new Discord.MessageEmbed()
     )
     .addField("🎻 `|` **__Staff/Vip:__**", `**Staff:** ${skere2} \n**Vip:** ${skere}`, true)
     .addField("🦡 `|` **__Badges:__**", user.flags.toArray().length > 0 ? user.flags.toArray().map(flag => badges[flag]) : "**No tiene Insignias**", true)
-    .addField("♥ `|` **Casad@ con:**", `${marr ? `${marr}` : "No esta casad@"}`, true)  
+    .addField("♥ `|` **__Casad@ con:__**", `${marr ? `${marr}` : "No esta casad@"}`, true)  
+    .addField("🔥 `|` **__Reputaciones:__**", `${r ? `${r}` : "No tienes reputaciones"}`, true)
 message.channel.send(embed);
 };
