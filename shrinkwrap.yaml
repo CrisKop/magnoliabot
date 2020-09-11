@@ -6,6 +6,7 @@ dependencies:
   moment-duration-format: 2.3.2
   parse-ms: 2.1.0
   quick.db: 7.1.1
+  tresenraya: 0.0.5
 packages:
   /@discordjs/collection/0.1.6:
     dev: false
@@ -952,6 +953,10 @@ packages:
       node: '>=0.6'
     resolution:
       integrity: sha512-yaOH/Pk/VEhBWWTlhI+qXxDFXlejDGcQipMlyxda9nthulaxLZUNcUqFxokp0vcYnvteJln5FNQDRrxj3YcbVw==
+  /tresenraya/0.0.5:
+    dev: false
+    resolution:
+      integrity: sha512-SbbUZaMGGSLawxcOctXlJE9nnzk+OvHlYQPP/l1DAN/mkVwtbPMplPK5VN1DyRnThK4UE30EfdOm0KlbBxI1+Q==
   /tunnel-agent/0.6.0:
     dependencies:
       safe-buffer: 5.2.1
@@ -1037,3 +1042,4 @@ specifiers:
   moment-duration-format: ^2.3.2
   parse-ms: ^2.1.0
   quick.db: ^7.1.1
+  tresenraya: ^0.0.5
