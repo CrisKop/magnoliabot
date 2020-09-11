@@ -100,12 +100,6 @@ exports.run = async (client, message, args) => {
   const rep = new db.crearDB("rep")
   let r = await rep.obtener(`${message.guild.id}.${user.id}`)
   //reps//
-
-  //emoji//
-  const emojis = new db.crearDB("EmojisInter");
-  let emoji = await emojis.obtener(`${user.id}`)
-  //emoji//
-  
   //medallas//
   const inventario = new db.crearDB("inventarios");
    let medallas;
@@ -129,6 +123,10 @@ exports.run = async (client, message, args) => {
   } else {
     medails = med.join(" | ");
   }
+  
+  const emojis = new db.crearDB("EmojisInter");
+  let emoji = await emojis.get(`${user.id}`);
+  
   ///
   
 const embed = new Discord.MessageEmbed()
@@ -158,7 +156,9 @@ const embed = new Discord.MessageEmbed()
     .addField("🦡 `|` **__Badges:__**", user.flags.toArray().length > 0 ? user.flags.toArray().map(flag => badges[flag]) : "**No tiene Insignias**", true)
     .addField("♥ `|` **__Casad@ con:__**", `${marr ? `${marr}` : "No esta casad@"}`, true)  
     .addField("🔥 `|` **__Reputaciones:__**", `${r ? `${r}` : "No tienes reputaciones"}`, true)
-    .addField("💠 `|` **__Emoji:__**", `${emoji ? `${emoji}` : "No tiene emoji"}`, true)
+    .addField("💠 `|` **__Emoji:__**", `${emoji ? `${emoji}` : "No tiene emojis"}`, true)
     .addField("👝 `|` **__Medallas:__**", medails, true)
-message.channel.send(embed);
+message.channel.send(embed).catch(e => {
+  message.channel.send(e)
+})
 };
