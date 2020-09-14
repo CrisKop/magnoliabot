@@ -9,7 +9,6 @@ setInterval(() => {
   http.get(`http://falexyEco.glitch.me/`);
 }, 280000);
 
-
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const { nivelesFunc } = require("./niveles.js");
@@ -17,48 +16,46 @@ const { nivelesFunc } = require("./niveles.js");
 client.on("ready", () => {
   console.log("Estoy listo!");
   setInterval(function() {
-    let statuses = [`f/ayuda 🎸 ${client.guilds.cache.size} Servidores`, `f/comandos 👤 ${client.users.cache.size} Usuarios`];
+    let statuses = [
+      `f/ayuda 🎸 ${client.guilds.cache.size} Servidores`,
+      `f/comandos 👤 ${client.users.cache.size} Usuarios`
+    ];
     let status = Math.floor(Math.random() * statuses.length);
     let dstatus = statuses[status];
     client.user.setPresence({
       activity: {
         name: `${dstatus}`,
-        type: "LISTENING"//pq volvimos a glitch?
+        type: "LISTENING" //pq volvimos a glitch?
       },
       status: "online"
     });
   }, 5000);
 });
 
-client.on("message", async message => { 
-  
+client.on("message", async message => {
   const db = require("megadb");
-  let prefix_db = new db.crearDB("prefixes") 
-  
+  let prefix_db = new db.crearDB("prefixes"); //q haces :v
+
   var prefix;
   if (prefix_db.tiene(`${message.guild.id}`)) {
     prefix = await prefix_db.obtener(`${message.guild.id}`);
   } else {
     prefix = "f/";
   }
-  
+
   if (message.author.bot) return;
-  if (message.channel.type === "dm") return message.channel.send(
-  new Discord.MessagEmbed()
-  .setAuthor(`Gracias por hablarme`, client.user.displayAvatarURL())
-  .setColor("RANDOM")
-  .addField("🖊️ `|` **__Enlaces:__**", "**[Invitame](https://discord.com/api/oauth2/authorize?client_id=753340440001904841&permissions=8&scope=bot) `|` [Soporte](https://discord.gg/PTVYBhW)**"))
+
   if (message.content.indexOf(prefix) !== 0) {
     nivelesFunc(message);
     return;
   }
-  
+
   const args = message.content
     .slice(prefix.length)
     .trim()
     .split(/ +/g);
   const command = args.shift().toLowerCase();
-  
+
   try {
     let comandos = require(`./cmd/${command}.js`);
     comandos.run(client, message, args);
@@ -81,15 +78,16 @@ client.on("message", async message => {
 });
 
 client.on("guildMemberAdd", async guild => {
-  
   guild.owner.send(
-new Discord.MessageEmbed()
-    .setDescription(`Muchas Gracias ${guild.owner.tag} Por agregar nuestro bot **${client.user.username}** a tu Servidor: **${guild.name}**\nNo tiene ni la menor idea lo agradecidos que estamos...`)
-    .addField("Servidores Actuales:" +client.guilds.cache.size)
-    .addField("Usuarios Actuales:", +client.users.cache.size)
-    .setFooter(guild.name)
- );
-  
+    new Discord.MessageEmbed()
+      .setDescription(
+        `Muchas Gracias ${guild.owner.tag} Por agregar nuestro bot **${client.user.username}** a tu Servidor: **${guild.name}**\nNo tiene ni la menor idea lo agradecidos que estamos...`
+      )
+      .addField("Servidores Actuales:" + client.guilds.cache.size)
+      .addField("Usuarios Actuales:", +client.users.cache.size)
+      .setFooter(guild.name)
+  );
 });
 
-client.login(process.env.TOKEN)
+client.login(process.env.TOKEN);
+//que es lo que habia abajo de del evento guildmemberadd? , yo lo coloque pero no me acuerdo
