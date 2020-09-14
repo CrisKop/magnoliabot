@@ -170,6 +170,36 @@ let prefix_db = new db.crearDB("prefixes")
     );
     dinero.restar(`${message.guild.id}.${message.author.id}`, 25000);
     inventario.push(`${message.guild.id}.${message.author.id}`, "🔰");
+} else if (args[0].toLowerCase() == "relojero") {
+    const userinventarioxd = await inventario.obtener(`${message.guild.id}.${message.author.id}`)
+    if (!userinventarioxd.includes("🧭"))
+      return message.channel.send(
+        new Discord.MessageEmbed()
+          .setDescription("❌ No tienes esta medalla")
+          .setColor("RED")
+      );
+    message.channel.send(
+      new Discord.MessageEmbed()
+        .setDescription("☑️ Has vendido la medalla **Relojero** 🧭")
+        .setColor("GREEN")
+    );
+    dinero.sumar(`${message.guild.id}.${message.author.id}`, 35000);
+    inventario.extract(`${message.guild.id}.${message.author.id}`, "🧭");
+     } else if (args[0].toLowerCase() == "medico") {
+    const userinventarioxd = await inventario.obtener(`${message.guild.id}.${message.author.id}`)
+    if (!userinventarioxd.includes("💉"))
+      return message.channel.send(
+        new Discord.MessageEmbed()
+          .setDescription("❌ No tienes esta medalla")
+          .setColor("RED")
+      );
+    message.channel.send(
+      new Discord.MessageEmbed()
+        .setDescription("☑️ Has vendido la medalla **Medico** 💉")
+        .setColor("GREEN")
+    );
+    dinero.sumar(`${message.guild.id}.${message.author.id}`, 45000);
+    inventario.extract(`${message.guild.id}.${message.author.id}`, "💉");
   } else if (args[0]) {
     message.channel.send(
       new Discord.MessageEmbed()
@@ -177,4 +207,4 @@ let prefix_db = new db.crearDB("prefixes")
         .setColor("RED")
     );
   }
-}
+};
