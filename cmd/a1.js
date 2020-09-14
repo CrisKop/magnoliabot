@@ -52,10 +52,10 @@ var permisos = {
         var user6 = message.member;
 
         const embed64 = new Discord.MessageEmbed()
-          .setThumbnail(user6.displayAv)
+          //.setThumbnail(user6.avatarURL())
           .setAuthor(
             "Info de " + user6.user.username + "#" + user6.user.discriminator,
-            user6.user.avatarURL
+            user6.user.avatarURL()
           )
           .setColor("RANDOM")
           .addField(
@@ -72,8 +72,7 @@ var permisos = {
           )
           .addField("<:id:705094028227510333> **ID:**", user6.user.id, true)
           .addField(
-            "<:link:705094294117023825> **URL Del Avatar**",
-            message.author.avatarURL
+            "<:link:705094294117023825> **URL Del Avatar**", `[Link Avatar](${message.author.avatarURL()})`
           )
           .addField(
             "<a:Fiesta:698964936453521428> **Estado:**",
@@ -108,7 +107,7 @@ var permisos = {
             "**Permisos:**",
             `\`\`\`${user6.permissions
               .toArray()
-              .cache.map(p => permisos[p])
+              .map(p => permisos[p])
               .join(", ")}\`\`\``
           )
           .setFooter(
@@ -180,7 +179,7 @@ var permisos = {
           )
           .setFooter(
             "Solicitado por " + message.author.username + "",
-            message.author.avatarURL()
+            message.author.AvatarURL()
           );
 
         message.channel.send(embed65);
