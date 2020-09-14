@@ -43,6 +43,11 @@ client.on("message", async message => {
   }
   
   if (message.author.bot) return;
+  if (message.channel.type === "dm") return message.channel.send(
+  new Discord.MessagEmbed()
+  .setAuthor(`Gracias por hablarme`, client.user.displayAvatarURL())
+  .setColor("RANDOM")
+  .addField("🖊️ `|` **__Enlaces:__**", "**[Invitame](https://discord.com/api/oauth2/authorize?client_id=753340440001904841&permissions=8&scope=bot) `|` [Soporte](https://discord.gg/PTVYBhW)**"))
   if (message.content.indexOf(prefix) !== 0) {
     nivelesFunc(message);
     return;
