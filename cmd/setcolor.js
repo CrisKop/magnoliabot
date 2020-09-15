@@ -21,7 +21,7 @@ exports.run = async (client, message, args) => {
         .addField("⚠️ Ejemplo :", "#5b00ff")
         .addField("🖌️ Colores HTML", "[Colores](https://htmlcolorcodes.com/es/)")
         .setColor("RED")
-    );
+    )
 
   color.establecer(`${message.author.id}`, x);
   // }
