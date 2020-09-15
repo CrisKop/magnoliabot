@@ -75,6 +75,23 @@ exports.run = async (client, message, args) => {
         .setColor("GREEN")
     );
     emojis.establecer(`${message.author.id}`, "🛠️");
+     } else if (args[0] === "Barcelona") {
+    if (!emojis.tiene(`${message.author.id}`)) {
+      emojis.establecer(`${message.author.id}`, []);
+    }
+    const userinventarioxd = await emojis.obtener(`${message.author.id}`);
+    if (userinventarioxd.includes("<:Barca:755496077414629497>"))
+      return message.channel.send(
+        new Discord.MessageEmbed()
+          .setDescription("❌ Ya tienes esta medalla")
+          .setColor("RED")
+      );
+    message.channel.send(
+      new Discord.MessageEmbed()
+        .setDescription("☑️ Has obtenido la medalla **Barcelona** <:Barca:755496077414629497>")
+        .setColor("GREEN")
+    );
+    emojis.establecer(`${message.author.id}`, "<:Barca:755496077414629497>");
   } else {
     message.channel.send("Ese emoji no existe")
   }

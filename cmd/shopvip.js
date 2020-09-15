@@ -17,7 +17,7 @@ exports.run = async (client, message, args) => {
     .setAuthor(`Lista Emojis Personalizados`, message.author.displayAvatarURL())
     .setColor("RANDOM")
     .setThumbnail(client.user.displayAvatarURL())
-    .setDescription("**Emojis:** \n\n`Regalo` 🎁 \n`Futbol` ⚽ \n`Tecnico` 🛠️")
+    .setDescription("**Emojis:** \n\n`Regalo` 🎁 \n`Futbol` ⚽ \n`Tecnico` 🛠️ \n`Barcelona` <:Barca:755496077414629497>")
     .setFooter("Usa: `setemoji <emoji-nombre>`");
   message.channel.send(embed);
 };

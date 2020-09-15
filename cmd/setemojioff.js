@@ -62,6 +62,20 @@ const vips_db = new db.crearDB("Vips");
         .setColor("GREEN")
     );
     emojis.eliminar(`${message.author.id}`, "🛠️");
+      } else if (args[0] === "Barcelona") {
+    const userinventarioxd = await emojis.obtener(`${message.author.id}`);
+    if (!userinventarioxd.includes("<:Barca:755496077414629497>"))
+      return message.channel.send(
+        new Discord.MessageEmbed()
+          .setDescription("❌ no tienes esta medalla")
+          .setColor("RED")
+      );
+    message.channel.send(
+      new Discord.MessageEmbed()
+        .setDescription("☑️ Has removido la medalla **Barcelona** <:Barca:755496077414629497>")
+        .setColor("GREEN")
+    );
+    emojis.eliminar(`${message.author.id}`, "<:Barca:755496077414629497>");
   } else {
     message.channel.send("ese emoji no existe")
   }
