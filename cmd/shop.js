@@ -21,6 +21,10 @@ let bot = client.user.username;
   const items = new db.crearDB("Tienda")
   let it = await items.obtener("Items")
 
+  if(!it.tiene("Items")) {
+    Items: `No hay Items en la Tienda`
+  }
+  
   if (!args[0])
     return message.channel.send(
       new Discord.MessageEmbed()
