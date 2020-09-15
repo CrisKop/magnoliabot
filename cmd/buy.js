@@ -98,54 +98,6 @@ let prefix_db = new db.crearDB("prefixes")
     );
     dinero.restar(`${message.guild.id}.${message.author.id}`, 1500);
     inventario.push(`${message.guild.id}.${message.author.id}`, "🛠️");
-    } else if (args[0].toLowerCase() == "relojero") {
-    if (userbalance <= 35000)
-      return message.channel.send(
-        new Discord.MessageEmbed()
-          .setDescription("❌ No tienes suficientes monedas")
-          .setColor("RED")
-      );
-    if (!inventario.tiene(`${message.guild.id}.${message.author.id}`)) {
-      inventario.establecer(`${message.guild.id}.${message.author.id}`, []);
-    }
-    const userinventarioxd = await inventario.obtener(`${message.guild.id}.${message.author.id}`);
-    if (userinventarioxd.includes("🧭"))
-      return message.channel.send(
-        new Discord.MessageEmbed()
-          .setDescription("❌ Ya tienes esta medalla")
-          .setColor("RED")
-      );
-    message.channel.send(
-      new Discord.MessageEmbed()
-        .setDescription("☑️ Has comprado la medalla **Relojero** 🧭")
-        .setColor("GREEN")
-    );
-    dinero.restar(`${message.guild.id}.${message.author.id}`, 35000);
-    inventario.push(`${message.guild.id}.${message.author.id}`, "🧭");
-    } else if (args[0].toLowerCase() == "medico") {
-    if (userbalance <= 45000)
-      return message.channel.send(
-        new Discord.MessageEmbed()
-          .setDescription("❌ No tienes suficientes monedas")
-          .setColor("RED")
-      );
-    if (!inventario.tiene(`${message.guild.id}.${message.author.id}`)) {
-      inventario.establecer(`${message.guild.id}.${message.author.id}`, []);
-    }
-    const userinventarioxd = await inventario.obtener(`${message.guild.id}.${message.author.id}`);
-    if (userinventarioxd.includes("💉"))
-      return message.channel.send(
-        new Discord.MessageEmbed()
-          .setDescription("❌ Ya tienes esta medalla")
-          .setColor("RED")
-      );
-    message.channel.send(
-      new Discord.MessageEmbed()
-        .setDescription("☑️ Has comprado la medalla **Medico** 💉")
-        .setColor("GREEN")
-    );
-    dinero.restar(`${message.guild.id}.${message.author.id}`, 45000);
-    inventario.push(`${message.guild.id}.${message.author.id}`, "💉");
         } else if (args[0].toLowerCase() == "programador") {
     if (userbalance <= 25000)
       return message.channel.send(
@@ -170,36 +122,6 @@ let prefix_db = new db.crearDB("prefixes")
     );
     dinero.restar(`${message.guild.id}.${message.author.id}`, 25000);
     inventario.push(`${message.guild.id}.${message.author.id}`, "🔰");
-} else if (args[0].toLowerCase() == "relojero") {
-    const userinventarioxd = await inventario.obtener(`${message.guild.id}.${message.author.id}`)
-    if (!userinventarioxd.includes("🧭"))
-      return message.channel.send(
-        new Discord.MessageEmbed()
-          .setDescription("❌ No tienes esta medalla")
-          .setColor("RED")
-      );
-    message.channel.send(
-      new Discord.MessageEmbed()
-        .setDescription("☑️ Has vendido la medalla **Relojero** 🧭")
-        .setColor("GREEN")
-    );
-    dinero.sumar(`${message.guild.id}.${message.author.id}`, 35000);
-    inventario.extract(`${message.guild.id}.${message.author.id}`, "🧭");
-     } else if (args[0].toLowerCase() == "medico") {
-    const userinventarioxd = await inventario.obtener(`${message.guild.id}.${message.author.id}`)
-    if (!userinventarioxd.includes("💉"))
-      return message.channel.send(
-        new Discord.MessageEmbed()
-          .setDescription("❌ No tienes esta medalla")
-          .setColor("RED")
-      );
-    message.channel.send(
-      new Discord.MessageEmbed()
-        .setDescription("☑️ Has vendido la medalla **Medico** 💉")
-        .setColor("GREEN")
-    );
-    dinero.sumar(`${message.guild.id}.${message.author.id}`, 45000);
-    inventario.extract(`${message.guild.id}.${message.author.id}`, "💉");
   } else if (args[0]) {
     message.channel.send(
       new Discord.MessageEmbed()

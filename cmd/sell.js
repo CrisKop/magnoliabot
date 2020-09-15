@@ -105,5 +105,7 @@ exports.run = async (client, message, args) => {
     );
     dinero.sumar(`${message.guild.id}.${message.author.id}`, 25000);
     inventario.extract(`${message.guild.id}.${message.author.id}`, "🔰");
+    } else {
+      message.channel.send("No existe esa medalla")
     }
 }
