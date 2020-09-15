@@ -22,6 +22,7 @@ exports.run = async (client, message, args) => {
   let desc = args1[2]
   if(!desc) return message.chanel.send("❌ `|` **Debes colocar una descripcion al item** `Modo correcto:` "+ `\n${prefix}shopadd <nombre> | <precio> | <descripcion>`)
   
+  if(isNaN(price)) return message.channel.send("**El Precio debe ser un numero**")
   
   if (!items.tiene("Items")) {
       items.establecer("Items", []);
