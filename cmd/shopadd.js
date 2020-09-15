@@ -27,7 +27,7 @@ exports.run = async (client, message, args) => {
       items.establecer("Items", []);
     }
   
-  items.push("Items", `${xd}**:\nPrecio: **${price}**\nDescripcion: **${desc},\n`)
+  items.push("Items", `${xd}**:\nPrecio: **${price}**\nDescripcion: **${desc}`)
  /*items.push("Items", desc)
   items.push("Items", price)*/
   message.channel.send("☑️ `|` **El item se ha creado correctamente**")

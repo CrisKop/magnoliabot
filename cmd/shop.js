@@ -35,6 +35,6 @@ let bot = client.user.username;
         .setDescription(
           "**Para comprar las medallas debes tener tu money en:** `Dinero`"
         )
-        .addField("🏅 Items:", `${it ? `**${it}**` : "No hay Items en la tienda"}`)
+        .addField("🏅 Items:", `${it.join("\n\n") ? `**${it.join("\n\n")}**` : "No hay Items en la tienda"}`)
     );
 }
