@@ -122,6 +122,30 @@ let prefix_db = new db.crearDB("prefixes")
     );
     dinero.restar(`${message.guild.id}.${message.author.id}`, 25000);
     inventario.push(`${message.guild.id}.${message.author.id}`, "🔰");
+     } else if (args[0].toLowerCase() == "barcelona") {
+    if (userbalance <= 40000)
+      return message.channel.send(
+        new Discord.MessageEmbed()
+          .setDescription("❌ No tienes suficientes monedas")
+          .setColor("RED")
+      );
+    if (!inventario.tiene(`${message.guild.id}.${message.author.id}`)) {
+      inventario.establecer(`${message.guild.id}.${message.author.id}`, []);
+    }
+    const userinventarioxd = await inventario.obtener(`${message.guild.id}.${message.author.id}`);
+    if (userinventarioxd.includes("<:Barca:755496077414629497>"))
+      return message.channel.send(
+        new Discord.MessageEmbed()
+          .setDescription("❌ Ya tienes esta medalla")
+          .setColor("RED")
+      );
+    message.channel.send(
+      new Discord.MessageEmbed()
+        .setDescription("☑️ Has comprado la medalla **Barcelona** <:Barca:755496077414629497>")
+        .setColor("GREEN")
+    );
+    dinero.restar(`${message.guild.id}.${message.author.id}`, 40000);
+    inventario.push(`${message.guild.id}.${message.author.id}`, "<:Barca:755496077414629497>");
   } else if (args[0]) {
     message.channel.send(
       new Discord.MessageEmbed()

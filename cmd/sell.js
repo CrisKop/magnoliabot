@@ -105,6 +105,21 @@ exports.run = async (client, message, args) => {
     );
     dinero.sumar(`${message.guild.id}.${message.author.id}`, 25000);
     inventario.extract(`${message.guild.id}.${message.author.id}`, "🔰");
+        } else if (args[0].toLowerCase() == "barcelona") {
+    const userinventarioxd = await inventario.obtener(`${message.guild.id}.${message.author.id}`)
+    if (!userinventarioxd.includes("<:Barca:755496077414629497>"))
+      return message.channel.send(
+        new Discord.MessageEmbed()
+          .setDescription("❌ No tienes esta medalla")
+          .setColor("RED")
+      );
+    message.channel.send(
+      new Discord.MessageEmbed()
+        .setDescription("☑️ Has vendido la medalla **Barcelona** <:Barca:755496077414629497>")
+        .setColor("GREEN")
+    );
+    dinero.sumar(`${message.guild.id}.${message.author.id}`, 40000);
+    inventario.extract(`${message.guild.id}.${message.author.id}`, "<:Barca:755496077414629497>");
     } else {
       message.channel.send("No existe esa medalla")
     }

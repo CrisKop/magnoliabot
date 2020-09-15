@@ -75,5 +75,7 @@ exports.run = async (client, message, args) => {
         .setColor("GREEN")
     );
     emojis.establecer(`${message.author.id}`, "🛠️");
+  } else {
+    message.channel.send("Ese emoji no existe")
   }
 };
