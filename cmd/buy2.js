@@ -2,10 +2,8 @@ exports.run = async (client, message, args) => {
   const Discord = require("discord.js");
   const db = require("megadb");
   const dinero = new db.crearDB("Dinero");
-  const inventario = new db.crearDB("inventarios");
-  const shopy = new db.crearDB("Tienda")
   const userbalance = await dinero.obtener(`${message.guild.id}.${message.author.id}`);
-  const userinventario = await inventario.obtener(`${message.guild.id}.${message.author.id}`)
+  const userinventario = await items.obtener(`${message.guild.id}.${message.author.id}`)
   let bot = client.user.username;
 let prefix_db = new db.crearDB("prefixes")
 
@@ -30,18 +28,18 @@ let prefix_db = new db.crearDB("prefixes")
     .setTimestamp();
   if (!args[0]) {
      message.channel.send(embed);
- } else if (args.join(" ").toLowerCase() == await shopy.obte) { 
+ } else if (args.join(" ").toLowerCase() == await items.obtener(message.guild.id)) { 
    if (userbalance <= 5000)
       return message.channel.send(
         new Discord.MessageEmbed()
           .setDescription("❌ No tienes suficientes monedas")
           .setColor("RED")
       );
-    if (!inventario.tiene(`${message.guild.id}.${message.author.id}`)) {
-      inventario.establecer(`${message.guild.id}.${message.author.id}`, []);
+    if (!items.tiene(`${message.guild.id}.${message.author.id}`)) {
+      items.establecer(`${message.guild.id}.${message.author.id}`, []);
     }
-    const userinventarioxd = await inventario.obtener(`${message.guild.id}.${message.author.id}`);
-    if (userinventarioxd.includes("⚽"))
+    const userinventarioxd = await items.obtener(`${message.guild.id}.${message.author.id}`);
+    if (userinventarioxd.includes(message.guild.id))
       return message.channel.send(
         new Discord.MessageEmbed()
           .setDescription("❌ Ya tienes esta medalla")
@@ -53,6 +51,6 @@ let prefix_db = new db.crearDB("prefixes")
         .setColor("GREEN")
     );
     dinero.restar(`${message.guild.id}.${message.author.id}`, 5000);
-    inventario.push(`${message.guild.id}.${message.author.id}`, "⚽");
+    items.push(`${message.guild.id}.${message.author.id}`, "⚽");
   } 
 };
