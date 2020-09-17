@@ -1,13 +1,27 @@
 exports.run = async (client, message, args) => {
   let Discord = require("discord.js")
-  
-  let user = message.mentions.users.first() || message.author;
   let db = require("megadb")
+  let user = message.mentions.users.first() || message.author;
+  
+    let prefix_db = new db.crearDB("prefixes")
+
+    let prefix;
+  if (prefix_db.tiene(`${message.guild.id}`)) {
+    prefix = await prefix_db.obtener(`${message.guild.id}`);
+  } else {
+    prefix = "f/";
+  }
+  
+  const inventario = new db.crearDB("inventarios");
+   if(inventario.tiene(`${message.author.id}`)) return message.channel.send(`☑️ Ya creaste tu perfil, vuelve a colocar el comando **${prefix}perfil**`)
+  
+
   const desc = new db.crearDB("Descripciones");
 
   //dinero//
   const dinero = new db.crearDB("Dinero");
   const banco = new db.crearDB("Banco");
+  if(banco)
   //dinero
   
   if (!dinero.tiene(`${message.guild.id}.${user.id}`)) {
@@ -101,7 +115,6 @@ exports.run = async (client, message, args) => {
   let r = await rep.obtener(`${message.guild.id}.${user.id}`)
   //reps//
   //medallas//
-  const inventario = new db.crearDB("inventarios");
    let medallas;
   medallas = await inventario.obtener(`${message.guild.id}.${user.id}`);
 
@@ -126,8 +139,6 @@ exports.run = async (client, message, args) => {
   
   const emojis = new db.crearDB("EmojisInter");
   let emoji = await emojis.get(`${user.id}`);
-  
-  ///
   
 const embed = new Discord.MessageEmbed()
     .setAuthor(
