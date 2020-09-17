@@ -15,9 +15,10 @@
     "quick.db": "^7.1.1",
     "megadb": "^3.4.0",
     "parse-ms": "^2.1.0",
-    "moment": "^2.27.0",
+    "moment": "^2.28.0",
     "moment-duration-format": "^2.3.2",
-    "tresenraya": "^0.0.5"
+    "tresenraya": "^0.0.5",
+    "colornames": "^1.1.1"
   },
   "engines": {
     "node": "12.x"

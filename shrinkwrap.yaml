@@ -1,8 +1,9 @@
 dependencies:
+  colornames: 1.1.1
   discord.js: 12.3.1
   express: 4.17.1
   megadb: 3.4.0
-  moment: 2.27.0
+  moment: 2.28.0
   moment-duration-format: 2.3.2
   parse-ms: 2.1.0
   quick.db: 7.1.1
@@ -138,6 +139,10 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-DQcLTQQ6W+ozovGkDi7bPZpMz3c=
+  /colornames/1.1.1:
+    dev: false
+    resolution:
+      integrity: sha1-+IiQMGhcfE/54qVZ9Qd+t2qBb5Y=
   /combined-stream/1.0.8:
     dependencies:
       delayed-stream: 1.0.0
@@ -561,10 +566,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-cBMXjSW+fjOb4tyaVHuaVE/A5TqkukDWiOfxxAjY+PEqmmBQlLwn+8OzwPiG3brouXKY5Un4pBjAeB6UToXHaQ==
-  /moment/2.27.0:
+  /moment/2.28.0:
     dev: false
     resolution:
-      integrity: sha512-al0MUK7cpIcglMv3YF13qSgdAIqxHTO7brRtaz3DlSULbqfazqkc5kEjNrLDOM7fsjshoFIihnU8snrP7zUvhQ==
+      integrity: sha512-Z5KOjYmnHyd/ukynmFd/WwyXHd7L4J9vTI/nn5Ap9AVUgaAE15VvQ9MOGmJJygEUklupqIrFnor/tjTwRU+tQw==
   /ms/2.0.0:
     dev: false
     resolution:
@@ -1035,10 +1040,11 @@ registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
+  colornames: ^1.1.1
   discord.js: ^12.3.1
   express: ^4.17.1
   megadb: ^3.4.0
-  moment: ^2.27.0
+  moment: ^2.28.0
   moment-duration-format: ^2.3.2
   parse-ms: ^2.1.0
   quick.db: ^7.1.1
