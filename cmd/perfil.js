@@ -1,29 +1,25 @@
 exports.run = async (client, message, args) => {
-  let Discord = require("discord.js")
-  let db = require("megadb")
-  let user = message.mentions.users.first() || message.author;
-  
-    let prefix_db = new db.crearDB("prefixes")
+  let Discord = require("discord.js");
+  let db = require("megadb");
 
-    let prefix;
+  let user = message.mentions.users.first() || message.author;
+
+  let prefix_db = new db.crearDB("prefixes");
+
+  let prefix;
   if (prefix_db.tiene(`${message.guild.id}`)) {
     prefix = await prefix_db.obtener(`${message.guild.id}`);
   } else {
     prefix = "f/";
   }
-  
+
   const inventario = new db.crearDB("inventarios");
-   if(inventario.tiene(`${message.author.id}`)) return message.channel.send(`☑️ Ya creaste tu perfil, vuelve a colocar el comando **${prefix}perfil**`)
-  
 
   const desc = new db.crearDB("Descripciones");
 
-  //dinero//
   const dinero = new db.crearDB("Dinero");
   const banco = new db.crearDB("Banco");
-  if(banco)
-  //dinero
-  
+
   if (!dinero.tiene(`${message.guild.id}.${user.id}`)) {
     dinero.establecer(`${message.guild.id}.${user.id}`, 0);
   }
@@ -34,15 +30,14 @@ exports.run = async (client, message, args) => {
   let cdinero = await dinero.obtener(`${message.guild.id}.${user.id}`);
   let cbanco = await banco.obtener(`${message.guild.id}.${user.id}`);
   var total = Math.floor(cdinero + cbanco);
-  
-  
+
   //descripciones//
   const note = await desc.obtener(`${user.id}`);
   //ddescripciones//
-  
+
   //niveles//
   let levels_db = new db.crearDB("niveles");
-   if (!levels_db.tiene(message.guild.id))
+  if (!levels_db.tiene(message.guild.id))
     levels_db.establecer(message.guild.id, {});
   if (!levels_db.tiene(`${message.guild.id}.${user.id}`))
     levels_db.establecer(`${message.guild.id}.${user.id}`, {
@@ -54,7 +49,7 @@ exports.run = async (client, message, args) => {
   let randomxp = Math.floor(Math.random() * 4) + 2;
   let levelup = 5 * nivel ** 2 + 50 * nivel + 100;
   //niveles//
-  
+
   //staff//
   const developers_db = new db.crearDB("Developers");
   let staff = await developers_db.obtener("Developers");
@@ -65,7 +60,6 @@ exports.run = async (client, message, args) => {
   }
   //staff//
 
-
   //vips//
   const vips_db = new db.crearDB("Vips");
   let vip = await vips_db.obtener("Vips");
@@ -75,47 +69,42 @@ exports.run = async (client, message, args) => {
     skere = "`No`";
   }
   //vips
-  
-  
+
   //color//
   const color = new db.crearDB("color");
   let colorxd = await color.obtener(`${user.id}`);
-  //color 
-  
+
   //imagen//
   const img_db = new db.crearDB("img");
-  const il = await img_db.obtener(`${user.id}`, args.join(" "))
-  
-  
+  const il = await img_db.obtener(`${user.id}`, args.join(" "));
   //badges//
   let badges = {
-      DISCORD_EMPLOYEE: "<:Empleado:739216383841140878> **Empleado Discord**",
-      DISCORD_PARTNER: "<:Partner:739216383103205406> **Partner Discord**",
-      HYPESQUAD_EVENTS: "<:HypeSquad:739216383547539456> **Eventos HypeSquad**",
-      BUGHUNTER_LEVEL_1: "<:BugHunter:739224970101653514> **BugHunter 1**",
-      HOUSE_BRAVERY: "<:Bravery:739216376211701810> **House Bravery**",
-      HOUSE_BRILLIANCE: "<:Brilliance:739216380007809104> **House Brilliance**",
-      HOUSE_BALANCE: "<:balance:739216375477829733> **House Balance**",
-      EARLY_SUPPORTER: "<:soporte:739216384851968050> **Soporte**",
-      TEAM_USER: "<:team:739216384999030835> **Usuario Team**",
-      SYSTEM: "<:sistema:739216385095237713> **Sistema**",
-      BUGHUNTER_LEVEL_2: "<:BugHunter:739224970101653514> **BugHunter 2**",
-      VERIFIED_BOT: "<:botverificado:739216382985764864> **Bot Verificado**",
-      VERIFIED_DEVELOPER: "<:dev:739214087732592731> **Developer Verificado**"
-    };
+    DISCORD_EMPLOYEE: "<:Empleado:739216383841140878> **Empleado Discord**",
+    DISCORD_PARTNER: "<:Partner:739216383103205406> **Partner Discord**",
+    HYPESQUAD_EVENTS: "<:HypeSquad:739216383547539456> **Eventos HypeSquad**",
+    BUGHUNTER_LEVEL_1: "<:BugHunter:739224970101653514> **BugHunter 1**",
+    HOUSE_BRAVERY: "<:Bravery:739216376211701810> **House Bravery**",
+    HOUSE_BRILLIANCE: "<:Brilliance:739216380007809104> **House Brilliance**",
+    HOUSE_BALANCE: "<:balance:739216375477829733> **House Balance**",
+    EARLY_SUPPORTER: "<:soporte:739216384851968050> **Soporte**",
+    TEAM_USER: "<:team:739216384999030835> **Usuario Team**",
+    SYSTEM: "<:sistema:739216385095237713> **Sistema**",
+    BUGHUNTER_LEVEL_2: "<:BugHunter:739224970101653514> **BugHunter 2**",
+    VERIFIED_BOT: "<:botverificado:739216382985764864> **Bot Verificado**",
+    VERIFIED_DEVELOPER: "<:dev:739214087732592731> **Developer Verificado**"
+  };
   //badges
-  
+
   //matrimonio
   // const marry = new db.crearDB("Matrimonio");
   // const marr = await marry.obtener(`${message.guild.id}.${user.id}`);
   //matrimonio
-  
+
   //reps//
-  const rep = new db.crearDB("rep")
-  let r = await rep.obtener(`${message.guild.id}.${user.id}`)
-  //reps//
+  const rep = new db.crearDB("rep");
+  let r = await rep.obtener(`${message.guild.id}.${user.id}`);
   //medallas//
-   let medallas;
+  let medallas;
   medallas = await inventario.obtener(`${message.guild.id}.${user.id}`);
 
   if (!inventario.tiene(`${message.guild.id}.${user.id}`)) {
@@ -136,39 +125,56 @@ exports.run = async (client, message, args) => {
   } else {
     medails = med.join(" | ");
   }
-  
+
   const emojis = new db.crearDB("EmojisInter");
   let emoji = await emojis.get(`${user.id}`);
-  
-const embed = new Discord.MessageEmbed()
-    .setAuthor(
-      `🍺 Perfil de ${user.username} [${user.id}]`,
-      client.user.displayAvatarURL()
-    )
-    .setDescription(`${emoji ? `${emoji}` : "No"} **|** ${note ? `${note}` : "**No Tiene Descripcion**"}`)
-    .setThumbnail(il)
-    .setColor(colorxd)
-    .addField(
-      "🤑 `|` **__Dinero/Banco:__**",
-      "**Dinero:** " +
-      cdinero +
-      " \n**Banco:** " +
-      cbanco +
-      " \n**Total:** " +
-      total,
-      true
-    )
-    .addField(
-      "🔋 `|` **__Nivel/XP:__**",
-      `**Nivel:** ${nivel} \n**XP:** ${xp}/${levelup} \n**Siguiente Nivel:** ${nivel +1}`,
-      true
-    )
-    .addField("🎻 `|` **__Staff/Vip:__**", `**Staff:** ${skere2} \n**Vip:** ${skere}`, true)
-    .addField("🦡 `|` **__Badges:__**", user.flags.toArray().length > 0 ? user.flags.toArray().map(flag => badges[flag]) : "**No tiene Insignias**", true)
-    //.addField("♥ `|` **__Casad@ con:__**", `${marr ? `${marr}` : "No esta casad@"}`, true)  
-    .addField("🔥 `|` **__Reputaciones:__**", `${r ? `${r}` : "No tienes reputaciones"}`, true)
-    .addField("👝 `|` **__Medallas:__**", medails, true)
-message.channel.send(embed).catch(e => {
-  message.channel.send(e)
-})
+
+    const embed = new Discord.MessageEmbed()
+      .setAuthor(
+        `🍺 Perfil de ${user.username} [${user.id}]`,
+        client.user.displayAvatarURL()
+      )
+      .setDescription(
+        `${emoji ? `${emoji}` : "No"} **|** ${
+          note ? `${note}` : "**No Tiene Descripcion**"
+        }`
+      )
+      .setThumbnail(il)
+      .setColor(colorxd)
+      .addField(
+        "🤑 `|` **__Dinero/Banco:__**",
+        "**Dinero:** " +
+          cdinero +
+          " \n**Banco:** " +
+          cbanco +
+          " \n**Total:** " +
+          total,
+        true
+      )
+      .addField(
+        "🔋 `|` **__Nivel/XP:__**",
+        `**Nivel:** ${nivel} \n**XP:** ${xp}/${levelup} \n**Siguiente Nivel:** ${nivel +
+          1}`,
+        true
+      )
+      .addField(
+        "🎻 `|` **__Staff/Vip:__**",
+        `**Staff:** ${skere2} \n**Vip:** ${skere}`,
+        true
+      )
+      .addField(
+        "🦡 `|` **__Badges:__**",
+        user.flags.toArray().length > 0
+          ? user.flags.toArray().map(flag => badges[flag])
+          : "**No tiene Insignias**",
+        true
+      )
+      //.addField("♥ `|` **__Casad@ con:__**", `${marr ? `${marr}` : "No esta casad@"}`, true)
+      .addField(
+        "🔥 `|` **__Reputaciones:__**",
+        `${r ? `${r}` : "No tienes reputaciones"}`,
+        true
+      )
+      .addField("👝 `|` **__Medallas:__**", medails, true);
+    message.channel.send(embed)
 };
