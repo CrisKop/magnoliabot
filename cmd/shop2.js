@@ -1,9 +1,8 @@
-const Discord = require("discord.js");
-const db = require("megadb");
 
-const dinero = new db.crearDB("Dinero");
-const banco = new db.crearDB("Banco");
-exports.run = async (client, message, args) => {
+exports.run = async (client, message, args) => {  
+  
+  const Discord = require("discord.js");
+  const db = require("megadb");
 let prefix_db = new db.crearDB("prefixes")
 
     let prefix;
@@ -12,21 +11,21 @@ let prefix_db = new db.crearDB("prefixes")
   } else {
     prefix = "f/";
   }
-
-  let bot = client.user.username;
-  let botavatar = client.user.avatarURL();
+let bot = client.user.username;
+  let botavatar = client.user.displayAvatarURL();
   //let user =
   //message.mentions.members.first() ||
   //client.users.get(args[0]) ||
   //message.author;
+  
+  const items = new db.crearDB("Tienda")
+  let it = await items.obtener("Items")
 
-  if (!args[0])
-    return message.channel.send(
-      new Discord.MessageEmbed()
+  if(!it) return message.channel.send(new Discord.MessageEmbed()
 
         .setColor("RANDOM")
         .setTimestamp()
-        .setFooter("Usa " + prefix + "buy [objeto] para comprar")
+        .setFooter("Usa " + prefix + "buy2 [objeto] para comprar")
         .setThumbnail(
           "https://images.emojiterra.com/google/android-10/128px/1f3ea.png"
         )
@@ -34,10 +33,23 @@ let prefix_db = new db.crearDB("prefixes")
         .setDescription(
           "**Para comprar las medallas debes tener tu money en:** `Dinero`"
         )
-        .addField(
-          "🏅 Medallas:",
-          "**[1]** 🛠️(Tecnico) **[1,500]** \n **[2]** ⚽(Football) **[5,000]** \n **[3]** 🏀(Basket) **[10,000]** \n **[4]** 🔰(Programador) **[25,000]** \n**[5]** <:Barca:755496077414629497>(Barcelona) **[40,000]**",
-          true
+        .addField("🏅 Items:", `No hay Items en la Tienda`)
+    );
+  
+  if (!args[0])
+    return message.channel.send(
+      new Discord.MessageEmbed()
+
+        .setColor("RANDOM")
+        .setTimestamp()
+        .setFooter("Usa " + prefix + "buy2 [objeto] para comprar")
+        .setThumbnail(
+          "https://images.emojiterra.com/google/android-10/128px/1f3ea.png"
         )
+        .setAuthor(bot + " ┊ Tienda", botavatar)
+        .setDescription(
+          "**Para comprar las medallas debes tener tu money en:** `Dinero`"
+        )
+        .addField("🏅 Items:", `**${it.join("\n\n")}**`)
     );
 }
