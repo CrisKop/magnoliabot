@@ -54,7 +54,7 @@ let prefix_db = new db.crearDB("prefixes")
     .setThumbnail("https://cdn.discordapp.com/attachments/753270513069195337/753365099695046687/3390850.png")
     .setColor("RANDOM")
     .setAuthor(`Config de ${client.user.username}`, client.user.displayAvatarURL())
-    .addField("Comandos/Config:", "`setprefix` - `resetprefix`")
+    .addField("Comandos/Config:", "`setprefix` - `resetprefix` - `anti-loggers`")
     message.channel.send(staff)
   }
 };
