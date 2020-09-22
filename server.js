@@ -135,15 +135,12 @@ client.on("message", async message => {
     const canalrendered = client.channels.cache.get(logs);
     canalrendered.send(
     new Discord.MessageEmbed()
-    .setAuthor(`Anti-Loggers, elimino un logger ${message.author.tag}`, client.user.displayAvatarURL())
-    .setColor("RED")
-    .addField("Mensaje", message.content)
-    .addField("Canal", message.channel)
+    .setAuthor(`Anti-Loggers, elimino un logger de **${message.author.tag}**`, client.user.displayAvatarURL())
     .setColor("RANDOM")
-    .setThumbnail(message.author.displayAvatarURL())
     .setTimestamp()
     
     )
+    message.author.send("❌ Las IPLoggers estas bloqueadas en mi configuracion. \nEn `"+ message.guild.name + "`")
     }
   }
 });

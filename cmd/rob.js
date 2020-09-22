@@ -13,7 +13,7 @@ exports.run = async (client, message, args) => {
 
     let timeEmbed = new Discord.MessageEmbed()
       .setColor("RED")
-      .setDescription(`❌ Ya has trabajado, tomate un descanso \n\nIntenta de nuevo en: ${time.minutes}m ${time.seconds}s `);
+      .setDescription(`❌ Ya has robado, tomate un descanso \n\nIntenta de nuevo en: ${time.minutes}m ${time.seconds}s `);
     message.channel.send(timeEmbed);
   } else {
 
