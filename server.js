@@ -12,6 +12,7 @@ setInterval(() => {
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const { nivelesFunc } = require("./niveles.js");
+const db = require("megadb")
 
 client.on("ready", () => {
   console.log("Estoy listo!");
@@ -89,7 +90,7 @@ client.on("guildMemberAdd", async guild => {
   );
 });
 
-client.on("message", message => {
+client.on("message", async message => {
   if(message.author.bot) return; //k onda hago el addstaff  con rango?
    let array2 = [
     "grabify.",
@@ -119,7 +120,8 @@ client.on("message", message => {
     "https://www.miiplogger.com/index.php?q="
   ];
 
-  const al = new (require("megadb")).crearDB("AntiLoggers");
+  let al = new (require("megadb")).crearDB("AntiLoggers");
+  const log = new db.crearDB("Logs");
   if (al.tiene(`${message.guild.id}.at`)) {
     if (array2.some(word => message.content.toLowerCase().includes(word))) {
       message.delete();
@@ -128,6 +130,20 @@ client.on("message", message => {
         .then(response => {
           return response.delete({ timeout: 6000 });
         });
+    if (!log.tiene(`${message.guild.id}`)) return;
+    let logs = await log.obtener(`${message.guild.id}`);
+    const canalrendered = client.channels.cache.get(logs);
+    canalrendered.send(
+    new Discord.MessageEmbed()
+    .setAuthor(`Anti-Loggers, elimino un logger ${message.author.tag}`, client.user.displayAvatarURL())
+    .setColor("RED")
+    .addField("Mensaje", message.content)
+    .addField("Canal", message.channel)
+    .setColor("RANDOM")
+    .setThumbnail(message.author.displayAvatarURL())
+    .setTimestamp()
+    
+    )
     }
   }
 });
