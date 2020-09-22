@@ -4,7 +4,16 @@ const db = require("megadb")
 const vips_db = new db.crearDB("Vips");
 let i = await vips_db.obtener("Vips")
   
+ if (!vips_db.tiene("Vips")) {
+      vips_db.establecer("Vips", []);
+    } 
+  
   var encontrados = [];
+   i.forEach(id => {
+    if (message.guild.members.cache.get(id)) {
+      encontrados.push(id);
+    }
+  });
 
 let index = 0;
   let fin = []
@@ -18,8 +27,7 @@ let index = 0;
   
   
   const embed = new Discord.MessageEmbed()
-  .setAuthor(`Lista VIPS ${client.user.username}`)
+   .setAuthor("Hay `"+ parseInt(encontrados.length) +"` Usuarios VIPS en: " + message.guild.name)
   .setDescription(fin.join("\n"))
-  .addField("Ids:", i)
-  message.channel.send(embed)
+  await message.channel.send(embed)
 }

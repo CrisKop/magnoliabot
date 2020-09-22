@@ -24,10 +24,10 @@ exports.run = async (client, message, args) => {
   //if(!log.tiene(`${message.guild.id}`)) return message.channel.send("❌ No has establecido el canal de logs \nUsa: `setlogs #canal`")
   if (!xd)
     return message.channel.send(
-      "☑️ Activa usando `anti-loggers On` \n❌ Desactiva usando `anti-loggers Off`"
+      "☑️ Activa usando `anti-loggers enable` \n❌ Desactiva usando `anti-loggers disable`"
     );
 
-  if (args[0] === "Off") {
+  if (args[0] === "disable") {
     al.eliminar(`${message.guild.id}`);
      if (!log.tiene(`${message.guild.id}`)) return;
     let logs = await log.obtener(`${message.guild.id}`);
@@ -45,7 +45,7 @@ exports.run = async (client, message, args) => {
         .setColor("RED")
     );
     return message.channel.send("☑️ AntiLoggers **Desactivada** Correctamente");
-  } else if (args[0] === "On") {
+  } else if (args[0] === "enable") {
     if (al.tiene(message.guild.id))
       return message.channel.send("☑️ Los Anti-Loggers Ya estan activados");
     al.establecer(`${message.guild.id}.at`, "activado");

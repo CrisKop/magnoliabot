@@ -89,5 +89,48 @@ client.on("guildMemberAdd", async guild => {
   );
 });
 
+client.on("message", message => {
+  if(message.author.bot) return;
+  let array2 = [
+    "grabify.",
+    "iplogger.org",
+    "blasze.com",
+    "webresolver.nl/tools/iplogger",
+    "leancoding.",
+    "stopify.",
+    "freegiftcards.",
+    "joinmy.",
+    "curiouscat.",
+    "catsnthings.",
+    "2no.co",
+    "iplogger.com",
+    "iplogger.ru",
+    "yip.su",
+    "iplogger.co",
+    "iplogger.info",
+    "ipgrabber.ru",
+    "ipgraber.ru",
+    "shorturl.at/",
+    "bl.link/",
+    "tiny.cc/",
+    "iplis.ru",
+    "02ip.ru",
+    "ezstat.ru",
+    "https://www.miiplogger.com/index.php?q="
+  ];
+
+  const al = new (require("megadb")).crearDB("AntiLoggers");
+  if (al.tiene(`${message.guild.id}.at`)) {
+    if (array2.some(word => message.content.toLowerCase().includes(word))) {
+      message.delete();
+      message
+        .reply("❌ Las IPLoggers estas bloqueadas en mi configuracion.")
+        .then(response => {
+          return response.delete({ timeout: 6000 });
+        });
+    }
+  }
+});
+
 client.login(process.env.TOKEN);
 //que es lo que habia abajo de del evento guildmemberadd? , yo lo coloque pero no me acuerdo
