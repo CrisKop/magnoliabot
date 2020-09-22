@@ -54,6 +54,7 @@ exports.run = async (client, message, args) => {
       return message.channel.send(
         "☑️ Anti-Joins Users **Desactivada** Correctamente"
       );
+  }
     
     if(args[0] === "onall"){
        let ab = new db.crearDB("AntiBots");
@@ -70,5 +71,4 @@ exports.run = async (client, message, args) => {
       ab.eliminar(`${message.guild.id}`);
     return message.channel.send("☑️ Anti-Joins `USERS Y BOTS` **Desactivada** Correctamente");
     }
-  }
 };
