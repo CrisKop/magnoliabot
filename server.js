@@ -158,20 +158,34 @@ client.on("message", async message => {
 });
 
 const megadb = require("megadb");
-const b = new megadb.crearDB("AntiBots");
+  let ab = new db.crearDB("AntiBots");
 client.on("guildMemberAdd", async member => {
-  if (!b.tiene(member.guild.id)) return;
+   if (ab.tiene(`${member.guild.id}.at`)) {
   if (member.user.bot) member.kick();
+  member.send(":x: `|` **[Anti-Joins Bots]** No puedes entrar porque el anti-joins para bots esta activado")
+   }
 });
 
 client.on("guildMemberAdd", async member => {
-  const u = new megadb.crearDB("AntiUser");
-
-  if (!u.tiene(`${member.guild.id}`)) return;
-  else if (u.tiene(`${member.guild.id}`)) {
+  const u = new db.crearDB("AntiUser");
+  
+   if (u.tiene(`${member.guild.id}.at`)) {
     if(member.user.bot) return;
     member.kick();
-  }
+  member.send(":x: `|` **[Anti-Joins Users]** No puedes entrar porque el anti-joins para usuarios esta activado")
+   }
+});
+
+client.on("guildMemberAdd", async member => {
+  const u = new db.crearDB("AntiUser");
+   let ab = new db.crearDB("AntiBots");
+  
+  if (u.tiene(`${member.guild.id}.at`)) {
+ if (ab.tiene(`${member.guild.id}.at`)) {
+    member.kick()
+   member.send(":x: `|` **[Anti-Joins All]** No puedes entrar porque el anti-joins para todos esta activado")
+ }
+ }
 });
 client.login(process.env.TOKEN);
 //que es lo que habia abajo de del evento guildmemberadd? , yo lo coloque pero no me acuerdo
