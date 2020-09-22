@@ -147,5 +147,14 @@ client.on("message", async message => {
   }
 });
 
+
+client.on("message", async message => {
+  if(message.author.bot) return;
+  let am = new (require("megadb")).crearDB("AntiMessage");
+  if (am.tiene(`${message.guild.id}.at`)) {
+    if (message.member.hasPermission("ADMINISTRATOR")) return;
+  message.delete();
+  }
+});
 client.login(process.env.TOKEN);
 //que es lo que habia abajo de del evento guildmemberadd? , yo lo coloque pero no me acuerdo
