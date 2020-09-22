@@ -3,7 +3,7 @@ exports.run = async (client, message, args) => {
   let db = require("megadb");
 
   let user = message.mentions.users.first() || message.author;
-
+  
   let prefix_db = new db.crearDB("prefixes");
 
   let prefix;
@@ -12,9 +12,12 @@ exports.run = async (client, message, args) => {
   } else {
     prefix = "f/";
   }
+  
 
   const inventario = new db.crearDB("inventarios");
 
+  if(inventario.tiene(`${message.author.id}`)) return message.channel.send("Vuelve a colocar "+prefix+"perfil")
+  
   const desc = new db.crearDB("Descripciones");
 
   const dinero = new db.crearDB("Dinero");

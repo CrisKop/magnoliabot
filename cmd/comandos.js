@@ -47,7 +47,7 @@ let prefix_db = new db.crearDB("prefixes")
     .setThumbnail("https://cdn.discordapp.com/attachments/753270513069195337/753365099695046687/3390850.png")
     .setColor("RANDOM")
     .setAuthor(`Info de ${client.user.username}`, client.user.displayAvatarURL())
-    .addField("Comandos/info:", "`botinfo`")
+    .addField("Comandos/info:", "`botinfo` - `falexyinfo`")
     message.channel.send(staff)
   }
    if(args[0] === "config") {
