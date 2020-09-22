@@ -2,11 +2,12 @@ dependencies:
   colornames: 1.1.1
   discord.js: 12.3.1
   express: 4.17.1
+  fs: 0.0.2
   megadb: 3.4.0
   moment: 2.28.0
   moment-duration-format: 2.3.2
   parse-ms: 2.1.0
-  quick.db: 7.1.1
+  quick.db: 7.1.2
   tresenraya: 0.0.5
 packages:
   /@discordjs/collection/0.1.6:
@@ -360,6 +361,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-GWSSJGFy4e9GUeCcbIkED+bgAoFyj7XF1mV8rma3QW4NIqX9Kyx79N/PF61H5udOV3aY1IaMLs6pGbH71nlCTA==
+  /fs/0.0.2:
+    dev: false
+    resolution:
+      integrity: sha1-4fJE7zkzwbKmS9R5kTYGDQ9ZFPg=
   /gauge/2.7.4:
     dependencies:
       aproba: 1.2.0
@@ -465,10 +470,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-u5NdSFgsuhaMBoNJV6VKPgcSTxE=
-  /lodash/4.17.15:
+  /lodash/4.17.19:
     dev: false
     resolution:
-      integrity: sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
+      integrity: sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
   /media-typer/0.3.0:
     dev: false
     engines:
@@ -726,13 +731,13 @@ packages:
       node: '>=0.6'
     resolution:
       integrity: sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
-  /quick.db/7.1.1:
+  /quick.db/7.1.2:
     dependencies:
       better-sqlite3: 6.0.1
-      lodash: 4.17.15
+      lodash: 4.17.19
     dev: false
     resolution:
-      integrity: sha512-PziF96cxYNvHcgkZkEbZ3UzhR2bXcLff96n68J1DhE/2Q2ELeGnd/Z4jtqJqZz5rfiqXvzEbCznXV8wNsOTSww==
+      integrity: sha512-ItAgjP6CHlC8XN4AAc+K24jDxRmAkkIe5TQp6xyXF5QCCgFlpaknpA3OyLTQ4Dw0c7yq28bcD6SVc7ML/1T/DQ==
   /range-parser/1.2.1:
     dev: false
     engines:
@@ -1043,9 +1048,10 @@ specifiers:
   colornames: ^1.1.1
   discord.js: ^12.3.1
   express: ^4.17.1
+  fs: ^0.0.2
   megadb: ^3.4.0
   moment: ^2.28.0
   moment-duration-format: ^2.3.2
   parse-ms: ^2.1.0
-  quick.db: ^7.1.1
+  quick.db: ^7.1.2
   tresenraya: ^0.0.5
