@@ -156,5 +156,13 @@ client.on("message", async message => {
   message.delete();
   }
 });
+
+client.on("guildMemberAdd", async member => {
+  let am = new (require("megadb")).crearDB("AntiBots");
+  if(member.user) return
+  if (am.tiene(`${member.guild.id}.at`)) {
+  member.kick()
+  }
+});
 client.login(process.env.TOKEN);
 //que es lo que habia abajo de del evento guildmemberadd? , yo lo coloque pero no me acuerdo
