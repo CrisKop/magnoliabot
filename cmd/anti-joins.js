@@ -23,8 +23,8 @@ exports.run = async (client, message, args) => {
   if (!args[0]) return message.channel.send(
   new Discord.MessageEmbed()
   .setAuthor(`Anti-Joins Usuarios/Bots`, client.user.displayAvatarURL())
-  .addField("☑️ **__Activacion:__**", `**Activa Anti-Users** ${prefix}anti-joins users \n**Activa Anti-Bots** ${prefix}anti-joins bots \n**Activa Todo** ${prefix}anti-joins onall`)
-  .addField("❌ **__Desactivacion:__**", `**Desactiva Anti-Users** ${prefix}anti-joins uoff \n**Desactiva Anti-Bots** ${prefix}anti-joins boff \n**Desactiva Todo** ${prefix}anti-joins offall`)
+  .addField("☑️ **__Activacion:__**", `👤 **Activa Anti-Users** ${prefix}anti-joins users \n🤖 **Activa Anti-Bots** ${prefix}anti-joins bots \n🧭 **Activa Todo** ${prefix}anti-joins onall`)
+  .addField("❌ **__Desactivacion:__**", `👤 **Desactiva Anti-Users** ${prefix}anti-joins uoff \n🤖 **Desactiva Anti-Bots** ${prefix}anti-joins boff \n🧭 **Desactiva Todo** ${prefix}anti-joins offall`)
   )
   
   if(args[0] === "users"){
