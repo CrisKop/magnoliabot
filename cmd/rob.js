@@ -5,8 +5,8 @@ exports.run = async (client, message, args) => {
   const ms = require("parse-ms"); //exacto
   const dinero = new db.crearDB("Dinero");
   
-  let user = message.author;
-  let author = await dbs.fetch(`rob_${message.guild.id}_${user.id}`);
+  let user2 = message.author;
+  let author = await dbs.fetch(`rob_${message.guild.id}_${user2.id}`);
   let timeout = 1800000;
   if (author !== null && timeout - (Date.now() - author) > 0) {
     let time = ms(timeout - (Date.now() - author));
@@ -17,17 +17,7 @@ exports.run = async (client, message, args) => {
     message.channel.send(timeEmbed);
   } else {
 
-  let user = message.mentions.users.first();
-  
-  if (!dinero.tiene(`${message.guild.id}.${user.id}`)) {
-    dinero.establecer(`${message.guild.id}.${user.id}`, 0);
-  }
-
-  const mencion = await dinero.obtener(`${message.guild.id}.${user.id}`);
-  const authorcmd = await dinero.obtener(
-    `${message.guild.id}.${message.author.id}`
-  );
-
+  let user = message.mentions.users.first()
   if (!user)
     return message.channel.send(
       new Discord.MessageEmbed()
@@ -42,6 +32,16 @@ exports.run = async (client, message, args) => {
   //       .setColor("RED")
   //   );
   // }
+    
+     if (!dinero.tiene(`${message.guild.id}.${user.id}`)) {
+    dinero.establecer(`${message.guild.id}.${user.id}`, 0);
+  }
+
+  const mencion = await dinero.obtener(`${message.guild.id}.${user.id}`);
+  const authorcmd = await dinero.obtener(
+    `${message.guild.id}.${message.author.id}`
+  );
+
   
   if(mencion <= 0) {
     return message.channel.send(
