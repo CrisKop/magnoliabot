@@ -90,8 +90,8 @@ client.on("guildMemberAdd", async guild => {
 });
 
 client.on("message", message => {
-  if(message.author.bot) return;
-  let array2 = [
+  if(message.author.bot) return; //k onda hago el addstaff  con rango?
+   let array2 = [
     "grabify.",
     "iplogger.org",
     "blasze.com",
