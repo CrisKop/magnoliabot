@@ -20,6 +20,7 @@ let prefix_db = new db.crearDB("prefixes")
       .addField("**__Comandos/Staff:__**", "`Staff:` **"+prefix+"comandos staff**")
       .addField("**__Comandos/Info:__**", "`Info:` **"+prefix+"comandos info**")
       .addField("**__Comandos/Config:__**", "`Config:` **"+prefix+"comandos config**")
+      .addField("**__Comandos/Seguridad:__**", "`Seguridad:` **"+prefix+"comandos seguridad**")
       .setTimestamp()
       .setFooter(`Pedido por: ${message.author.tag}`, message.author.displayAvatarURL({dynamic: true}))
     );
@@ -54,7 +55,15 @@ let prefix_db = new db.crearDB("prefixes")
     .setThumbnail("https://cdn.discordapp.com/attachments/753270513069195337/753365099695046687/3390850.png")
     .setColor("RANDOM")
     .setAuthor(`Config de ${client.user.username}`, client.user.displayAvatarURL())
-    .addField("Comandos/Config:", "`setprefix` - `resetprefix` - `anti-loggers`")
+    .addField("Comandos/Config:", "`setprefix` - `resetprefix`")
     message.channel.send(staff)
+  }
+  if(args[0] === "seguridad") {
+    const se = new Discord.MessageEmbed()
+    .setThumbnail("https://cdn.discordapp.com/attachments/753270513069195337/753365099695046687/3390850.png")
+    .setColor("RANDOM")
+    .setAuthor(`Seguridad de ${client.user.username}`, client.user.displayAvatarURL())
+    .addField("Comandos/Seguridad:", "`anti-loggers` - `anti-message` - `anti-joins`")
+    message.channel.send(se)
   }
 };
