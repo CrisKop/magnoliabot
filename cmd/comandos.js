@@ -39,7 +39,7 @@ let prefix_db = new db.crearDB("prefixes")
     .setThumbnail("https://cdn.discordapp.com/attachments/753270513069195337/753364820526629035/3390910.png")
     .setColor("RANDOM")
     .setAuthor(`Staff de ${client.user.username}`, client.user.displayAvatarURL())
-    .addField("Comandos/Staff:", "`addstaff` - `removestaff` - `addvip` - `removevip` - `eval`")
+    .addField("Comandos/Staff:", "`addstaff` - `removestaff` - `addvip` - `removevip` - `eval` - `falexyadd`")
     message.channel.send(staff)
   }
     if(args[0] === "info") {
@@ -63,7 +63,7 @@ let prefix_db = new db.crearDB("prefixes")
     .setThumbnail("https://cdn.discordapp.com/attachments/753270513069195337/753365099695046687/3390850.png")
     .setColor("RANDOM")
     .setAuthor(`Seguridad de ${client.user.username}`, client.user.displayAvatarURL())
-    .addField("Comandos/Seguridad:", "`anti-loggers` - `anti-message` - `anti-joins`")
+    .addField("Comandos/Seguridad:", "`anti-loggers` - `anti-message` - `anti-joins` - `falexydetectar` - `falexyban`")
     message.channel.send(se)
   }
 };

@@ -12,14 +12,15 @@ exports.run = async (client, message, args) => {
     prefix = "f/";
   }
   
-  let u = args[0]
-  const dev = client.users.cache.get(u) || await client.users.fetch(u);
-  if (!u) return message.channel.send("****Escriba la ID para ver si esta en mi base de datos** \n`Modo Correcto:` **" + prefix + "falexyinfo <id>**")
+   let u = args[0]
+  const dev = client.users.cache.get(u) || client.users.fetch(u);
+  if (!u) return message.channel.send("**Escriba la ID para ver si esta en mi base de datos** \n`Modo Correcto:` **" + prefix + "raiderinfo <id>**")
   let a = []
   for (var key in raiders) {
     if (!raiders[u]) return message.channel.send("**Esa ID no está registrada en mi base de datos**")
     if (raiders[u].status === "Raider desactivado") return message.channel.send("**Esa ID no está registrada en mi base de datos**")
   }
+  
   const embed = new Discord.MessageEmbed()
     .setAuthor('Información de ' + u)
     .addField('**:bust_in_silhouette: Usuario**', '<@' + u + '>')
