@@ -157,11 +157,20 @@ client.on("message", async message => {
   }
 });
 
+const megadb = require("megadb");
+const b = new megadb.crearDB("AntiBots");
 client.on("guildMemberAdd", async member => {
-  let am = new (require("megadb")).crearDB("AntiBots");
-  if(member.user) return
-  if (am.tiene(`${member.guild.id}.at`)) {
-  member.kick()
+  if (!b.tiene(member.guild.id)) return;
+  if (member.user.bot) member.kick();
+});
+
+client.on("guildMemberAdd", async member => {
+  const u = new megadb.crearDB("AntiUser");
+
+  if (!u.tiene(`${member.guild.id}`)) return;
+  else if (u.tiene(`${member.guild.id}`)) {
+    if(member.user.bot) return;
+    member.kick();
   }
 });
 client.login(process.env.TOKEN);

@@ -51,8 +51,8 @@ exports.run = async (client, message, args) => {
     
     const embed = new Discord.MessageEmbed()
     .setAuthor(`Filtros de ${message.guild.name}`, client.user.displayAvatarURL())
-    .addField("**__Filtros Activadas/Desactivadas__**", `**__Anti-Loggers:__** ${as} \n**__Anti-Message:__** ${ae} \n**__Anti-Bots:__** ${abo}`)
-    .addField("**__Informacion Filtros:__**", "**__AntiLoggers:__** `Evita los loggers, los loggers roban tu IP, y con esta proteccion las evita` \n**__AntiMessage:__** `No deja que hablen las personas en el servidor` \n**__AntiBots:__** `Evita la entrada de bots de cualquier tipo`")
+    .addField("**__Filtros Activadas/Desactivadas__**", `💻 **__Anti-Loggers:__** ${as} \n📜 **__Anti-Message:__** ${ae} \n🤖 **__Anti-Bots:__** ${abo}`)
+    .addField("**__Informacion Filtros:__**", "💻 **__AntiLoggers:__** `Evita los loggers, los loggers roban tu IP, y con esta proteccion las evita` \n📜 **__AntiMessage:__** `No deja que hablen las personas en el servidor` \n🤖 **__AntiBots:__** `Evita la entrada de bots de cualquier tipo`")
     .setColor("RANDOM")
      .setThumbnail(message.author.displayAvatarURL())
     message.channel.send(embed)
