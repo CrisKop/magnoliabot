@@ -53,7 +53,7 @@ exports.run = async (client, message, args) => {
     return message.channel.send("**La ID que intentas añadir ya está registrada en la base de datos de Falexy Economic**");
   raiders[args2[0]] = {
     reason: razon,
-    status: "on",
+    status: "Raider activado",
     pruebas: pruebass,
     author: autor,
     fecha: feecha //no lo toques
@@ -78,4 +78,18 @@ let embedd = new Discord.MessageEmbed()
 message.channel.send("**Se han enviado los reportes de forceban**")
 canal.send(embedd)
 canal.send("<@&731535699966296115>")
+  
+let user = new Discord.MessageEmbed()
+.setColor("GREEN")
+.setAuthor(`Has sido añadido`)
+.setThumbnail("https://image.flaticon.com/icons/svg/3039/3039418.svg")
+.setDescription("Has sido añadido a la base de datos, por usuario malicioso")
+.addField("👤 `|` **Usuario:**", "<@"+args2[0]+">")
+.addField("🆔 `|` **ID**", `${args[0]}`)
+.addField("👮 `|` **Rsponsable:**", message.author)
+.addField("📆 `|` **Fecha de Sanción:**", feecha)
+.addField("🧰 `|` **Razon:**", razon)
+.addField("🖼️ `|` **Pruebas:**", `[Pruebas](${pruebass})`)
+client.users.cache.get(args2[0]).send(user)
+client.users.cache.get(args2[2]).send(":white_check_mark: `|` **Has sido añadido a la forceban por ser usuario malicioso**")
 }
