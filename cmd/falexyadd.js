@@ -41,10 +41,11 @@ exports.run = async (client, message, args) => {
   if (!raiders[args2[0]]) {
     raiders[args2[0]] = {
       reason: false,
-      status: "Raider desactivado",
+      status: "Off",
       pruebas: false,
       author: false,
-      feecha: false
+      feecha: false,
+      server: false
     };
   }
   if (!args2[0] || !razon || !pruebass || !feecha)
@@ -71,29 +72,29 @@ let embedd = new Discord.MessageEmbed()
 .setAuthor(`Forceban (Usuario Añadido)`)
 .setThumbnail("https://image.flaticon.com/icons/svg/3039/3039418.svg")
 .setDescription("Un usuario ha sido correctamente a mi base de datos de usuarios maliciosos.")
-.addField("👤 `|` **Usuario:**", "<@"+args2[0]+">")
-.addField("🆔 `|` **ID**", `${args[0]}`)
-.addField("👮 `|` **Rsponsable:**", message.author.tag)
-.addField("📆 `|` **Fecha de Sanción:**", feecha)
-.addField("🧰 `|` **Razon:**", razon)
-.addField("🖼️ `|` **Pruebas:**", `[Pruebas](${pruebass})`)
-.addField("☄️ `|` **Server:**", server)
+.addField("👤 `|` **Usuario:**", "<@"+args2[0]+">", true)
+.addField("🆔 `|` **ID**", `${args[0]}`, true)
+.addField("👮 `|` **Rsponsable:**", message.author.tag, true)
+.addField("📆 `|` **Fecha de Sanción:**", feecha, true)
+.addField("🧰 `|` **Razon:**", razon, true)
+.addField("🖼️ `|` **Pruebas:**", `[Pruebas](${pruebass})`, true)
+.addField("☄️ `|` **Server:**", server, true)
 message.channel.send("**Se han enviado los reportes de forceban**")
 canal.send(embedd)
-canal.send("<@&731535699966296115>")
+canal.send("<@!692363394719809577> | <@!520988949053702145> | @everyone")
   
 let user = new Discord.MessageEmbed()
 .setColor("GREEN")
 .setAuthor(`Has sido añadido`)
 .setThumbnail("https://image.flaticon.com/icons/svg/3039/3039418.svg")
 .setDescription("Has sido añadido a la base de datos, por usuario malicioso")
-.addField("👤 `|` **Usuario:**", "<@"+args2[0]+">")
-.addField("🆔 `|` **ID**", `${args[0]}`)
-.addField("👮 `|` **Rsponsable:**", message.author.tag)
-.addField("📆 `|` **Fecha de Sanción:**", feecha)
-.addField("🧰 `|` **Razon:**", razon)
-.addField("🖼️ `|` **Pruebas:**", `[Pruebas](${pruebass})`)
-.addField("☄️ `|` **Server:**", server)
+.addField("👤 `|` **Usuario:**", "<@"+args2[0]+">", true)
+.addField("🆔 `|` **ID**", `${args[0]}`, true)
+.addField("👮 `|` **Rsponsable:**", message.author.tag, true)
+.addField("📆 `|` **Fecha de Sanción:**", feecha, true)
+.addField("🧰 `|` **Razon:**", razon, true)
+.addField("🖼️ `|` **Pruebas:**", `[Pruebas](${pruebass})`, true)
+.addField("☄️ `|` **Server:**", server, true)
 client.users.cache.get(args2[0]).send(user)
 client.users.cache.get(args2[2]).send(":white_check_mark: `|` **Has sido añadido a la forceban por ser usuario malicioso**")
 }
