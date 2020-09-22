@@ -135,12 +135,14 @@ client.on("message", async message => {
     const canalrendered = client.channels.cache.get(logs);
     canalrendered.send(
     new Discord.MessageEmbed()
-    .setAuthor(`Anti-Loggers, elimino un logger de **${message.author.tag}**`, client.user.displayAvatarURL())
+    .setAuthor(`Anti-Loggers, elimino un logger de **${message.author.tag}**`, message.author.displayAvatarURL())
     .setColor("RANDOM")
     .setTimestamp()
     
     )
-    message.author.send("❌ Las IPLoggers estas bloqueadas en mi configuracion. \nEn `"+ message.guild.name + "`")
+    message.author.send("❌ **__Las IPLoggers estas bloqueadas en mi configuracion.__** \nEn `"+ message.guild.name + "`").catch(e => {
+      message.channel.send("❌ **__No pude enviarte mensaje al privado, tienes los MD cerrados__**").then(m => m.delete({ timeout: 2000 }))
+    })
     }
   }
 });
