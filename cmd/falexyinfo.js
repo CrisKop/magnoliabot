@@ -30,6 +30,7 @@ exports.run = async (client, message, args) => {
     .addField('**:ballot_box: Razón**', [raiders[u].reason])
     .addField('**🗓️ Fecha de la Sanción**', [raiders[u].fecha])
     .addField('**👮 Autor de la Sanción**', [raiders[u].author])
+    .addField("**☄️ Server:**", [raiders[u].server])
     .addField('**:camera: Pruebas**', "[Click Aquí]("+[raiders[u].pruebas]+")")
     .setColor('#36393e')
     .setThumbnail(dev.avatarURL())

@@ -36,6 +36,7 @@ exports.run = async (client, message, args) => {
   let pruebass = args2[2];
   let autor = message.author.username
   let feecha = args2[3];
+  let server = message.guild.name
 
   if (!raiders[args2[0]]) {
     raiders[args2[0]] = {
@@ -56,7 +57,8 @@ exports.run = async (client, message, args) => {
     status: "Raider activado",
     pruebas: pruebass,
     author: autor,
-    fecha: feecha //no lo toques
+    fecha: feecha,//no lo toques
+    server: server
   };
 
   fs.writeFile("./raiders.json", JSON.stringify(raiders), err => {
@@ -71,10 +73,11 @@ let embedd = new Discord.MessageEmbed()
 .setDescription("Un usuario ha sido correctamente a mi base de datos de usuarios maliciosos.")
 .addField("👤 `|` **Usuario:**", "<@"+args2[0]+">")
 .addField("🆔 `|` **ID**", `${args[0]}`)
-.addField("👮 `|` **Rsponsable:**", message.author)
+.addField("👮 `|` **Rsponsable:**", message.author.tag)
 .addField("📆 `|` **Fecha de Sanción:**", feecha)
 .addField("🧰 `|` **Razon:**", razon)
 .addField("🖼️ `|` **Pruebas:**", `[Pruebas](${pruebass})`)
+.addField("☄️ `|` **Server:**", server)
 message.channel.send("**Se han enviado los reportes de forceban**")
 canal.send(embedd)
 canal.send("<@&731535699966296115>")
@@ -86,10 +89,11 @@ let user = new Discord.MessageEmbed()
 .setDescription("Has sido añadido a la base de datos, por usuario malicioso")
 .addField("👤 `|` **Usuario:**", "<@"+args2[0]+">")
 .addField("🆔 `|` **ID**", `${args[0]}`)
-.addField("👮 `|` **Rsponsable:**", message.author)
+.addField("👮 `|` **Rsponsable:**", message.author.tag)
 .addField("📆 `|` **Fecha de Sanción:**", feecha)
 .addField("🧰 `|` **Razon:**", razon)
 .addField("🖼️ `|` **Pruebas:**", `[Pruebas](${pruebass})`)
+.addField("☄️ `|` **Server:**", server)
 client.users.cache.get(args2[0]).send(user)
 client.users.cache.get(args2[2]).send(":white_check_mark: `|` **Has sido añadido a la forceban por ser usuario malicioso**")
 }
