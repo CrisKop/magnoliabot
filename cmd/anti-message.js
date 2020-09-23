@@ -30,4 +30,5 @@ exports.run = async (client, message, args) => {
      am.establecer(`${message.guild.id}.at`, "activado");
     return message.channel.send("☑️ AntiMessage **Activada** Correctamente");
   }
+  }
 }

@@ -18,6 +18,11 @@ let ap = new db.crearDB("premiumssv");
   
   if(ap.tiene(message.guild.id) === false) return message.channel.send("No puedes usar este comando, porque el servidor no tiene las ventajas premium") 
   if (ap.tiene(`${message.guild.id}`)) { 
+    
+    let perms = message.member.hasPermission("ADMINISTRATOR");
+
+  if (!perms)
+    return message.channel.send("❌ No tienes permisos de `Administrador`.");
      if (!xd)
     return message.channel.send(
       "☑️ Activa usando `anti-spam enable` \n❌ Desactiva usando `anti-spam disable`"

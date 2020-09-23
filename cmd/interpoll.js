@@ -14,9 +14,9 @@ exports.run = async (client, message, args) => {
     return message.channel.send(
       new Discord.MessageEmbed()
         .setColor("RANDOM")
-        .setTitle("Phoenix Secure Premium")
+        .setTitle("Falexy Economic Premium")
         .setDescription(
-          "Phoenix Premium, es un beneficio exclusivo para Partners y Safers"
+          "Falexy Premium, es un beneficio exclusivo para Partners y Safers"
         )
         .addField(
           "🔑 ❯ Beneficios",
@@ -38,7 +38,7 @@ exports.run = async (client, message, args) => {
       return message.channel.send(
         "**No eres VIP, no puedes generar ninguna key.**"
       );
-    if (keys_db.tiene(message.author.id) === false) return message.channel.send(
+    if (keys_db.tiene(message.author.id) == true) return message.channel.send(
         "**Tu ya tienes una KEY, no puedes generar mas.**"
       );
 
@@ -79,6 +79,7 @@ exports.run = async (client, message, args) => {
     
     if(!args[1]) return message.channel.send("Debes colocar la contraseña que se te dio")
     if(ap.tiene(message.guild.id) === true) return message.channel.send("El servidor ya tiene las ventajas premiums")
+    if(ap.tiene(message.author.id) === true) return message.channel.send("Ya has canjeado tu key en este server")
     ap.establecer(message.guild.id, args[1]);
     message.channel.send(
       `**☑️ \`|\` El servidor ahora tiene todas las ventajas premiums.** \n Usa ${prefix}ventajasvips`
