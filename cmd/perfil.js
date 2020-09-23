@@ -132,6 +132,9 @@ exports.run = async (client, message, args) => {
   const emojis = new db.crearDB("EmojisInter");
   let emoji = await emojis.get(`${user.id}`);
 
+  
+  const db_marry = new db.crearDB("marry");
+  const marr = await db_marry.obtener(`${user.id}`);
     const embed = new Discord.MessageEmbed()
       .setAuthor(
         `🍺 Perfil de ${user.username} [${user.id}]`,
@@ -165,6 +168,7 @@ exports.run = async (client, message, args) => {
         `**Staff:** ${skere2} \n**Vip:** ${skere}`,
         true
       )
+      .addField("♥ **Casad@ con:**", `${marr ? `${marr}` : "No esta casad@"}`, true)
       .addField(
         "🦡 `|` **__Badges:__**",
         user.flags.toArray().length > 0
