@@ -29,8 +29,8 @@ let prefix_db = new db.crearDB("prefixes")
     .setThumbnail("https://cdn.discordapp.com/attachments/753270513069195337/753353150454431764/2017585.png")
     .setColor("RANDOM")
     .setAuthor(`Economia de ${client.user.username}`, client.user.displayAvatarURL())
-    .addField("Comandos/Eco:", "`buy` - `shop2` - `rob` - `addmoney` - `crime` - `rep` - `dep` - `with` - `work` - `daily` - `weekly` - `perfil` - `setinfo` - `delinfo` - `ruleta` - `setcolor` - `resetcolor`")
-    .addField("Comandos/Eco(VIP):", "`setimg` - `delimg` - `configvip` - `setemoji` - `setemojioff`")
+    .addField("Comandos/Eco:", "`buy2` - `buy` - `shop` - `shop2` - `rob` - `addmoney` - `crime` - `rep` - `dep` - `with` - `work` - `daily` - `weekly` - `perfil` - `setinfo` - `delinfo` - `ruleta` - `setcolor` - `resetcolor`")
+    .addField("Comandos/Eco(VIP):", "`setimg` - `delimg` - `configvip` - `setemoji` - `setemojioff` - `shopvip`")
     message.channel.send(embed)
   }
   
@@ -47,7 +47,7 @@ let prefix_db = new db.crearDB("prefixes")
     .setThumbnail("https://cdn.discordapp.com/attachments/753270513069195337/753365099695046687/3390850.png")
     .setColor("RANDOM")
     .setAuthor(`Info de ${client.user.username}`, client.user.displayAvatarURL())
-    .addField("Comandos/info:", "`botinfo` - `falexyinfo`")
+    .addField("Comandos/info:", "`botinfo` - `falexyinfo` - `listvips`")
     message.channel.send(staff)
   }
    if(args[0] === "config") {
@@ -55,7 +55,7 @@ let prefix_db = new db.crearDB("prefixes")
     .setThumbnail("https://cdn.discordapp.com/attachments/753270513069195337/753365099695046687/3390850.png")
     .setColor("RANDOM")
     .setAuthor(`Config de ${client.user.username}`, client.user.displayAvatarURL())
-    .addField("Comandos/Config:", "`setprefix` - `resetprefix`")
+    .addField("Comandos/Config:", "`setprefix` - `resetprefix` - `createrole` - `menu`")
     message.channel.send(staff)
   }
   if(args[0] === "seguridad") {
