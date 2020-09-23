@@ -48,7 +48,7 @@ const vips_db = new db.crearDB("Vips");
 
     if (!perms)
       return message.channel.send(
-        "<a:no:703054715138605067> Error ``|`` No tienes permisos **necesitas permisos de ``Administrador``** <a:no:703054715138605067>."
+        "No tienes permisos"
       );
     backup
       .create(message.guild, {
@@ -77,7 +77,7 @@ const vips_db = new db.crearDB("Vips");
 
     if (!perms)
       return message.channel.send(
-        "<a:no:703054715138605067> Error ``|`` No tienes permisos **necesitas permisos de ``Administrador``** <a:no:703054715138605067>."
+        "No tienes permisos"
       );
     let backupID = args[1];
     if (!backupID) {

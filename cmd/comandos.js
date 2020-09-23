@@ -64,6 +64,7 @@ let prefix_db = new db.crearDB("prefixes")
     .setColor("RANDOM")
     .setAuthor(`Seguridad de ${client.user.username}`, client.user.displayAvatarURL())
     .addField("Comandos/Seguridad:", "`anti-loggers` - `anti-message` - `anti-joins` - `falexydetectar` - `falexyban`")
+    .addField("Comandos/Seguridad(VIP):", "`backup`")
     message.channel.send(se)
   }
 };
