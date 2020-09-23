@@ -42,7 +42,7 @@ let prefix_db = new db.crearDB("prefixes")
           new Discord.MessageEmbed()
          .setAuthor(`✅ Backup creado correctamente ✅`)
           .setColor("GREEN")
-          .setDescription(`Carga backup, usa `+ "`"+ `bt!backup load ${backupData.id}` +"` En cualquier servidor")
+          .setDescription(`Carga backup, usa `+ "`"+ `${prefix}backup load ${backupData.id}` +"` En cualquier servidor")
           .setThumbnail(message.author.displayAvatarURL())
           )
         message.channel.send(//backupData.id
@@ -71,12 +71,12 @@ let prefix_db = new db.crearDB("prefixes")
       .then(async () => {
         // If the backup exists, request for confirmation
         message.channel.send(
-          ":warning: | Cuando se carga la copia de seguridad, se reemplazarán todos los canales, mensajes, roles, etc. Tipo `bt!confirmar` para confirmar!"
+          ":warning: | Cuando se carga la copia de seguridad, se reemplazarán todos los canales, mensajes, roles, etc. Tipo `f/confirmar` para confirmar!"
         );
         await message.channel
           .awaitMessages(
             m =>
-              m.author.id === message.author.id && m.content === "bt!confirmar",
+              m.author.id === message.author.id && m.content === "f/confirmar",
             {
               max: 1,
               time: 20000,
