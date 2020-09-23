@@ -134,7 +134,7 @@ exports.run = async (client, message, args) => {
 
   
   const db_marry = new db.crearDB("marry");
-  const marr = await db_marry.obtener(`${user.id}`);
+  const marr = await db_marry.obtener(`${message.author.id}`);
     const embed = new Discord.MessageEmbed()
       .setAuthor(
         `🍺 Perfil de ${user.username} [${user.id}]`,
