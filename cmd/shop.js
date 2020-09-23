@@ -36,7 +36,7 @@ let prefix_db = new db.crearDB("prefixes")
         )
         .addField(
           "🏅 Medallas:",
-          "**[1]** 🛠️(Tecnico) **[1,500]** \n **[2]** ⚽(Football) **[5,000]** \n **[3]** 🏀(Basket) **[10,000]** \n **[4]** 🔰(Programador) **[25,000]** \n**[5]** <:Barca:755496077414629497>(Barcelona) **[40,000]**",
+          "**[1]** 🛠️(Tecnico) **[1,500]** \n **[2]** ⚽(Football) **[5,000]** \n **[3]** 🏀(Basket) **[10,000]** \n **[4]** 🔰(Programador) **[25,000]** \n**[5]** <:Barca:758426604954583110>(Barcelona) **[40,000]**",
           true
         )
     );

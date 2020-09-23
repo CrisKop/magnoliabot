@@ -133,7 +133,7 @@ let prefix_db = new db.crearDB("prefixes")
       inventario.establecer(`${message.guild.id}.${message.author.id}`, []);
     }
     const userinventarioxd = await inventario.obtener(`${message.guild.id}.${message.author.id}`);
-    if (userinventarioxd.includes("<:Barca:755496077414629497>"))
+    if (userinventarioxd.includes("<:Barca:758426604954583110>"))
       return message.channel.send(
         new Discord.MessageEmbed()
           .setDescription("❌ Ya tienes esta medalla")
@@ -141,11 +141,11 @@ let prefix_db = new db.crearDB("prefixes")
       );
     message.channel.send(
       new Discord.MessageEmbed()
-        .setDescription("☑️ Has comprado la medalla **Barcelona** <:Barca:755496077414629497>")
+        .setDescription("☑️ Has comprado la medalla **Barcelona** <:Barca:758426604954583110>")
         .setColor("GREEN")
     );
     dinero.restar(`${message.guild.id}.${message.author.id}`, 40000);
-    inventario.push(`${message.guild.id}.${message.author.id}`, "<:Barca:755496077414629497>");
+    inventario.push(`${message.guild.id}.${message.author.id}`, "<:Barca:758426604954583110>");
   } else if (args[0]) {
     message.channel.send(
       new Discord.MessageEmbed()
