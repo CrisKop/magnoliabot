@@ -1,4 +1,5 @@
 exports.run = async (client, message, args) => {
+  message.delete()
   const db = require("megadb")
 
   let prefix_db = new db.crearDB("prefixes")
@@ -15,10 +16,7 @@ exports.run = async (client, message, args) => {
   
   if(!xd) return message.channel.send("Debes crear una contraseña `La que tu quieras`")
   
-  if (!interpoll.tiene("InterPoll")) {
-      interpoll.establecer("InterPoll", []);
-    } 
-  
+  if(interpoll.tiene(message.author.id)) return message.channel.send("Ya creaste tu contraseña")
   interpoll.establecer(message.author.id, xd)
   message.channel.send("Se ha establecido una contraseña")
   message.author.send("La contraseña establecida es: "+ xd)
