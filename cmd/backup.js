@@ -14,6 +14,18 @@ let prefix_db = new db.crearDB("prefixes")
   }
   //prefix//
   
+let user = message.author;
+const vips_db = new db.crearDB("Vips");
+  const vip = await vips_db.obtener("Vips");
+  if(vip.includes(user.id) == false) return message.channel.send(
+    new Discord.MessageEmbed()
+    .setAuthor(`Has encontrado un beneficio VIP`, message.author.displayAvatarURL())
+    .setDescription("**__¿Para que sirve el VIP?__** \nEl vip sirve para que puedas obtener beneficios que tiene el bot, y veas mejor expectativa al bot")
+    .setColor("BLUE")
+    .setThumbnail(message.author.displayAvatarURL())
+    .addField("**__¿Como puedo conseguir VIP?__**", "`Donando: (1.00 a 5.00 USD/EUR)` **[PayPal](https://paypal.me/Xeantrix?locale.x=es_XC)** \n`Boosteando Wolf Security` **[Server Wolf](https://discord.gg/W8nn78X)** \n`Metiendo a Wolf Security a Servidores llenos` **[Invite](https://discord.com/api/oauth2/authorize?client_id=752518742692462672&permissions=403712255&scope=bot)**")
+)
+  
   const embed = new Discord.MessageEmbed()
       .setThumbnail(message.author.displayAvatarURL())
       .setAuthor(`Informacion Comandos`, client.user.displayAvatarURL())
