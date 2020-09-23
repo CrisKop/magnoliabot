@@ -87,7 +87,9 @@ client.on("guildMemberAdd", async guild => {
       .addField("Servidores Actuales:" + client.guilds.cache.size)
       .addField("Usuarios Actuales:", +client.users.cache.size)
       .setFooter(guild.name)
-  );
+  ).catch(e => {
+    console.log("No pude enviarle ese mensaje al dueño del servidor")
+  })
 });
 
 client.on("message", async message => {
