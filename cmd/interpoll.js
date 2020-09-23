@@ -81,7 +81,7 @@ exports.run = async (client, message, args) => {
     if(ap.tiene(message.guild.id) === true) return message.channel.send("El servidor ya tiene las ventajas premiums")
     ap.establecer(message.guild.id, args[1]);
     message.channel.send(
-      "**☑️ `|` El servidor ahora tiene todas las ventajas premiums.**"
+      `**☑️ \`|\` El servidor ahora tiene todas las ventajas premiums.** \n Usa ${prefix}ventajasvips`
     );
   }
 };

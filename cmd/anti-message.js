@@ -11,7 +11,10 @@ exports.run = async (client, message, args) => {
   if (!perms)
     return message.channel.send("❌ No tienes permisos de `Administrador`.");
 
-  //if(!log.tiene(`${message.guild.id}`)) return message.channel.send("❌ No has establecido el canal de logs \nUsa: `setlogs #canal`")
+  let ap = new db.crearDB("premiumssv");
+  
+  if(ap.tiene(message.guild.id) === false) return message.channel.send("No puedes usar este comando, porque el servidor no tiene las ventajas premium") 
+  if (ap.tiene(`${message.guild.id}`)) { 
   if (!xd)
     return message.channel.send(
       "☑️ Activa usando `anti-message enable` \n❌ Desactiva usando `anti-message disable`"
