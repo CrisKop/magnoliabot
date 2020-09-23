@@ -19,7 +19,8 @@
     "moment-duration-format": "^2.3.2",
     "tresenraya": "^0.0.5",
     "colornames": "^1.1.1",
-    "fs": "^0.0.2"
+    "fs": "^0.0.2",
+    "discord-backup": "^2.2.5"
   },
   "engines": {
     "node": "12.x"

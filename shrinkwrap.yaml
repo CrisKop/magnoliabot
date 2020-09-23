@@ -1,5 +1,6 @@
 dependencies:
   colornames: 1.1.1
+  discord-backup: 2.2.5
   discord.js: 12.3.1
   express: 4.17.1
   fs: 0.0.2
@@ -231,6 +232,12 @@ packages:
     hasBin: true
     resolution:
       integrity: sha1-+hN8S9aY7fVc1c0CrFWfkaTEups=
+  /discord-backup/2.2.5:
+    dependencies:
+      discord.js: 12.3.1
+    dev: false
+    resolution:
+      integrity: sha512-90iS4IlxUSnUg9AN3gizUE/7RQXV6quRBa7+zRs68Bi8akCPj7MWm7WYzq4BsU6ltcOS7r/2G0cqLtH6bxtI9g==
   /discord.js/12.3.1:
     dependencies:
       '@discordjs/collection': 0.1.6
@@ -1046,6 +1053,7 @@ shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
   colornames: ^1.1.1
+  discord-backup: ^2.2.5
   discord.js: ^12.3.1
   express: ^4.17.1
   fs: ^0.0.2
