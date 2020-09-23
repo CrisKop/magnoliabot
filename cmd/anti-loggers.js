@@ -29,41 +29,11 @@ exports.run = async (client, message, args) => {
 
   if (args[0] === "disable") {
     al.eliminar(`${message.guild.id}`);
-     if (!log.tiene(`${message.guild.id}`)) return;
-    let logs = await log.obtener(`${message.guild.id}`);
-    const canalrendered = client.channels.cache.get(logs);
-    canalrendered.send(
-      new Discord.MessageEmbed()
-        .setAuthor(
-          `🌐 ${client.user.username} Filtros 🌐`,
-          client.user.displayAvatarURL()
-        )
-        .setDescription("🍬 `|` **_Filtro Anti-Loggers Desactivado_** \n`Canal Logs:` "+ `${we}`)
-        .addField("👮 `|` **__Desactivado Por:__**", `${message.author}`)
-        .addField("☄️ `|` **__Filtro:__**", "`Anti-Loggers`")
-        .setThumbnail(client.user.displayAvatarURL())
-        .setColor("RED")
-    );
     return message.channel.send("☑️ AntiLoggers **Desactivada** Correctamente");
   } else if (args[0] === "enable") {
     if (al.tiene(message.guild.id))
       return message.channel.send("☑️ Los Anti-Loggers Ya estan activados");
     al.establecer(`${message.guild.id}.at`, "activado");
-    if (!log.tiene(`${message.guild.id}`)) return;
-    let logs = await log.obtener(`${message.guild.id}`);
-    const canalrendered = client.channels.cache.get(logs);
-    canalrendered.send(
-      new Discord.MessageEmbed()
-        .setAuthor(
-          `🌐 ${client.user.username} Filtros 🌐`,
-          client.user.displayAvatarURL()
-        )
-        .setDescription("🍬 `|` **_Filtro Anti-Loggers Activado_** \n`Canal logs:` "+ `${we}`)
-        .addField("👮 `|` **__Activado Por:__**", `${message.author}`)
-        .addField("☄️ `|` **__Filtro:__**", "`Anti-Loggers`")
-        .setThumbnail(client.user.displayAvatarURL())
-        .setColor("GREEN")
-    );
     return message.channel.send("☑️ AntiLoggers **Activada** Correctamente");
   }
 };

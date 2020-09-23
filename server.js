@@ -285,6 +285,7 @@ client.on("message", async message => {
       new Discord.MessageEmbed()
         .setAuthor(message.author.tag)
         .setColor("GREEN")
+        .setThumbnail(message.author.displayAvatarURL({ size: 1024, dynamic: true}))
         .setDescription(`👤 ${message.author} [${message.author.id}] **Ahora esta AFK! \n🧭 Razon:** ${razon}`)
     );
   }
