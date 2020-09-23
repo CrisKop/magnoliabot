@@ -62,18 +62,18 @@ client.on("message", async message => {
     comandos.run(client, message, args);
   } catch (e) {
     console.log(e.stacks);
-    message.channel.send(
-      new Discord.MessageEmbed()
-        .setColor("RED")
-        .setThumbnail(
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Nuvola_apps_error.svg/1200px-Nuvola_apps_error.svg.png"
-        )
-        .setDescription("`Comando que uso no existe en mi base de datos`")
-        .addField(
-          "`Trata usando el siguiente comando`",
-          "**" + prefix + "comandos**"
-        )
-    );
+    //message.channel.send(
+    //new Discord.MessageEmbed()
+    //.setColor("RED")
+    //.setThumbnail(
+    // "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Nuvola_apps_error.svg/1200px-Nuvola_apps_error.svg.png"
+    //)
+    //.setDescription("`Comando que uso no existe en mi base de datos`")
+    //.addField(
+    // "`Trata usando el siguiente comando`",
+    //"**" + prefix + "comandos**"
+    //)
+    //);
   } finally {
   }
 });
@@ -227,20 +227,16 @@ client.on(`guildCreate`, (guild, message) => {
 });
 
 client.on("message", async message => {
-    let { crearDB } = require("megadb"); // Llamamos al constructor crearDB
+  let { crearDB } = require("megadb"); // Llamamos al constructor crearDB
   let palta = new crearDB("palta"); // Creamos el archivo json en el que almacenaremos los datos de los usuarios AFK
-let Discord = require("discord.js")
-exports.run = async (client, message, args) => {
+  let Discord = require("discord.js");
   if (palta.tiene(message.guild.id)) {
     //Verificamos si el archivo json tiene datos guardados con la ID del servidor donde se mando el mensaje
     let lista = await palta.get(message.guild.id); //Obtenemos el array guardado con la lista de los usuarios AFK en el servidor
     if (lista.includes(message.author.id)) {
       //Verificamos si el array incluye la ID del autor del mensaje
       palta.extract(message.guild.id, message.author.id); //Eliminamos el elemento con la ID del autor del mensaje del array
-      message.channel.send(
-        new Discord.MessageEmbed()
-        .setAuthor(message.author.username)
-        .setDescription("**Ya no te encuestras AFK**")
+      message.channel.send(`${message.author} has vuelto de tu AFK!`
       ); //Enviamos un mensaje avisandole al autor del mensaje que ya no esta AFK
     }
   } //Cerramos
@@ -265,15 +261,33 @@ exports.run = async (client, message, args) => {
   } //Cerramos
 
   if (message.content.startsWith("f/afk")) {
+  const db = require("megadb");
+  let prefix_db = new db.crearDB("prefixes"); //q haces :v
+
+  var prefix;
+  if (prefix_db.tiene(`${message.guild.id}`)) {
+    prefix = await prefix_db.obtener(`${message.guild.id}`);
+  } else {
+    prefix = "f/";
+  }
+    
+  const args = message.content
+    .slice(prefix.length)
+    .trim()
+    .split(/ +/g);
+  const command = args.shift().toLowerCase();
+    
+    let razon = args.slice(0).join(" ") || "Razon Indefinida"
     //Verificamos si el contenido del mensaje empieza con "!afk"
     if (!palta.tiene(message.guild.id)) palta.establecer(message.guild.id, []); //Verificamos si el archivo json tiene datos guardados con la ID del servidor, En caso de que no establecemos un array
     palta.push(message.guild.id, message.author.id); //Añadimos la ID del autor del mensaje al array
     message.channel.send(
-    new Discord.MessageEmbed()
-    .setAuthor(message.author.username)
-    .setColor("RED")
-    .setDescription("**Te encuentras AFK en este momento**")); //Enviamos el mensaje avisandole al usuario que ahora esta AFK
-  } //Cerramos
-})
+      new Discord.MessageEmbed()
+        .setAuthor(message.author.tag)
+        .setColor("GREEN")
+        .setDescription(`👤 ${message.author} [${message.author.id}] **Ahora esta AFK! \n🧭 Razon:** ${razon}`)
+    );
+  }
+});
 client.login(process.env.TOKEN);
 //que es lo que habia abajo de del evento guildmemberadd? , yo lo coloque pero no me acuerdo
