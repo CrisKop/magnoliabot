@@ -13,6 +13,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const { nivelesFunc } = require("./niveles.js");
 const db = require("megadb");
+const db2 = require("quick.db")
 
 client.on("ready", () => {
   console.log("Estoy listo!");
@@ -399,5 +400,6 @@ client.on("guildMemberAdd", async member => {
     member.roles.add(rol);
   }
 });
+
 client.login(process.env.TOKEN);
 //que es lo que habia abajo de del evento guildmemberadd? , yo lo coloque pero no me acuerdo
