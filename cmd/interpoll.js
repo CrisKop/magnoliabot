@@ -58,7 +58,7 @@ exports.run = async (client, message, args) => {
           "👉 Tu clave premium es la siguiente: `" + something + "`."
         )
         .setFooter(
-          "Para canjear la clave ejecuta " + prefix + "canjear " + something
+          "Para canjear la clave ejecuta " + prefix + "interpoll canjear " + something
         )
     );
     keys_db.push(message.author.id, something);

@@ -246,12 +246,18 @@ client.on("message", async message => {
         text.push("<@" + x.id + ">");
       }
     });
+let razon = args.slice(0).join(" ") || "Razon Indefinida";
     if (text.length >= 1) {
       let estan = text.length > 1 ? "están" : "esta";
-      message.channel.send("¡" + text.join(" ") + " " + estan + " afk!");
+      message.channel.send("¡" + text.join(" ") + " " + estan + " afk!").catch(e => {
+        message.channel.send(e)
+        message.channel.send(
+        new Discord.MessageEmbed()
+        .setAuthor("! "+`${text.join(" ")}`+ " " + estan + " Afk!")
+        .setDescription(`Razon: ${razon}`))
+      })
     }
   }
-
   if (message.content.startsWith("f/afk")) {
     const db = require("megadb");
     let prefix_db = new db.crearDB("prefixes"); //q haces :v
@@ -272,6 +278,7 @@ client.on("message", async message => {
     let razon = args.slice(0).join(" ") || "Razon Indefinida";
 
     if (!palta.tiene(message.guild.id)) palta.establecer(message.guild.id, []);
+
     palta.push(message.guild.id, message.author.id);
     message.channel.send(
       new Discord.MessageEmbed()
