@@ -324,6 +324,7 @@ client.on("message", async message => {
         )
     );
     r.establecer(message.guild.id, razon);
+    message.member.setNickname("[AFK] "+message.member.displayName)
   }
 });
 
