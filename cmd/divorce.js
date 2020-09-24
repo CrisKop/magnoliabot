@@ -1,5 +1,3 @@
-//command handler
-
 const db = require("megadb");
 const db_marry = new db.crearDB("marry");
 const Discord = require("discord.js");
