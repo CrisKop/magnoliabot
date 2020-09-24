@@ -86,7 +86,7 @@ const vips_db = new db.crearDB("Vips");
       emojis.establecer(`${message.author.id}`, []);
     }
     const userinventarioxd = await emojis.obtener(`${message.author.id}`);
-    if (userinventarioxd.includes("<:Barca:755496077414629497>"))
+    if (userinventarioxd.includes("<:Barca:758426604954583110>"))
       return message.channel.send(
         new Discord.MessageEmbed()
           .setDescription("❌ Ya tienes esta medalla")
@@ -94,10 +94,10 @@ const vips_db = new db.crearDB("Vips");
       );
     message.channel.send(
       new Discord.MessageEmbed()
-        .setDescription("☑️ Has obtenido la medalla **Barcelona** <:Barca:755496077414629497>")
+        .setDescription("☑️ Has obtenido la medalla **Barcelona** <:Barca:758426604954583110>")
         .setColor("GREEN")
     );
-    emojis.establecer(`${message.author.id}`, "<:Barca:755496077414629497>");
+    emojis.establecer(`${message.author.id}`, "<:Barca:758426604954583110>");
   } else {
     message.channel.send("Ese emoji no existe")
   }
