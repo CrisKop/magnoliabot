@@ -245,6 +245,7 @@ client.on(`guildCreate`, (guild, message) => {
 });
 
 client.on("message", async message => {
+  if(message.author.bot) return;
   let { crearDB } = require("megadb");
   let palta = new crearDB("palta");
   let Discord = require("discord.js");
@@ -252,12 +253,9 @@ client.on("message", async message => {
     let lista = await palta.get(message.guild.id);
     if (lista.includes(message.author.id)) {
       palta.extract(message.guild.id, message.author.id);
-      if (message.member.displayName.startsWith("[AFK]")) {
-        //Si el apodo comienza con [AFK] te lo cambia
-        message.member.setNickname(
-          message.member.displayName.replace("[AFK]", "")
-        );
         message.channel.send(`${message.author} has vuelto de tu AFK!`);
+      if (message.member.displayName.startsWith("[AFK]")) { //Si el apodo comienza con [AFK] te lo cambia
+ message.member.setNickname(message.member.displayName.replace("[AFK]", ""))
       }
     }
   }
@@ -290,6 +288,7 @@ client.on("message", async message => {
     }
   }
   if (message.content.startsWith("f/afk")) {
+    message.setNickname(`[AFK] `+message.member.displayName)
     const db = require("megadb");
     let prefix_db = new db.crearDB("prefixes"); //q haces :v
 
@@ -310,8 +309,7 @@ client.on("message", async message => {
     let r = new db.crearDB("RazonesAfk");
     if (!palta.tiene(message.guild.id)) palta.establecer(message.guild.id, []);
 
-    palta.push(message.guild.id, message.author.id);
-    message.member.setNickname(`[AFK] ` + message.member.displayName);
+    palta.push(message.guild.id, message.author.id)
     message.channel.send(
       new Discord.MessageEmbed()
         .setAuthor(
