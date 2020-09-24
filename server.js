@@ -324,7 +324,6 @@ client.giveawaysManager.on(
 );
 
 const spamdetector = require("dspamdetector");
-let amp = new (require("megadb")).crearDB("AntiSpam");
 let opciones = {
   minletters: 5,
   minwords: 0,
@@ -338,10 +337,37 @@ let detector = new spamdetector.detector(opciones);
 
 client.on("message", message => {
   if (message.author.bot) return;
- if (amp.tiene(`${message.guild.id}.at`)) {
+  let amp = new (require("megadb")).crearDB("AntiSpam");
+  if (amp.tiene(`${message.guild.id}.at`)) {
     detector.isSpam(message.content).then(resultado => {
       if (resultado == true) {
-        message.channel.send("❌ `|` **__[AntiSpam]__** Mensaje considerado como SPAM");
+        message.channel.send(
+          "❌ `|` **__[AntiSpam]__** Mensaje considerado como SPAM"
+        ).then(m => m.delete({ timeout: 5000 }))
+        message.delete();
+      }
+    });
+  }
+});
+
+let opciones1 = {
+  floodt: 100, //limite de segundos
+  floodml: 5 //limite de mensajes
+};
+let detector1 = new spamdetector.detector(opciones1);
+
+client.on("message", message => {
+  let af = new (require("megadb")).crearDB("AntiFlood");
+  //El 3 son el limite de mensajes y el 60 es cada cuanto tiempo por ejemplo si yo escribiera en menos de 1 minuto 3 mensajes el npm te dira que es spam
+  if (message.author.bot) return; 
+  if (af.tiene(`${message.guild.id}.at`)) {//esta linea no es obligatoria pero al no ponerla el bot entrara en bucle ya que detectara sus propios mensajes como spam o borrara los mensajes de otros bots si los manda muy rapido
+  detector
+    .isFlood(message.author.id, message.guild.id, message.channel.id)
+    .then(resultado1 => {
+      if (resultado1 == true) {
+        message.channel.send(
+          "❌ `|` **__[AntiFlood]__** Mensaje considerado como FLOOD"
+        ).then(m => m.delete({ timeout: 5000 }))
         message.delete();
       }
     });

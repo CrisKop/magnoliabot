@@ -12,7 +12,7 @@ exports.run = async (client, message, args) => {
   
   let xd = args.slice(0).join(" ");
   let usuario = message.author;
-  let amp = new (require("megadb")).crearDB("AntiSpam");
+  let af = new (require("megadb")).crearDB("AntiFlood");
   
 let ap = new db.crearDB("premiumssv");
   
@@ -25,18 +25,18 @@ let ap = new db.crearDB("premiumssv");
     return message.channel.send("❌ No tienes permisos de `Administrador`.");
      if (!xd)
     return message.channel.send(
-      "☑️ Activa usando `anti-spam enable` \n❌ Desactiva usando `anti-spam disable`"
+      "☑️ Activa usando `anti-flood enable` \n❌ Desactiva usando `anti-flood disable`"
     );
 
     if(args[0] === "disable"){
-    amp.eliminar(`${message.guild.id}`);
+    af.eliminar(`${message.guild.id}`);
       return message.channel.send(
-        "☑️ AntiSpam **Desactivada** Correctamente"
+        "☑️ AntiFood **Desactivada** Correctamente"
       );
   } else if (args[0] === "enable"){
-     if (amp.tiene(message.guild.id)) return message.channel.send("☑️ Los Anti-Spam Ya estan activados");
-     amp.establecer(`${message.guild.id}.at`, "activado");
-    return message.channel.send("☑️ AntiSpam **Activada** Correctamente");
+     if (af.tiene(message.guild.id)) return message.channel.send("☑️ Los Anti-Flood Ya estan activados");
+     af.establecer(`${message.guild.id}.at`, "activado");
+    return message.channel.send("☑️ AntiFlood **Activada** Correctamente");
   }
 
   } 
