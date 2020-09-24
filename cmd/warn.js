@@ -10,7 +10,7 @@ exports.run = async (client, message, args) => {
   let xd = args.slice(1).join(" ") || "Razon Indefinida"
   
   if(!warns.tiene(`${message.guild.id}.${user.id}`)) {
-    warns.establecer(`${message.guild.id}.${user.id}`, 0)
+  warns.establecer(`${message.guild.id}.${user.id}`, 0)
   }
   
   warns.sumar(`${message.guild.id}.${user.id}`, 1)
