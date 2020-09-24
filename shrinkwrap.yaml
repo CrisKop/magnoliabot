@@ -3,6 +3,7 @@ dependencies:
   discord-backup: 2.2.5
   discord-giveaways: 4.2.1
   discord.js: 12.3.1
+  dspamdetector: 1.3.1
   express: 4.17.1
   fs: 0.0.2
   megadb: 3.4.0
@@ -267,6 +268,10 @@ packages:
       node: '>=12.0.0'
     resolution:
       integrity: sha512-mSFyV/mbvzH12UXdS4zadmeUf8IMQOo/YdunubG1wWt1xjWvtaJz/s9CGsFD2B5pTw1W/LXxxUbrQjIZ/xlUdw==
+  /dspamdetector/1.3.1:
+    dev: false
+    resolution:
+      integrity: sha512-ptfuVJJiVmhawkrvjfEv1PSa0w5/2aP0h7UWT7Zs4M+uOXlbanmrGle95MJ8IsLDEbXdLr4Mg3mWqYO+IYbMLA==
   /ee-first/1.1.1:
     dev: false
     resolution:
@@ -1074,6 +1079,7 @@ specifiers:
   discord-backup: ^2.2.5
   discord-giveaways: ^4.2.1
   discord.js: ^12.3.1
+  dspamdetector: ^1.3.1
   express: ^4.17.1
   fs: ^0.0.2
   megadb: ^3.4.0

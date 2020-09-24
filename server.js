@@ -231,61 +231,61 @@ client.on("message", async message => {
   let palta = new crearDB("palta");
   let Discord = require("discord.js");
   if (palta.tiene(message.guild.id)) {
-    
     let lista = await palta.get(message.guild.id);
     if (lista.includes(message.author.id)) {
-
-      palta.extract(message.guild.id, message.author.id); 
-      message.channel.send(`${message.author} has vuelto de tu AFK!`
-      ); 
+      palta.extract(message.guild.id, message.author.id);
+      message.channel.send(`${message.author} has vuelto de tu AFK!`);
     }
   }
-  
-  if (message.mentions.users.first() && palta.tiene(message.guild.id)) {
-    
-    let lista = await palta.get(message.guild.id); 
-    let text = []; 
-    message.mentions.users.forEach(x => {
 
+  if (message.mentions.users.first() && palta.tiene(message.guild.id)) {
+    let lista = await palta.get(message.guild.id);
+    let text = [];
+    message.mentions.users.forEach(x => {
       if (lista.includes(x.id)) {
-        
-        text.push("<@" + x.id + ">"); 
+        text.push("<@" + x.id + ">");
       }
     });
     if (text.length >= 1) {
-      
       let estan = text.length > 1 ? "están" : "esta";
       message.channel.send("¡" + text.join(" ") + " " + estan + " afk!");
     }
   }
 
   if (message.content.startsWith("f/afk")) {
-  const db = require("megadb");
-  let prefix_db = new db.crearDB("prefixes"); //q haces :v
+    const db = require("megadb");
+    let prefix_db = new db.crearDB("prefixes"); //q haces :v
 
-  var prefix;
-  if (prefix_db.tiene(`${message.guild.id}`)) {
-    prefix = await prefix_db.obtener(`${message.guild.id}`);
-  } else {
-    prefix = "f/";
-  }
-    
-  const args = message.content
-    .slice(prefix.length)
-    .trim()
-    .split(/ +/g);
-  const command = args.shift().toLowerCase();
-    
-    let razon = args.slice(0).join(" ") || "Razon Indefinida"
+    var prefix;
+    if (prefix_db.tiene(`${message.guild.id}`)) {
+      prefix = await prefix_db.obtener(`${message.guild.id}`);
+    } else {
+      prefix = "f/";
+    }
 
-    if (!palta.tiene(message.guild.id)) palta.establecer(message.guild.id, []); 
+    const args = message.content
+      .slice(prefix.length)
+      .trim()
+      .split(/ +/g);
+    const command = args.shift().toLowerCase();
+
+    let razon = args.slice(0).join(" ") || "Razon Indefinida";
+
+    if (!palta.tiene(message.guild.id)) palta.establecer(message.guild.id, []);
     palta.push(message.guild.id, message.author.id);
     message.channel.send(
       new Discord.MessageEmbed()
-        .setAuthor(message.author.tag, message.author.displayAvatarURL({ size: 1024, dynamic: true }))
+        .setAuthor(
+          message.author.tag,
+          message.author.displayAvatarURL({ size: 1024, dynamic: true })
+        )
         .setColor("GREEN")
-        .setThumbnail(message.author.displayAvatarURL({ size: 1024, dynamic: true}))
-        .setDescription(`👤 ${message.author} [${message.author.id}] **Ahora esta AFK! \n🧭 Razon:** ${razon}`)
+        .setThumbnail(
+          message.author.displayAvatarURL({ size: 1024, dynamic: true })
+        )
+        .setDescription(
+          `👤 ${message.author} [${message.author.id}] **Ahora esta AFK! \n🧭 Razon:** ${razon}`
+        )
     );
   }
 });
@@ -322,5 +322,30 @@ client.giveawaysManager.on(
     );
   }
 );
+
+const spamdetector = require("dspamdetector");
+let amp = new (require("megadb")).crearDB("AntiSpam");
+let opciones = {
+  minletters: 5,
+  minwords: 0,
+  maxpercentcaps: 15,
+  maxpercentletters: 60,
+  blockedwords: [],
+  floodt: 60,
+  floodml: 3
+};
+let detector = new spamdetector.detector(opciones);
+
+client.on("message", message => {
+  if (message.author.bot) return;
+ if (amp.tiene(`${message.guild.id}.at`)) {
+    detector.isSpam(message.content).then(resultado => {
+      if (resultado == true) {
+        message.channel.send("❌ `|` **__[AntiSpam]__** Mensaje considerado como SPAM");
+        message.delete();
+      }
+    });
+  }
+});
 client.login(process.env.TOKEN);
 //que es lo que habia abajo de del evento guildmemberadd? , yo lo coloque pero no me acuerdo
