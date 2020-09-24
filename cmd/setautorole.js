@@ -10,8 +10,9 @@ exports.run = async (client, message, args) => {
 
         if(!args[0]) return message.channel.send(
           new Discord.MessageEmbed()
-          .setColor("RED")
-          .setDescription("👤 **Para configurar el role usuarios** `setautorole user @role` \n🤖 **Para configurar el role bots** `setautorole bot @role`")
+          .setColor("RANDOM")
+          .setAuthor(`🚘 Autoroles Usuarios/Bots 🚘`, message.author.displayAvatarURL())
+          .setDescription("👤 **__Si desea configurar el autorole para usuarios__** \nUsa `setautorole user @role` \n\n<:EconBot:758151903783419914> **__Si desea configurar el autorole para bots__** \nUsa `setautorole bot @role`")
         )
 
       if(args[0] === "user"){
@@ -35,6 +36,7 @@ exports.run = async (client, message, args) => {
 
     if(args[0] === "bot"){
       const roleb = new megadb.crearDB("AutoBots");
+
       let role1 = message.mentions.roles.first() || message.guild.roles.cache.get(args[0]);
       if (!role1)
         return message.channel.send(

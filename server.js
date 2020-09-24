@@ -373,5 +373,23 @@ client.on("message", message => {
     });
   }
 });
+
+const roleb = new db.crearDB("AutoBots");
+client.on("guildMemberAdd", async member => {
+  if (!roleb.tiene(member.guild.id)) return;
+  let ID2 = await roleb.obtener(member.guild.id);
+  if (member.user.bot) member.roles.add(ID2);
+});
+
+client.on("guildMemberAdd", async member => {
+  const role = new db.crearDB("AutoUser");
+
+  if (!role.tiene(`${member.guild.id}`)) return;
+  else if (role.tiene(`${member.guild.id}`)) {
+    if(member.user.bot) return;
+    let rol = await role.obtener(`${member.guild.id}`);
+    member.roles.add(rol);
+  }
+});
 client.login(process.env.TOKEN);
 //que es lo que habia abajo de del evento guildmemberadd? , yo lo coloque pero no me acuerdo

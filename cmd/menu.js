@@ -70,6 +70,12 @@ exports.run = async (client, message, args) => {
   if(args[0] === "config"){
   const log = new db.crearDB("Logs");
   let lo = await log.obtener(message.guild.id)
+  
+   const roleb = new db.crearDB("AutoBots");
+      const role = new db.crearDB("AutoUser");
+    let u = await role.obtener(message.guild.id)
+    let b = await roleb.obtener(message.guild.id)
+    
     let l;
   if (log.tiene(message.guild.id)) {
     l = `<#${lo}>`;
@@ -78,9 +84,25 @@ exports.run = async (client, message, args) => {
    l = "❌ No hay canal definido";
   }
     
+  let dx;
+  if (roleb.tiene(message.guild.id)) {
+    dx = `<@&${b}>`;
+  }
+  if (!roleb.tiene(message.guild.id)) {
+   dx = "❌ No hay role definido";
+  }
+    
+  let xd;
+  if (role.tiene(message.guild.id)) {
+    xd = `<@&${u}>`;
+  }
+  if (!role.tiene(message.guild.id)) {
+   xd = "❌ No hay role definido";
+  }
+    
     const embed = new Discord.MessageEmbed()
     .setAuthor(`Configuraciones de ${message.guild.name}`, client.user.displayAvatarURL())
-    .addField("**__Configs Activadas/Desactivadas__**", `**__Logs:__** ${l}`)
+    .addField("**__Configs Activadas/Desactivadas__**", `**__Logs:__** ${l} \n\n**__Autoroles:__** \n**Bots:** ${dx} \n**Usuarios:** ${xd}`)
     .setColor("RANDOM")
     .setThumbnail(message.author.displayAvatarURL())
     message.channel.send(embed)
