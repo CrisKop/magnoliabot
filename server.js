@@ -48,7 +48,7 @@ client.on("message", async message => {
   }
   
   let blacklist = new db.crearDB("BlackList");
-  let usersban = await blacklist.obtener("BlackList")
+  let usersban = await blacklist.obtener("blacklist")
   if (message.author.bot) return;
 
   if (message.content.indexOf(prefix) !== 0) {
@@ -62,10 +62,12 @@ client.on("message", async message => {
     .split(/ +/g);
   const command = args.shift().toLowerCase();
 
-  if (usersban.includes(message.author.id))
+ if (usersban.includes(message.author.id))
     return message.channel.send(
       new Discord.MessageEmbed()
-      .setAuthor(`${message.author.username} [${`)
+      .setAuthor(`${message.author.username} [${message.author.id}]`, message.author.displayAvatarURL())
+      .setColor("RED")
+      .setDescription("📜 `|` **__Estas en la blacklist, por lo tanto no puedes usar los comandos del BOT__**")
       )
   
   try {
