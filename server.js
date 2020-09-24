@@ -253,10 +253,9 @@ client.on("message", async message => {
     let lista = await palta.get(message.guild.id);
     if (lista.includes(message.author.id)) {
       palta.extract(message.guild.id, message.author.id);
+       let r = new db.crearDB("RazonesAfk");
+      r.eliminar(message.guild.id)
         message.channel.send(`${message.author} has vuelto de tu AFK!`);
-      if (message.member.displayName.startsWith("[AFK]")) { //Si el apodo comienza con [AFK] te lo cambia
- message.member.setNickname(message.member.displayName.replace("[AFK]", ""))
-      }
     }
   }
 
@@ -324,7 +323,6 @@ client.on("message", async message => {
           `👤 ${message.author} [${message.author.id}] **Ahora esta AFK! \n🧭 Razon:** ${razon}`
         )
     );
-    message.member.setNickname("[AFK] "+`${message.member.displayName}`)
     r.establecer(message.guild.id, razon);
   }
 });
