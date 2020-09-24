@@ -282,7 +282,7 @@ client.on("message", async message => {
     palta.push(message.guild.id, message.author.id);
     message.channel.send(
       new Discord.MessageEmbed()
-        .setAuthor(message.author.tag)
+        .setAuthor(message.author.tag, message.author.displayAvatarURL({ size: 1024, dynamic: true }))
         .setColor("GREEN")
         .setThumbnail(message.author.displayAvatarURL({ size: 1024, dynamic: true}))
         .setDescription(`👤 ${message.author} [${message.author.id}] **Ahora esta AFK! \n🧭 Razon:** ${razon}`)
