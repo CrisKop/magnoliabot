@@ -246,16 +246,15 @@ client.on("message", async message => {
         text.push("<@" + x.id + ">");
       }
     });
-let razon = args.slice(0).join(" ") || "Razon Indefinida";
+    let r = new db.crearDB("RazonesAfk")
+    let ra = await r.obtener(message.guild.id)
     if (text.length >= 1) {
       let estan = text.length > 1 ? "están" : "esta";
-      message.channel.send("¡" + text.join(" ") + " " + estan + " afk!").catch(e => {
-        message.channel.send(e)
-        message.channel.send(
-        new Discord.MessageEmbed()
-        .setAuthor("! "+`${text.join(" ")}`+ " " + estan + " Afk!")
-        .setDescription(`Razon: ${razon}`))
-      })
+          message.channel.send(
+            new Discord.MessageEmbed()
+              .setColor("RANDOM")
+              .setDescription("👤 ! " + `${text.join(" ")}` + " " + estan + " Afk! \n🖊️ **__Razon:__** `"+ra+"`")
+          );
     }
   }
   if (message.content.startsWith("f/afk")) {
@@ -276,7 +275,7 @@ let razon = args.slice(0).join(" ") || "Razon Indefinida";
     const command = args.shift().toLowerCase();
 
     let razon = args.slice(0).join(" ") || "Razon Indefinida";
-
+    let r = new db.crearDB("RazonesAfk")
     if (!palta.tiene(message.guild.id)) palta.establecer(message.guild.id, []);
 
     palta.push(message.guild.id, message.author.id);
@@ -294,6 +293,7 @@ let razon = args.slice(0).join(" ") || "Razon Indefinida";
           `👤 ${message.author} [${message.author.id}] **Ahora esta AFK! \n🧭 Razon:** ${razon}`
         )
     );
+    r.establecer(message.guild.id, razon)
   }
 });
 
@@ -348,9 +348,9 @@ client.on("message", message => {
   if (amp.tiene(`${message.guild.id}.at`)) {
     detector.isSpam(message.content).then(resultado => {
       if (resultado == true) {
-        message.channel.send(
-          "❌ `|` **__[AntiSpam]__** Mensaje considerado como SPAM"
-        ).then(m => m.delete({ timeout: 5000 }))
+        message.channel
+          .send("❌ `|` **__[AntiSpam]__** Mensaje considerado como SPAM")
+          .then(m => m.delete({ timeout: 5000 }));
         message.delete();
       }
     });
@@ -366,18 +366,19 @@ let detector1 = new spamdetector.detector(opciones1);
 client.on("message", message => {
   let af = new (require("megadb")).crearDB("AntiFlood");
   //El 3 son el limite de mensajes y el 60 es cada cuanto tiempo por ejemplo si yo escribiera en menos de 1 minuto 3 mensajes el npm te dira que es spam
-  if (message.author.bot) return; 
-  if (af.tiene(`${message.guild.id}.at`)) {//esta linea no es obligatoria pero al no ponerla el bot entrara en bucle ya que detectara sus propios mensajes como spam o borrara los mensajes de otros bots si los manda muy rapido
-  detector
-    .isFlood(message.author.id, message.guild.id, message.channel.id)
-    .then(resultado1 => {
-      if (resultado1 == true) {
-        message.channel.send(
-          "❌ `|` **__[AntiFlood]__** Mensaje considerado como FLOOD"
-        ).then(m => m.delete({ timeout: 5000 }))
-        message.delete();
-      }
-    });
+  if (message.author.bot) return;
+  if (af.tiene(`${message.guild.id}.at`)) {
+    //esta linea no es obligatoria pero al no ponerla el bot entrara en bucle ya que detectara sus propios mensajes como spam o borrara los mensajes de otros bots si los manda muy rapido
+    detector
+      .isFlood(message.author.id, message.guild.id, message.channel.id)
+      .then(resultado1 => {
+        if (resultado1 == true) {
+          message.channel
+            .send("❌ `|` **__[AntiFlood]__** Mensaje considerado como FLOOD")
+            .then(m => m.delete({ timeout: 5000 }));
+          message.delete();
+        }
+      });
   }
 });
 
@@ -393,7 +394,7 @@ client.on("guildMemberAdd", async member => {
 
   if (!role.tiene(`${member.guild.id}`)) return;
   else if (role.tiene(`${member.guild.id}`)) {
-    if(member.user.bot) return;
+    if (member.user.bot) return;
     let rol = await role.obtener(`${member.guild.id}`);
     member.roles.add(rol);
   }
