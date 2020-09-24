@@ -17,6 +17,7 @@ exports.run = async (client, message, args) => {
         )
     );
       let blacklist = new db.crearDB("BlackList");
+  let blackrazon = new db.crearDB("Razones");
       if (!blacklist.tiene("blacklist")) {
         blacklist.establecer("blacklist", []);
       } //Guardamos los argumentos 0 (id) en el array creado anteriormente El codigo este va en el comando el de arriba en otro para crearlo
@@ -29,8 +30,9 @@ exports.run = async (client, message, args) => {
     if(user.bot) return message.channel.send("No puedes agregar a un bot")
       if (isNaN(args[0]))
         return message.channel.send("❌ Debe colocar una ID real");
-  
+  let xd = args.slice(1).join(" ") 
       blacklist.extract("blacklist", args[0]);
+      blackrazon.extract(args[0], xd)
   
      message.channel.send(`**__Se ha eliminado un usuario de la blacklist__** <@${args[0]}> \`\`[${args[0]}]\`\``)
     client.users.cache.get(args[0]).send("**__Has sido eliminado de la blacklist__**")

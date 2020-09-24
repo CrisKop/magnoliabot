@@ -18,6 +18,7 @@ exports.run = async (client, message, args) => {
     );
 
   let blacklist = new db.crearDB("BlackList");
+  let blackrazon = new db.crearDB("Razones");
   if (!blacklist.tiene("blacklist")) {
     blacklist.establecer("blacklist", []);
   }
@@ -33,9 +34,10 @@ exports.run = async (client, message, args) => {
     );
 
   blacklist.push("blacklist", args[0]);
+  blackrazon.establecer(args[0], xd)
 
-  message.channel.send(`**__Se ha agregado un nuevo usuario a la blacklist__** <@${args[0]}> \`\`[${args[0]}]\`\` \nRazon: \`\`${xd}\`\``)
-   client.users.cache.get(args[0]).send("**__Has sido agregado a la blacklist__** \nRazon: `"+xd+"`").catch(e => {
+  message.channel.send(`**__Se ha agregado un nuevo usuario a la blacklist__** <@${args[0]}> \`\`[${args[0]}]\`\` \nRazon: \`\`${xd}\`\` \nResponsable: \`\`${message.author.tag}\`\``)
+   client.users.cache.get(args[0]).send("**__Has sido agregado a la blacklist__** \nRazon: `"+xd+"` \nResponsable: `"+`${message.author.tag}`+"`").catch(e => {
      message.channel.send("**__Hubo un error al enviar el mensaje__**").then(m => {
        m.delete({ timeout: 5000 })
      })
