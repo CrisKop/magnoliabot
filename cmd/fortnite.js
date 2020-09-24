@@ -16,7 +16,7 @@ exports.run = async (client, message, args) => {
     .then(jugador => {
       //buscamos el jugador por nombre y plataforma y se crea un JSON con sus stats
       const embed = new Discord.MessageEmbed() //un embed para que se vea mas bonis :3
-        .setThumbnail(jugador.displayAvatarURL())
+        .setThumbnail(jugador.displayAvatarURL)
         .setColor("RANDOM")
         .setDescription(`**Estadisticas de: [${jugadorstr}](${jugador.url})**`) //haremos que el nombre sea clickeable para ir a su usuario en fortnitetracker
         .addField("Estadisticas/Informacion:", `🎉 \`|\` **__Victorias:__** \n**Modo Solo:** ${jugador.stats.solo.wins} \n**Modo Duo:** ${jugador.stats.duo.wins} \n**Modo Squad:** ${jugador.stats.squad.wins} \n\n🥖 \`|\` **__Eliminaciones:__** \n**Modo Solo:** ${jugador.stats.solo.kills} \n**Modo Duo:** ${jugador.stats.duo.kills} \n**Modo Squad:** ${jugador.stats.squad.kills} \n\n🎲 \`|\` **__Partidas:__** \n**Modo Solo:** ${jugador.stats.solo.matches} \n**Modo Duo:** ${jugador.stats.duo.matches} \n**Modo Squad:** ${jugador.stats.squad.matches}`)
