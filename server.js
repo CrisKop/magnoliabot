@@ -13,7 +13,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const { nivelesFunc } = require("./niveles.js");
 const db = require("megadb");
-const db2 = require("quick.db")
+const db2 = require("quick.db");
 
 client.snipes = new Map();
 
@@ -46,9 +46,9 @@ client.on("message", async message => {
   } else {
     prefix = "f/";
   }
-  
+
   let blacklist = new db.crearDB("BlackList");
-  let usersban = await blacklist.obtener("blacklist")
+  let usersban = await blacklist.obtener("blacklist");
   if (message.author.bot) return;
 
   if (message.content.indexOf(prefix) !== 0) {
@@ -62,13 +62,18 @@ client.on("message", async message => {
     .split(/ +/g);
   const command = args.shift().toLowerCase();
 
-if (usersban.includes(message.author.id))
+  if (usersban.includes(message.author.id))
     return message.channel.send(
       new Discord.MessageEmbed()
-      .setAuthor(`${message.author.username} [${message.author.id}]`, message.author.displayAvatarURL())
-      .setColor("RED")
-      .setDescription("📜 `|` **__Estas en la blacklist, por lo tanto no puedes usar los comandos del BOT__**")
-      )
+        .setAuthor(
+          `${message.author.username} [${message.author.id}]`,
+          message.author.displayAvatarURL()
+        )
+        .setColor("RED")
+        .setDescription(
+          "📜 `|` **__Estas en la blacklist, por lo tanto no puedes usar los comandos del BOT__**"
+        )
+    );
 
   try {
     let comandos = require(`./cmd/${command}.js`);
@@ -247,7 +252,13 @@ client.on("message", async message => {
     let lista = await palta.get(message.guild.id);
     if (lista.includes(message.author.id)) {
       palta.extract(message.guild.id, message.author.id);
-      message.channel.send(`${message.author} has vuelto de tu AFK!`);
+      if (message.member.displayName.startsWith("[AFK]")) {
+        //Si el apodo comienza con [AFK] te lo cambia
+        message.member.setNickname(
+          message.member.displayName.replace("[AFK]", "")
+        );
+        message.channel.send(`${message.author} has vuelto de tu AFK!`);
+      }
     }
   }
 
@@ -259,15 +270,23 @@ client.on("message", async message => {
         text.push("<@" + x.id + ">");
       }
     });
-    let r = new db.crearDB("RazonesAfk")
-    let ra = await r.obtener(message.guild.id)
+    let r = new db.crearDB("RazonesAfk");
+    let ra = await r.obtener(message.guild.id);
     if (text.length >= 1) {
       let estan = text.length > 1 ? "están" : "esta";
-          message.channel.send(
-            new Discord.MessageEmbed()
-              .setColor("RANDOM")
-              .setDescription("👤 ! " + `${text.join(" ")}` + " " + estan + " Afk! \n🖊️ **__Razon:__** `"+ra+"`")
-          );
+      message.channel.send(
+        new Discord.MessageEmbed()
+          .setColor("RANDOM")
+          .setDescription(
+            "👤 ! " +
+              `${text.join(" ")}` +
+              " " +
+              estan +
+              " Afk! \n🖊️ **__Razon:__** `" +
+              ra +
+              "`"
+          )
+      );
     }
   }
   if (message.content.startsWith("f/afk")) {
@@ -288,10 +307,11 @@ client.on("message", async message => {
     const command = args.shift().toLowerCase();
 
     let razon = args.slice(0).join(" ") || "Razon Indefinida";
-    let r = new db.crearDB("RazonesAfk")
+    let r = new db.crearDB("RazonesAfk");
     if (!palta.tiene(message.guild.id)) palta.establecer(message.guild.id, []);
 
     palta.push(message.guild.id, message.author.id);
+    message.member.setNickname(`[AFK] ` + message.member.displayName);
     message.channel.send(
       new Discord.MessageEmbed()
         .setAuthor(
@@ -306,7 +326,7 @@ client.on("message", async message => {
           `👤 ${message.author} [${message.author.id}] **Ahora esta AFK! \n🧭 Razon:** ${razon}`
         )
     );
-    r.establecer(message.guild.id, razon)
+    r.establecer(message.guild.id, razon);
   }
 });
 
