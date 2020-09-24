@@ -15,6 +15,8 @@ const { nivelesFunc } = require("./niveles.js");
 const db = require("megadb");
 const db2 = require("quick.db")
 
+client.snipes = new Map();
+
 client.on("ready", () => {
   console.log("Estoy listo!");
   setInterval(function() {
@@ -399,6 +401,16 @@ client.on("guildMemberAdd", async member => {
     let rol = await role.obtener(`${member.guild.id}`);
     member.roles.add(rol);
   }
+});
+
+client.on("messageDelete", message => {
+  //este es el evento "messageDelete" se activa cuando un mensaje es eliminado.
+
+  client.snipes.set(message.channel.id, {
+    content: message.content,
+    delete: message.author,
+    canal: message.channel
+  });
 });
 
 client.login(process.env.TOKEN);
