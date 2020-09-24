@@ -289,5 +289,38 @@ client.on("message", async message => {
     );
   }
 });
+
+const config = require("./config.json");
+client.config = config;
+
+const { GiveawaysManager } = require("discord-giveaways");
+client.giveawaysManager = new GiveawaysManager(client, {
+  storage: "./giveaways.json",
+  updateCountdownEvery: 5000,
+  default: {
+    botsCanWin: false,
+    embedColor: "#FF0000",
+    reaction: "🎉"
+  }
+});
+// We now have a client.giveawaysManager property to manage our giveaways!
+
+client.giveawaysManager.on(
+  "giveawayReactionAdded",
+  (giveaway, member, reaction) => {
+    console.log(
+      `${member.user.tag} entered giveaway #${giveaway.messageID} (${reaction.emoji.name})`
+    );
+  }
+);
+
+client.giveawaysManager.on(
+  "giveawayReactionRemoved",
+  (giveaway, member, reaction) => {
+    console.log(
+      `${member.user.tag} unreact to giveaway #${giveaway.messageID} (${reaction.emoji.name})`
+    );
+  }
+);
 client.login(process.env.TOKEN);
 //que es lo que habia abajo de del evento guildmemberadd? , yo lo coloque pero no me acuerdo

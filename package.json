@@ -20,7 +20,10 @@
     "tresenraya": "^0.0.5",
     "colornames": "^1.1.1",
     "fs": "^0.0.2",
-    "discord-backup": "^2.2.5"
+    "discord-backup": "^2.2.5",
+    "fortnite": "^4.3.2",
+    "ms": "^2.1.2",
+    "discord-giveaways": "^4.2.1"
   },
   "engines": {
     "node": "12.x"
