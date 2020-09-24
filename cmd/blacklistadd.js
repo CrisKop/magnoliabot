@@ -25,8 +25,7 @@ exports.run = async (client, message, args) => {
   if (isNaN(args[0]))
     return message.channel.send("❌ ¡La ID introducida no existe!");
   
-  if(user.bot) return message.channel.send("No puedes agregar a un bot")
-
+  let xd = args.slice(1).join(" ") || "Razon Indefinida"
   const idsxd = await blacklist.obtener("blacklist");
   if (idsxd.includes(args[0]) == true)
     return message.channel.send(
@@ -35,5 +34,10 @@ exports.run = async (client, message, args) => {
 
   blacklist.push("blacklist", args[0]);
 
-  message.channel.send(`**__Se ha agregado un nuevo usuario a la blacklist__** <@${args[0]}> [<${args[0]}>]`)
+  message.channel.send(`**__Se ha agregado un nuevo usuario a la blacklist__** <@${args[0]}> \`\`[${args[0]}]\`\` \nRazon: \`\`${xd}\`\``)
+   client.users.cache.get(args[0]).send("**__Has sido agregado a la blacklist__** \nRazon: `"+xd+"`").catch(e => {
+     message.channel.send("**__Hubo un error al enviar el mensaje__**").then(m => {
+       m.delete({ timeout: 5000 })
+     })
+   })
 };

@@ -32,10 +32,6 @@ exports.run = async (client, message, args) => {
   
       blacklist.extract("blacklist", args[0]);
   
-      const embed = new Discord.MessageEmbed()
-        .setAuthor(`☑️ Usuario Removido ☑️`)
-        .setColor("RED")
-        .addField("**Info Proceso**", "🆔 **ID Usuario:** " + args[0])
-        .addField("**👤 Usuario:**", `<@${args[0]}>`);
-      message.channel.send(embed);
+     message.channel.send(`**__Se ha eliminado un usuario de la blacklist__** <@${args[0]}> \`\`[${args[0]}]\`\``)
+    client.users.cache.get(args[0]).send("**__Has sido eliminado de la blacklist__**")
     }
