@@ -288,7 +288,9 @@ client.on("message", async message => {
     }
   }
   if (message.content.startsWith("f/afk")) {
-    message.setNickname(`[AFK] `+message.member.displayName)
+    if(message.author.bot) return;
+    
+    message.member.setNickname("[AFK] "+`${message.member.displayName}`) 
     const db = require("megadb");
     let prefix_db = new db.crearDB("prefixes"); //q haces :v
 
