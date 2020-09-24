@@ -29,7 +29,7 @@ exports.run = async (client, message, args) => {
     );
 
     if(args[0] === "disable"){
-      if(!)
+      if(!am.tiene(message.guild.id)) return message.channel.send("Esta proteccion no esta activada")
     am.eliminar(`${message.guild.id}`);
       return message.channel.send(
         "☑️ AntiMessage **Desactivada** Correctamente"
