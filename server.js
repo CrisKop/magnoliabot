@@ -62,14 +62,14 @@ client.on("message", async message => {
     .split(/ +/g);
   const command = args.shift().toLowerCase();
 
- if (usersban.includes(message.author.id))
+if (usersban.includes(message.author.id))
     return message.channel.send(
       new Discord.MessageEmbed()
       .setAuthor(`${message.author.username} [${message.author.id}]`, message.author.displayAvatarURL())
       .setColor("RED")
       .setDescription("📜 `|` **__Estas en la blacklist, por lo tanto no puedes usar los comandos del BOT__**")
       )
-  
+
   try {
     let comandos = require(`./cmd/${command}.js`);
     comandos.run(client, message, args);
