@@ -305,7 +305,6 @@ client.on("message", async message => {
       .split(/ +/g);
     const command = args.shift().toLowerCase();
 
-  message.member.setNickname("[AFK] "+`${message.member.displayName}`)
     let razon = args.slice(0).join(" ") || "Razon Indefinida";
     let r = new db.crearDB("RazonesAfk");
     if (!palta.tiene(message.guild.id)) palta.establecer(message.guild.id, []);
@@ -325,6 +324,7 @@ client.on("message", async message => {
           `👤 ${message.author} [${message.author.id}] **Ahora esta AFK! \n🧭 Razon:** ${razon}`
         )
     );
+    message.member.setNickname("[AFK] "+`${message.member.displayName}`)
     r.establecer(message.guild.id, razon);
   }
 });
