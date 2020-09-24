@@ -12,8 +12,16 @@ exports.run = async (client, message, args) => {
     return message.channel.send("❌ No tienes permisos de `Administrador`.");
 
   let ap = new db.crearDB("premiumssv");
+  let prefix_db = new db.crearDB("prefixes")
+
+    let prefix;
+  if (prefix_db.tiene(`${message.guild.id}`)) {
+    prefix = await prefix_db.obtener(`${message.guild.id}`);
+  } else {
+    prefix = "f/";
+  }
   
-  if(ap.tiene(message.guild.id) === false) return message.channel.send("No puedes usar este comando, porque el servidor no tiene las ventajas premium") 
+  if(ap.tiene(message.guild.id) === false) return message.channel.send("No puedes usar este comando, porque el servidor no tiene las ventajas premium \n`Usa: "+prefix+"interpoll genkey` SI ERES VIP, si no eres VIP no podras usarlo") 
   if (ap.tiene(`${message.guild.id}`)) { 
   if (!xd)
     return message.channel.send(

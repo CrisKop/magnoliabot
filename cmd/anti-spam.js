@@ -16,7 +16,7 @@ exports.run = async (client, message, args) => {
   
 let ap = new db.crearDB("premiumssv");
   
-  if(ap.tiene(message.guild.id) === false) return message.channel.send("No puedes usar este comando, porque el servidor no tiene las ventajas premium") 
+if(ap.tiene(message.guild.id) === false) return message.channel.send("No puedes usar este comando, porque el servidor no tiene las ventajas premium \n`Usa: "+prefix+"interpoll genkey` SI ERES VIP, si no eres VIP no podras usarlo") 
   if (ap.tiene(`${message.guild.id}`)) { 
     
     let perms = message.member.hasPermission("ADMINISTRATOR");

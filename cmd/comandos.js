@@ -63,8 +63,8 @@ let prefix_db = new db.crearDB("prefixes")
     .setThumbnail("https://cdn.discordapp.com/attachments/753270513069195337/753365099695046687/3390850.png")
     .setColor("RANDOM")
     .setAuthor(`Seguridad de ${client.user.username}`, client.user.displayAvatarURL())
-    .addField("Comandos/Seguridad:", "`anti-loggers` - `anti-message` - `anti-joins` - `anti-spam` - `anti-flood` - `falexydetectar` - `falexyban`")
-    .addField("Comandos/Seguridad(VIP):", "`backup`")
+    .addField("Comandos/Seguridad:", "`anti-loggers` - `anti-joins` - `anti-flood` - `falexydetectar` - `falexyban`")
+    .addField("Comandos/Seguridad(VIP):", "`backup` - `anti-message` - `anti-spam`")
     message.channel.send(se)
   }
 };

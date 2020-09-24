@@ -13,11 +13,6 @@ exports.run = async (client, message, args) => {
   let xd = args.slice(0).join(" ");
   let usuario = message.author;
   let af = new (require("megadb")).crearDB("AntiFlood");
-  
-let ap = new db.crearDB("premiumssv");
-  
-  if(ap.tiene(message.guild.id) === false) return message.channel.send("No puedes usar este comando, porque el servidor no tiene las ventajas premium") 
-  if (ap.tiene(`${message.guild.id}`)) { 
     
     let perms = message.member.hasPermission("ADMINISTRATOR");
 
@@ -39,5 +34,4 @@ let ap = new db.crearDB("premiumssv");
     return message.channel.send("☑️ AntiFlood **Activada** Correctamente");
   }
 
-  } 
-}
+  }
