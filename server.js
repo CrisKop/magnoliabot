@@ -289,8 +289,6 @@ client.on("message", async message => {
   }
   if (message.content.startsWith("f/afk")) {
     if(message.author.bot) return;
-    
-    message.member.setNickname("[AFK] "+`${message.member.displayName}`) 
     const db = require("megadb");
     let prefix_db = new db.crearDB("prefixes"); //q haces :v
 
@@ -307,6 +305,7 @@ client.on("message", async message => {
       .split(/ +/g);
     const command = args.shift().toLowerCase();
 
+  message.member.setNickname("[AFK] "+`${message.member.displayName}`)
     let razon = args.slice(0).join(" ") || "Razon Indefinida";
     let r = new db.crearDB("RazonesAfk");
     if (!palta.tiene(message.guild.id)) palta.establecer(message.guild.id, []);
