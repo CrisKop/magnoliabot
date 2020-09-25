@@ -17,7 +17,7 @@ let prefix_db = new db.crearDB("prefixes")
       .setThumbnail("https://cdn.discordapp.com/attachments/753270513069195337/753353041557717112/3391213.png")
       .setAuthor(`Lista Comandos ${client.user.username}`, message.author.displayAvatarURL({ dynamic: true }))
       .setDescription("📃 `|` Te invito al **[Servidor Soporte](https://discord.gg/W8nn78X)** \n📣 `|` Podras **[Invitarme](https://discord.com/api/oauth2/authorize?client_id=753340440001904841&permissions=8&scope=bot)** Por este enlace")
-      .addField("**Lista Comandos:**", `💰 **__Economia:__** \`${prefix}comandos eco\` \n👮 **__Staff:__** \`${prefix}comandos staff\` \n📜 **__Info:__** \`${prefix}comandos info\` \n📌 **__Config:__** \`${prefix}comandos config\` \n🔰 **__Seguridad:__** \`${prefix}comandos seguridad\` \n🎉 **__Diversion:__** \`${prefix}comandos diversion\` \n🏭 **__Todos los Comandos:** \`${prefix}comandos all\``)
+      .addField("**Lista Comandos:**", `💰 **__Economia:__** \`${prefix}comandos eco\` \n👮 **__Staff:__** \`${prefix}comandos staff\` \n📜 **__Info:__** \`${prefix}comandos info\` \n📌 **__Config:__** \`${prefix}comandos config\` \n🔰 **__Seguridad:__** \`${prefix}comandos seguridad\` \n🎉 **__Diversion:__** \`${prefix}comandos diversion\` \n🏭 **__Todos los Comandos:__** \`${prefix}comandos all\``)
       .setTimestamp()
       .setFooter(`Pedido por: ${message.author.tag}`, message.author.displayAvatarURL({dynamic: true}))
     );
@@ -78,6 +78,9 @@ let prefix_db = new db.crearDB("prefixes")
     .setColor("RANDOM")
     .setAuthor(`Todos Los Comandos de: ${client.user.username}`, client.user.displayAvatarURL())
     .setDescription("💸 `|` **__Economia:__** \n`buy2` - `buy` - `shop` - `shop2` - `rob` - `addmoney` - `crime` - `rep` - `dep` - `with` - `work` - `daily` - `weekly` - `perfil` - `setinfo` - `delinfo` - `ruleta` - `setcolor` - `resetcolor` \n<:EconBot:758151903783419914> `|` **__Economia VIP:__** \n`setimg` - `delimg` - `configvip` - `setemoji` - `setemojioff` - `shopvip` \n\n🛠️ `|` **__Staff:__** `addstaff` - `removestaff` - `addvip` - `removevip` - `eval` - `falexyadd` \n\n📜 `|` **__Info:__** `botinfo` - `falexyinfo` - `listvips` - `afk` - `start-giveaway` - `reroll` - `end-giveaway` \n\n🌐 `|` **__Config:__** `setprefix` - `resetprefix` - `createrole` - `menu` - `setautorole` \n\n🔰 `|` **__Seguridad:__** `anti-loggers` - `anti-joins` - `anti-flood` - `falexydetectar` - `falexyban` - `snipe` \n<:EconBot:758151903783419914> `|` **__Seguridad VIP:__** `backup` - `anti-message` - `anti-spam` \n\n🎉 `|` **__Diversion:__** `aki`")
+    .addBlankField(true)
+    .addField("🥂 `|` **__Enlaces:__**", "**[Server Soporte](https://discord.gg/W8nn78X)** `|` **[Invitame](https://discord.com/api/oauth2/authorize?client_id=753340440001904841&permissions=8&scope=bot)** `|` **[Wolf Security](https://discord.com/api/oauth2/authorize?client_id=752518742692462672&permissions=403712255&scope=bot)** `|` **[Monkey Security](https://discordapp.com/api/oauth2/authorize?client_id=755834111091802284&permissions=8&scope=bot)**")
+    .setFooter("Panel Comandos "+message.author.tag, message.author.displayAvatarURL())   
     message.channel.send(embed1)
   }
 };
