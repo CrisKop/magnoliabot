@@ -4,19 +4,20 @@ exports.run = async (client, message, args) => {
   const db = require("megadb")
   const words = new db.crearDB("Palabras")
   
-  if(words.tiene(message.guild.id)){
+  if(!words.tiene(message.guild.id)){
     words.establecer(message.guild.id, [])
   }
-  let xd = args.join(" ")
-  if(!xd) return message.channel.send("Debes colocar una palabra a bloquear")
+  let xd = args.slice(0).join(" ")
+  if(!xd) return message.channel.send("❌ `|` **Debes colocar una palabra a bloquear**")
   
-  let x = await words.obtener(message.guild.id)
-  if(x.includes(args[0]) == true) return message.channel.send(
+  const idsxd = await words.obtener(message.guild.id);
+if (idsxd.includes(args[0]) == true) return message.channel.send(
   new Discord.MessageEmbed()
-  .setAuthor(`❌ | Ha Ocurrido Un Error`)
-  .setDescription("**__La palabra que digito "+xd+" Ya esta bloqueada en el servidor")
+  .setAuthor(`❌ | Ha Ocurrido Un Error | ❌`)
+  .setDescription("🏭 `|` **__La palabra que digito `"+xd+"` Ya esta bloqueada en el servidor__**")
   .setColor("RED")
   )
+  
   words.push(message.guild.id, xd)
-  message.channel.send("Palabra `"+xd+"` Bloqueada Correctamente")
+  message.channel.send("☑️ `|` **Palabra `"+xd+"` Bloqueada Correctamente**")
 }

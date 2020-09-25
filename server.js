@@ -441,5 +441,20 @@ client.on("messageDelete", message => {
   });
 });
 
+client.on("message", async message => {
+  if (message.author.bot) return;
+  const words = new (require("megadb")).crearDB("Palabras");
+  let wo = await words.obtener(message.guild.id);
+  if (words.tiene(`${message.guild.id}`)) {
+    if (wo.some(word => message.content.toLowerCase().includes(word))) {
+      if (message.member.hasPermission("ADMINISTRATOR")) return;
+      message.delete();
+      message.channel.send("⛔ "+ `${message.author}` +" `>` **Esa palabra esta bloqueada en el servidor**."
+        )
+        .then(m2 => m2.delete({ timeout: 5000 }));
+    }
+  }
+});
+
 client.login(process.env.TOKEN);
 //que es lo que habia abajo de del evento guildmemberadd? , yo lo coloque pero no me acuerdo
