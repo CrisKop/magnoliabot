@@ -96,7 +96,7 @@ client.on("message", async message => {
   }
 });
 
-client.on("guildMemberAdd", async guild => {
+client.on("guildCreate", async guild => {
   guild.owner
     .send(
       new Discord.MessageEmbed()

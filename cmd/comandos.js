@@ -15,12 +15,9 @@ let prefix_db = new db.crearDB("prefixes")
       new Discord.MessageEmbed()
       .setColor("RANDOM")
       .setThumbnail("https://cdn.discordapp.com/attachments/753270513069195337/753353041557717112/3391213.png")
-      .setAuthor( `${client.user.username} Panel Comandos`, client.user.displayAvatarURL())
-      .addField("**__Comandos/Eco:__**", "`Economia:` **"+prefix+"comandos eco**")
-      .addField("**__Comandos/Staff:__**", "`Staff:` **"+prefix+"comandos staff**")
-      .addField("**__Comandos/Info:__**", "`Info:` **"+prefix+"comandos info**")
-      .addField("**__Comandos/Config:__**", "`Config:` **"+prefix+"comandos config**")
-      .addField("**__Comandos/Seguridad:__**", "`Seguridad:` **"+prefix+"comandos seguridad**")
+      .setAuthor(`Lista Comandos ${client.user.username}`, message.author.displayAvatarURL({ dynamic: true }))
+      .setDescription("E")
+      .addField("**Lista Comandos:**", `💰 **__Economia:__** \`${prefix}comandos eco\` \n👮 **__Staff:__** \`${prefix}comandos staff\` \n📜 **__Info:__** \`${prefix}comandos info\` \n📌 **__Config:__** \`${prefix}comandos config\` \n🔰 **__Seguridad:__** \`${prefix}comandos seguridad\` \n🎉 **__Diversion:__** \`${prefix}comandos diversion\``)
       .setTimestamp()
       .setFooter(`Pedido por: ${message.author.tag}`, message.author.displayAvatarURL({dynamic: true}))
     );
@@ -60,11 +57,19 @@ let prefix_db = new db.crearDB("prefixes")
   }
   if(args[0] === "seguridad") {
     const se = new Discord.MessageEmbed()
-    .setThumbnail("https://cdn.discordapp.com/attachments/753270513069195337/753365099695046687/3390850.png")
+    .setThumbnail("https://cdn.discordapp.com/attachments/758040716340363385/759031098842939432/3447560.png")
     .setColor("RANDOM")
     .setAuthor(`Seguridad de ${client.user.username}`, client.user.displayAvatarURL())
     .addField("Comandos/Seguridad:", "`anti-loggers` - `anti-joins` - `anti-flood` - `falexydetectar` - `falexyban` - `snipe`")
     .addField("Comandos/Seguridad(VIP):", "`backup` - `anti-message` - `anti-spam`")
+    message.channel.send(se)
+  }
+  if(args[0] === "diversion"){
+    const se = new Discord.MessageEmbed()
+    .setThumbnail("https://cdn.discordapp.com/attachments/758040716340363385/759031207098318908/3468129.png")
+    .setColor("RANDOM")
+    .setAuthor(`Diversion de ${client.user.username}`, client.user.displayAvatarURL())
+    .addField("Comandos/Diversion:", "`aki`")
     message.channel.send(se)
   }
 };
