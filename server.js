@@ -472,7 +472,7 @@ client.on("guildMemberAdd", async member => {
   const canalrendered = client.channels.cache.get(welcome);
   if (!welcome_db.tiene(`${member.guild.id}`)) return;
 
-  let avatar = member.user.displayAvatarURL();
+  let avatar = member.user.avatarURL();
   let usertext = member.user.username;
   let descripcion = `Bienvenido a ${member.guild.name}`;
   let fondo = `${imagen}`
