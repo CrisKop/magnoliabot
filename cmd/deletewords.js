@@ -5,7 +5,7 @@ exports.run = async (client, message, args) => {
 
   if (!perms) return message.channel.send("No tienes permisos");
 
-  if (!words.tiene(message.guild.id))
+  if (words.tiene(message.guild.id) == false)
     return message.channel.send(
       new Discord.MessageEmbed()
         .setAuthor(`❌ | Ha Ocurrido Un Error | ❌`)

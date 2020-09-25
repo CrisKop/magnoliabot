@@ -245,7 +245,7 @@ client.on(`guildCreate`, (guild, message) => {
 });
 
 client.on("message", async message => {
-  if(message.author.bot) return;
+  if (message.author.bot) return;
   let { crearDB } = require("megadb");
   let palta = new crearDB("palta");
   let Discord = require("discord.js");
@@ -253,9 +253,9 @@ client.on("message", async message => {
     let lista = await palta.get(message.guild.id);
     if (lista.includes(message.author.id)) {
       palta.extract(message.guild.id, message.author.id);
-       let r = new db.crearDB("RazonesAfk");
-      r.eliminar(message.guild.id)
-        message.channel.send(`${message.author} has vuelto de tu AFK!`);
+      let r = new db.crearDB("RazonesAfk");
+      r.eliminar(message.guild.id);
+      message.channel.send(`${message.author} has vuelto de tu AFK!`);
     }
   }
 
@@ -287,7 +287,7 @@ client.on("message", async message => {
     }
   }
   if (message.content.startsWith("f/afk")) {
-    if(message.author.bot) return;
+    if (message.author.bot) return;
     const db = require("megadb");
     let prefix_db = new db.crearDB("prefixes"); //q haces :v
 
@@ -308,7 +308,7 @@ client.on("message", async message => {
     let r = new db.crearDB("RazonesAfk");
     if (!palta.tiene(message.guild.id)) palta.establecer(message.guild.id, []);
 
-    palta.push(message.guild.id, message.author.id)
+    palta.push(message.guild.id, message.author.id);
     message.channel.send(
       new Discord.MessageEmbed()
         .setAuthor(
@@ -449,11 +449,38 @@ client.on("message", async message => {
     if (wo.some(word => message.content.toLowerCase().includes(word))) {
       if (message.member.hasPermission("ADMINISTRATOR")) return;
       message.delete();
-      message.channel.send("⛔ "+ `${message.author}` +" `>` **Esa palabra esta bloqueada en el servidor**."
+      message.channel
+        .send(
+          "⛔ " +
+            `${message.author}` +
+            " `>` **Esa palabra esta bloqueada en el servidor**."
         )
         .then(m2 => m2.delete({ timeout: 5000 }));
     }
   }
+});
+
+client.on("guildMemberAdd", async member => {
+  const marsnpm = require("marsnpm");
+  const db = require("megadb");
+  let welcome_db = new db.crearDB("setwelcome", "welcomeleave");
+  let imagen_db = new db.crearDB("setwelcomeimg", "welcomeleave");
+  if (!welcome_db.tiene(`${member.guild.id}`)) return;
+  if (!imagen_db.tiene(member.guild.id)) return;
+  let imagen = await imagen_db.obtener(`${member.guild.id}`);
+  let welcome = await welcome_db.obtener(`${member.guild.id}`);
+  const canalrendered = client.channels.cache.get(welcome);
+  if (!welcome_db.tiene(`${member.guild.id}`)) return;
+
+  let avatar = member.user.displayAvatarURL();
+  let usertext = member.user.username;
+  let descripcion = `Bienvenido a ${member.guild.name}`;
+  let fondo = `${imagen}`
+
+  let img = await marsnpm.bienvenida2(avatar, usertext, descripcion, fondo);
+  canalrendered.send({ files: [img] }).catch(e => {
+    member.send("❌ `|` **Hubo un error...**")
+  })
 });
 
 client.login(process.env.TOKEN);
