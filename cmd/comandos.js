@@ -17,7 +17,7 @@ let prefix_db = new db.crearDB("prefixes")
       .setThumbnail("https://cdn.discordapp.com/attachments/753270513069195337/753353041557717112/3391213.png")
       .setAuthor(`Lista Comandos ${client.user.username}`, message.author.displayAvatarURL({ dynamic: true }))
       .setDescription("📃 `|` Te invito al **[Servidor Soporte](https://discord.gg/W8nn78X)** \n📣 `|` Podras **[Invitarme](https://discord.com/api/oauth2/authorize?client_id=753340440001904841&permissions=8&scope=bot)** Por este enlace")
-      .addField("**Lista Comandos:**", `💰 **__Economia:__** \`${prefix}comandos eco\` \n👮 **__Staff:__** \`${prefix}comandos staff\` \n📜 **__Info:__** \`${prefix}comandos info\` \n📌 **__Config:__** \`${prefix}comandos config\` \n🔰 **__Seguridad:__** \`${prefix}comandos seguridad\` \n🎉 **__Diversion:__** \`${prefix}comandos diversion\``)
+      .addField("**Lista Comandos:**", `💰 **__Economia:__** \`${prefix}comandos eco\` \n👮 **__Staff:__** \`${prefix}comandos staff\` \n📜 **__Info:__** \`${prefix}comandos info\` \n📌 **__Config:__** \`${prefix}comandos config\` \n🔰 **__Seguridad:__** \`${prefix}comandos seguridad\` \n🎉 **__Diversion:__** \`${prefix}comandos diversion\` \n🏭 **__Todos los Comandos:** \`${prefix}comandos all\``)
       .setTimestamp()
       .setFooter(`Pedido por: ${message.author.tag}`, message.author.displayAvatarURL({dynamic: true}))
     );
@@ -71,5 +71,13 @@ let prefix_db = new db.crearDB("prefixes")
     .setAuthor(`Diversion de ${client.user.username}`, client.user.displayAvatarURL())
     .addField("Comandos/Diversion:", "`aki`")
     message.channel.send(se)
+  }
+  if(args[0] === "all"){
+    const embed1 = new Discord.MessageEmbed()
+    .setThumbnail("https://cdn.discordapp.com/attachments/758040716340363385/759031207098318908/3468129.png")
+    .setColor("RANDOM")
+    .setAuthor(`Todos Los Comandos de: ${client.user.username}`, client.user.displayAvatarURL())
+    .setDescription("💸 `|` **__Economia:__** \n`buy2` - `buy` - `shop` - `shop2` - `rob` - `addmoney` - `crime` - `rep` - `dep` - `with` - `work` - `daily` - `weekly` - `perfil` - `setinfo` - `delinfo` - `ruleta` - `setcolor` - `resetcolor` \n<:EconBot:758151903783419914> `|` **__Economia VIP:__** \n`setimg` - `delimg` - `configvip` - `setemoji` - `setemojioff` - `shopvip` \n\n🛠️ `|` **__Staff:__** `addstaff` - `removestaff` - `addvip` - `removevip` - `eval` - `falexyadd` \n\n📜 `|` **__Info:__** `botinfo` - `falexyinfo` - `listvips` - `afk` - `start-giveaway` - `reroll` - `end-giveaway` \n\n🌐 `|` **__Config:__** `setprefix` - `resetprefix` - `createrole` - `menu` - `setautorole` \n\n🔰 `|` **__Seguridad:__** `anti-loggers` - `anti-joins` - `anti-flood` - `falexydetectar` - `falexyban` - `snipe` \n<:EconBot:758151903783419914> `|` **__Seguridad VIP:__** `backup` - `anti-message` - `anti-spam` \n\n🎉 `|` **__Diversion:__** `aki`")
+    message.channel.send(embed1)
   }
 };
