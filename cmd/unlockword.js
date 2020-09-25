@@ -29,11 +29,7 @@ exports.run = async (client, message, args) => {
     if(!words.tiene(message.guild.id)) return message.channel.send(
     new Discord.MessageEmbed()
         .setAuthor(`❌ | Ha Ocurrido Un Error | ❌`)
-        .setDescription(
-          "🏭 `|` **__La palabra que digito `" +
-            xd +
-            "` No esta bloqueada en el servidor__**"
-        )
+        .setDescription("🏭 `|` **__Esa palabra no existe en la base de datos del servidor__**")
         .setColor("RED")
     )
   words.extract(message.guild.id, xd);
