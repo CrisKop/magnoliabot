@@ -136,8 +136,12 @@ exports.run = async (client, message, args) => {
   const marr = await db_marry.obtener(`${message.author.id}`);
 
   let ap = new db.crearDB("premiumssv");
-  let a = await ap.obtener(message.guild.id);
-
+  let a = await ap.obtener("premiumssv");
+  let v;
+  v = "`Si`";
+  if (ap.includes(message.guild.id) == false) {
+    v = "`No`";
+  }
 
   const embed = new Discord.MessageEmbed()
     .setAuthor(
