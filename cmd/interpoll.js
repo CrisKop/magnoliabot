@@ -77,10 +77,14 @@ exports.run = async (client, message, args) => {
       return message.channel.send("**No eres VIP**");
     let ap = new db.crearDB("premiumssv");
     
+    if(ap.tiene(message.guild.id)) {
+      ap.establecer(message.guild.id, [])
+    }
+    
     if(!args[1]) return message.channel.send("Debes colocar la contraseña que se te dio")
     if(ap.tiene(message.guild.id) === true) return message.channel.send("El servidor ya tiene las ventajas premiums")
     if(ap.tiene(message.author.id) === true) return message.channel.send("Ya has canjeado tu key en este server")
-    ap.establecer(message.guild.id, args[1]);
+    ap.push(message.guild.id, args[1]);
     message.channel.send(
       `**☑️ \`|\` El servidor ahora tiene todas las ventajas premiums.** \n Usa ${prefix}ventajasvips`
     );
