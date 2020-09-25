@@ -3,7 +3,7 @@ exports.run = async (client, message, args) => {
   let db = require("megadb");
 
   let user = message.mentions.users.first() || message.author;
-  
+
   let prefix_db = new db.crearDB("prefixes");
 
   let prefix;
@@ -12,12 +12,12 @@ exports.run = async (client, message, args) => {
   } else {
     prefix = "f/";
   }
-  
 
   const inventario = new db.crearDB("inventarios");
 
-  if(inventario.tiene(`${message.author.id}`)) return message.channel.send("Vuelve a colocar "+prefix+"perfil")
-  
+  if (inventario.tiene(`${message.author.id}`))
+    return message.channel.send("Vuelve a colocar " + prefix + "perfil");
+
   const desc = new db.crearDB("Descripciones");
 
   const dinero = new db.crearDB("Dinero");
@@ -132,56 +132,64 @@ exports.run = async (client, message, args) => {
   const emojis = new db.crearDB("EmojisInter");
   let emoji = await emojis.get(`${user.id}`);
 
-  
   const db_marry = new db.crearDB("marry");
   const marr = await db_marry.obtener(`${message.author.id}`);
-    const embed = new Discord.MessageEmbed()
-      .setAuthor(
-        `🍺 Perfil de ${user.username} [${user.id}]`,
-        client.user.displayAvatarURL()
-      )
-      .setDescription(
-        `${emoji ? `${emoji}` : "No"} **|** ${
-          note ? `${note}` : "**No Tiene Descripcion**"
-        }`
-      )
-      .setThumbnail(il)
-      .setColor(colorxd)
-      .addField(
-        "🤑 `|` **__Dinero/Banco:__**",
-        "**Dinero:** " +
-          cdinero +
-          " \n**Banco:** " +
-          cbanco +
-          " \n**Total:** " +
-          total,
-        true
-      )
-      .addField(
-        "🔋 `|` **__Nivel/XP:__**",
-        `**Nivel:** ${nivel} \n**XP:** ${xp}/${levelup} \n**Siguiente Nivel:** ${nivel +
-          1}`,
-        true
-      )
-      .addField(
-        "🎻 `|` **__Staff/Vip:__**",
-        `**Staff:** ${skere2} \n**Vip:** ${skere}`,
-        true
-      )
-      .addField("♥ **Casad@ con:**", `${marr ? `${marr}` : "No esta casad@"}`, true)
-      .addField(
-        "🦡 `|` **__Badges:__**",
-        user.flags.toArray().length > 0
-          ? user.flags.toArray().map(flag => badges[flag])
-          : "**No tiene Insignias**",
-        true
-      )
-      //.addField("♥ `|` **__Casad@ con:__**", `${marr ? `${marr}` : "No esta casad@"}`, true)
-      .addField(
-        "🔥 `|` **__Reputaciones:__**",
-        `${r ? `${r}` : "No tienes reputaciones"}`,
-        true
-      )
-      .addField("👝 `|` **__Medallas:__**", medails, true);
-    message.channel.send(embed)
+
+  let ap = new db.crearDB("premiumssv");
+  let a = await ap.obtener(message.guild.id);
+
+
+  const embed = new Discord.MessageEmbed()
+    .setAuthor(
+      `🍺 Perfil de ${user.username} [${user.id}]`,
+      client.user.displayAvatarURL()
+    )
+    .setDescription(
+      `${emoji ? `${emoji}` : "No"} **|** ${
+        note ? `${note}` : "**No Tiene Descripcion**"
+      }`
+    )
+    .setThumbnail(il)
+    .setColor(colorxd)
+    .addField(
+      "🤑 `|` **__Dinero/Banco:__**",
+      "**Dinero:** " +
+        cdinero +
+        " \n**Banco:** " +
+        cbanco +
+        " \n**Total:** " +
+        total,
+      true
+    )
+    .addField(
+      "🔋 `|` **__Nivel/XP:__**",
+      `**Nivel:** ${nivel} \n**XP:** ${xp}/${levelup} \n**Siguiente Nivel:** ${nivel +
+        1}`,
+      true
+    )
+    .addField(
+      "🎻 `|` **__Staff/Vip:__**",
+      `**Staff:** ${skere2} \n**Vip:** ${skere}`,
+      true
+    )
+    .addField(
+      "♥ **Casad@ con:**",
+      `${marr ? `${marr}` : "No esta casad@"}`,
+      true
+    )
+    .addField(
+      "🦡 `|` **__Badges:__**",
+      user.flags.toArray().length > 0
+        ? user.flags.toArray().map(flag => badges[flag])
+        : "**No tiene Insignias**",
+      true
+    )
+    .addField("☑️ `|` **__Servidor Premium:__**", v, true)
+    .addField(
+      "🔥 `|` **__Reputaciones:__**",
+      `${r ? `${r}` : "No tienes reputaciones"}`,
+      true
+    )
+    .addField("👝 `|` **__Medallas:__**", medails, true);
+  message.channel.send(embed);
 };
