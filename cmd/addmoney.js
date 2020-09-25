@@ -25,6 +25,13 @@ let embed2 = new Discord.MessageEmbed()
       return message.channel.send(embed2)
 }
   
+if(args[1].length < 101) return message.channel.send(
+new Discord.MessageEmbed()
+.setAuthor(`🥊 | Ha Ocurrido Un Error | 🥊`)
+.setColor("RED")
+.setDescription("❌ `|` **__Solo puedes agregarte menos de 100 de dinero__**")
+)
+  
   dinero.sumar(`${message.guild.id}.${user.id}`, args[1]);
   let bal = await dinero.obtener(`${message.guild.id}.${user.id}`);
 
