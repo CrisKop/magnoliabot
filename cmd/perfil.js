@@ -188,7 +188,7 @@ exports.run = async (client, message, args) => {
         : "**No tiene Insignias**",
       true
     )
-    .addField("☑️ `|` **__Servidor Premium:__**", v, true)
+    .addField("☑️ `|` **__Servidor Premium:__**", "`Si`", true)
     .addField(
       "🔥 `|` **__Reputaciones:__**",
       `${r ? `${r}` : "No tienes reputaciones"}`,
