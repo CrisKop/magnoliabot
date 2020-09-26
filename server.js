@@ -80,18 +80,6 @@ client.on("message", async message => {
     comandos.run(client, message, args);
   } catch (e) {
     console.log(e.stacks);
-    //message.channel.send(
-    //new Discord.MessageEmbed()
-    //.setColor("RED")
-    //.setThumbnail(
-    // "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Nuvola_apps_error.svg/1200px-Nuvola_apps_error.svg.png"
-    //)
-    //.setDescription("`Comando que uso no existe en mi base de datos`")
-    //.addField(
-    // "`Trata usando el siguiente comando`",
-    //"**" + prefix + "comandos**"
-    //)
-    //);
   } finally {
   }
 });
