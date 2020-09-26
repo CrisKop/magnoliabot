@@ -1,6 +1,7 @@
 exports.run = async (client, message, args) => {
   let Discord = require("discord.js");
-
+let perms = message.member.hasPermission("MANAGE_MESSAGES")
+  if(!perms) return message.channel.send("❌ `|` **Perdon "+`${message.author}`+", No tienes permisos de `Permiso` para ejecutar ese comando**")
   const db = require("megadb");
   const words = new db.crearDB("Palabras");
 

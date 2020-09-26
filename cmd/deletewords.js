@@ -1,10 +1,8 @@
 exports.run = async (client, message, args) => {
   let Discord = require("discord.js");
   const words = new (require("megadb")).crearDB("Palabras");
-  let perms = message.member.hasPermission("ADMINISTRATOR");
-
-  if (!perms) return message.channel.send("No tienes permisos");
-
+let perms = message.member.hasPermission("MANAGE_MESSAGES")
+  if(!perms) return message.channel.send("❌ No tienes permisos")
   if (words.tiene(message.guild.id) == false)
     return message.channel.send(
       new Discord.MessageEmbed()
