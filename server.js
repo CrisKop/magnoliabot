@@ -460,28 +460,5 @@ client.on("message", async message => {
   }
 });
 
-client.on("guildMemberAdd", async member => {
-  const marsnpm = require("marsnpm");
-  const db = require("megadb");
-  let welcome_db = new db.crearDB("setwelcome", "welcomeleave");
-  let imagen_db = new db.crearDB("setwelcomeimg", "welcomeleave");
-  if (!welcome_db.tiene(`${member.guild.id}`)) return;
-  if (!imagen_db.tiene(member.guild.id)) return;
-  let imagen = await imagen_db.obtener(`${member.guild.id}`);
-  let welcome = await welcome_db.obtener(`${member.guild.id}`);
-  const canalrendered = client.channels.cache.get(welcome);
-  if (!welcome_db.tiene(`${member.guild.id}`)) return;
-
-  let avatar = member.user.avatarURL();
-  let usertext = member.user.username;
-  let descripcion = `Bienvenido a ${member.guild.name}`;
-  let fondo = `${imagen}`
-
-  let img = await marsnpm.bienvenida2(avatar, usertext, descripcion, fondo);
-  canalrendered.send({ files: [img] }).catch(e => {
-    member.send("❌ `|` **Hubo un error...**")
-  })
-});
-
 client.login(process.env.TOKEN);
 //que es lo que habia abajo de del evento guildmemberadd? , yo lo coloque pero no me acuerdo

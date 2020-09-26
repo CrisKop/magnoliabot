@@ -30,7 +30,7 @@ exports.run = async (client, message, args) => {
       .setColor("RANDOM")
       .setThumbnail(message.guild.iconURL())
       .setAuthor(`Palabras Bloqueadas de ${message.guild.name}`, message.guild.iconURL())
-      .setDescription(`${pal}`)
+      .setDescription(`**${pal}**`)
     message.channel.send(embed);
   } else {
     message.channel.send("❌ `|` **No hay palabras bloqueadas en el servidor**")
