@@ -3,7 +3,7 @@ exports.run = async (client, message, args) => {
   const megadb = require("megadb");
   let perms = message.member.hasPermission("MANAGE_ROLES");
 
-  if (!perms) return message.channel.send("No tienes permisos.");
+  if (!perms) return message.channel.send("❌ `|` **Perdon "+`${message.author}`+", No tienes permisos de `Gestionar Roles` para ejecutar ese comando**");
 
   if (!args[0])
     return message.channel.send(

@@ -8,7 +8,7 @@ exports.run = async (client, message, args) => {
 
     if (!perms)
       return message.channel.send(
-        "❌ No tienes permisos de `Administrador`."
+        "❌ `|` **Perdon "+`${message.author}`+", No tienes permisos de `Administrador` para ejecutar ese comando**"
       );
 
     if(!args[0]) return message.channel.send("❌ Debes colocar un prefix");

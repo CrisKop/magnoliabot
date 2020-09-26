@@ -6,7 +6,7 @@ const Discord = require("discord.js"); //Para los embeds etc
 exports.run = async (client, message, args) => {
   if (!message.member.hasPermission("BAN_MEMBERS"))
     return message.channel.send(
-      "**Necesitas el permiso de `Banear Miembros` para usar el comando.**"
+      "❌ `|` **Perdon "+`${message.author}`+", No tienes permisos de `Banear Miembros` para ejecutar ese comando**"
     );
 
   var arrayids = [];

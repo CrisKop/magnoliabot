@@ -19,7 +19,7 @@ exports.run = async (client, message, args) => {
   let perms = message.member.hasPermission("ADMINISTRATOR");
 
   if (!perms)
-    return message.channel.send("❌ No tienes permisos de `Administrador`.");
+    return message.channel.send("❌ `|` **Perdon "+`${message.author}`+", No tienes permisos de `Administrador` para ejecutar ese comando**")
 
   //if(!log.tiene(`${message.guild.id}`)) return message.channel.send("❌ No has establecido el canal de logs \nUsa: `setlogs #canal`")
   if (!xd)

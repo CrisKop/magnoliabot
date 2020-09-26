@@ -48,7 +48,7 @@ const vips_db = new db.crearDB("Vips");
 
     if (!perms)
       return message.channel.send(
-        "No tienes permisos"
+       "❌ `|` **Perdon "+`${message.author}`+", No tienes permisos de `Administrador` para ejecutar ese comando**"
       );
     backup
       .create(message.guild, {

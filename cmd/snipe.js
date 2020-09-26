@@ -4,7 +4,7 @@ exports.run = async (client, message, args) => {
 
   if (!perms)
     return message.channel.send(
-      "No tienes permisos"
+    "❌ `|` **Perdon "+`${message.author}`+", No tienes permisos de `Gestionar Mensajes` para ejecutar ese comando**"
     );
   const channel = message.mentions.channels.first() || message.channel;
 

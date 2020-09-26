@@ -7,7 +7,7 @@ exports.run = async (client, message, args) => {
     !message.member.roles.cache.some(r => r.name === "Falex Gives")
   ) {
     return message.channel.send(
-      "❌ Necesitas permisos de `Gestionar Mensajes` o tener el role `Falex Gives`"
+  "❌ `|` **Perdon "+`${message.author}`+", No tienes permisos de `Gestionar Mensajes` para ejecutar ese comando**"
     );
   }
 

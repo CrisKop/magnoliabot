@@ -30,7 +30,7 @@ exports.run = async (client, message, args) => {
 
   if (!message.member.hasPermission("MANAGE_ROLES", "ADMINISTRADOR"))
     return message.channel.send(
-      "No tienes permisos para utilizar este comando"
+      "❌ `|` **Perdon "+`${message.author}`+", No tienes permisos de `Administrador` y `Gestionar Roles` para ejecutar ese comando**"
     ); // Si el usuario no tiene permiso de getionar roles o de administrador devuelve ese mensaje.
   if (!message.guild.me.hasPermission("MANAGE_ROLES", "ADMINISTRADOR"))
     return message.channel.send("El bot necesita permiso de gestionar roles"); // Si el bot no tiene permiso de gestionar roles o de administrador devuelve ese mensaje

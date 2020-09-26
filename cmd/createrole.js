@@ -5,7 +5,7 @@ exports.run = async (client, message, args) => {
   const name = args.slice(1).join(" ");
   const regex = !/[^a-zA-Z0-9]+/g.test(name);
   if (!message.member.hasPermission("MANAGE_ROLES")) {
-    return message.channel.send("❌ No tienes permisos de `Gestionar Roles`");
+    return message.channel.send("❌ `|` **Perdon "+`${message.author}`+", No tienes permisos de `Gestionar Mensajes` para ejecutar ese comando**");
   }
   if (!message.guild.me.hasPermission("MANAGE_ROLES")) {
     return message.channel.send("❌ No tengo permisos de `Gestionar Roles`");
