@@ -135,14 +135,6 @@ exports.run = async (client, message, args) => {
   const db_marry = new db.crearDB("marry");
   const marr = await db_marry.obtener(`${message.author.id}`);
 
-  let ap = new db.crearDB("premiumssv");
-  let a = await ap.obtener(message.guild.id);
-  let v;
-  v = "`Si`";
-  if (a.includes(message.guild.id) == false) {
-    v = "`No`";
-  }
-
   const embed = new Discord.MessageEmbed()
     .setAuthor(
       `🍺 Perfil de ${user.username} [${user.id}]`,
@@ -188,7 +180,6 @@ exports.run = async (client, message, args) => {
         : "**No tiene Insignias**",
       true
     )
-    .addField("☑️ `|` **__Servidor Premium:__**", v, true)
     .addField(
       "🔥 `|` **__Reputaciones:__**",
       `${r ? `${r}` : "No tienes reputaciones"}`,
