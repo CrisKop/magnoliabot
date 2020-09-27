@@ -17,7 +17,7 @@ exports.run = async (client, message, args) => {
   if (!xd)
     return message.channel.send("❌ `|` **Debes colocar una sugerencia**");
 
-  let fecha = moment().format("MMMM Do YYYY, h:mm:ss a");
+  let fecha = moment().format("MMM Do YY");     
 
   message.channel.send("☑️ `|` **Sugerencia enviada correctamente**");
   const embed = new Discord.MessageEmbed()
