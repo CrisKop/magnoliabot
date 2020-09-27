@@ -24,7 +24,7 @@ exports.run = async (client, message, args) => {
     .setAuthor(`🌐 | Nueva Sugerencia | 🌐`, client.user.displayAvatarURL())
     .addField(
       "📜 **__Datos Sugerencia__**",
-      `🌻 **Sugerencia:** \`${xd}\` \n👤 **Enviada Por:** ${message.author} \n⌛ **Hora:** ${fecha}`
+      `🌻 **Sugerencia:** \`${xd}\` \n👤 **Enviada Por:** ${message.author} \n⌛ **Hora:** ${fecha} \n\n🟡 **Estado:** \`Pendiente\``
     )
     .setColor("RANDOM")
     .setThumbnail(message.author.displayAvatarURL());
@@ -32,36 +32,49 @@ exports.run = async (client, message, args) => {
     msg.react("☑️");
     msg.react("❌");
     msg.awaitReactions((reaction, user) => {
-      //Lo que hara el primer emoji afectara al primer embed
+      if (msg.guild.owner.id != user.id && !msg.guild.member(user).hasPermission("ADMINISTRATOR"))
+        return user.send(
+          new Discord.MessageEmbed()
+            .setAuthor(`📛 Sin Permisos 📛`)
+            .setColor("RANDOM")
+            .setThumbnail(client.user.displayAvatarURL())
+            .setDescription(
+              "📛 **NO TIENES PERMISOS PARA REACCIONAR A LA SUGERENCIA**"
+            )
+        ).cacth(e => {
+          message.channel.send("No pude enviarle el mensaje al usuario")
+        })
+
       if (message.author.id !== user.id) return;
       if (reaction.emoji.name === "☑️") {
-        const embed = new Discord.MessageEmbed()
+        const embed1 = new Discord.MessageEmbed()
           .setAuthor(
             `🌐 | Sugerencia Aceptada | 🌐`,
             client.user.displayAvatarURL()
           )
           .addField(
             "📜 **__Datos Sugerencia__**",
-            `🌻 **Sugerencia:** \`${xd}\` \n👤 **Enviada Por:** ${message.author} \n⌛ **Hora:** ${fecha} \n\n✳️ **Estado:** Aceptada`
+            `🌻 **Sugerencia:** \`${xd}\` \n👤 **Enviada Por:** ${message.author} \n⌛ **Hora:** ${fecha} \n\n✳️ **Estado:** \`Aceptada\``
           )
           .setColor("GREEN")
           .setThumbnail(message.author.displayAvatarURL());
-        msg.reactions.removeAll()
+        msg.edit(embed1);
+        msg.reactions.removeAll();
       }
       if (reaction.emoji.name === "❌") {
-       const embed2 = new Discord.MessageEmbed()
+        const embed2 = new Discord.MessageEmbed()
           .setAuthor(
             `🌐 | Sugerencia Rechazada | 🌐`,
             client.user.displayAvatarURL()
           )
           .addField(
             "📜 **__Datos Sugerencia__**",
-            `🌻 **Sugerencia:** \`${xd}\` \n👤 **Enviada Por:** ${message.author} \n⌛ **Hora:** ${fecha} \n\n✳️ **Estado:** Rechazada`
+            `🌻 **Sugerencia:** \`${xd}\` \n👤 **Enviada Por:** ${message.author} \n⌛ **Hora:** ${fecha} \n\n⛔ **Estado:** \`Rechazada\``
           )
           .setColor("RED")
           .setThumbnail(message.author.displayAvatarURL());
-        msg.edit(embed2)
-        msg.reactions.removeAll()
+        msg.edit(embed2);
+        msg.reactions.removeAll();
       }
     });
   });
