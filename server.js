@@ -41,8 +41,8 @@ client.on("message", async message => {
   let prefix_db = new db.crearDB("prefixes"); //q haces :v
 
   var prefix;
-  if (prefix_db.tiene(`${message.guild.id}`)) {
-    prefix = await prefix_db.obtener(`${message.guild.id}`);
+  if (prefix_db.tiene(message.guild.id)) {
+    prefix = await prefix_db.obtener(message.guild.id);
   } else {
     prefix = "f/";
   }
@@ -51,7 +51,7 @@ client.on("message", async message => {
   let usersban = await blacklist.obtener("blacklist");
   if (message.author.bot) return;
 
-  if (message.content.indexOf(prefix) !== 0) {
+  if(!message.content.startsWith(prefix)) {
     nivelesFunc(message);
     return;
   }

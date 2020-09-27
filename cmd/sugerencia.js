@@ -32,7 +32,7 @@ exports.run = async (client, message, args) => {
     msg.react("☑️");
     msg.react("❌");
     msg.awaitReactions((reaction, user) => {
-      if (msg.guild.owner.id != user.id && !msg.guild.member(user).hasPermission("ADMINISTRATOR"))
+      if (msg.guild.owner.id != user.id && !msg.guild.member(user).hasPermission("MANAGE_GUILD"))
         return user.send(
           new Discord.MessageEmbed()
             .setAuthor(`📛 Sin Permisos 📛`)
