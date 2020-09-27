@@ -526,25 +526,30 @@ client.on("message", async message => {
   } else {
     prefix = "f/";
   }
+  
+  
   const ali = new db.crearDB("Alianzas");
   const points = new db.crearDB("AlisPoints")
-  let puntos = await points.obtener(message.author.id)
+ let user = message.author;
+  let puntos = await points.obtener(`${message.guild.id}.${user.id}`)
   if (!ali.tiene(`${message.guild.id}`)) return;
   let logs = await ali.obtener(`${message.guild.id}`);
   const canalrendered = client.channels.cache.get(logs);
-
+   if(!points.tiene(`${message.guild.id}.${user.id}`)) {
+    points.establecer(`${message.guild.id}.${user.id}`, 0)
+  }
   if(!ali.tiene(message.guild.id)) return message.channel.send("NO HAY CANAL DE ALIANZAS DEFINIDO")
   if (message.content.includes("http"))
-    canalrendered.send(
+    canalrendered.send("🌐 `"+
       prefix +
-        "ayuda **Para agregarme a tu servidor** \n🌟 **Gracias" +
+        "ayuda` **Para agregarme a tu servidor** \n🌟 Gracias " +
         `${message.author}` +
-        " Por tu alianza \n🏅 `+1` puntos a " +
-        `${message.author.username}` +
-        "Puntos: " +
-        `${puntos}`
+        " Por tu alianza \n🏅 `+1` puntos a `" +
+        `${message.author.tag}` +
+        "` Puntos: **" +
+        `${puntos}`+ "**"
     );
-  points.sumar(message.author.id, 1)
+  points.sumar(`${message.guild.id}.${user.id}`, 1)
 });
 client.login(process.env.TOKEN);
 //que es lo que habia abajo de del evento guildmemberadd? , yo lo coloque pero no me acuerdo
