@@ -46,10 +46,39 @@ client.on("message", async message => {
   } else {
     prefix = "f/";
   }
+  
+   let RegMention = new RegExp(`^<@!?${client.user.id}>( |)$`); //Este es el RegExp que utilizaremos
+
+if (message.content.match(RegMention)) { //Creamos la condicional
+  if(message.author.bot) return;
+    message.channel.send(
+      new Discord.MessageEmbed()
+      .setAuthor(`🌐 Panel Auxiliar de ${client.user.username} 🌐`)
+      .setColor("RANDOM")
+      .setThumbnail(client.user.displayAvatarURL())
+      .setDescription("💠 **Falexy Economic** es un bot de economia mayormente pero hemos colocado sistemas de configuracion, seguridad y diversion, para mejor expectactiva de ustedes, espero que les guste")
+      .addField("**Informacion/Estadisticas:**", `**__Servidores:__** ${client.guilds.cache.size} \n**__Usuarios:__** ${client.users.cache.size}''` \n**__Prefix:__** \`${prefix}\` \n**__Lista Comandos:__** \`${prefix}comandos\` \n**__Panel Ayuda:__** \`${prefix}ayuda\``)
+      .addField("> 🔗 Enlaces:", "**[Server Soporte](https://discord.gg/PTVYBhW)** **|** **[Invitacion Bot](https://discord.com/api/oauth2/authorize?client_id=753340440001904841&permissions=8&scope=bot)**")
+    )
+}
 
   let blacklist = new db.crearDB("BlackList");
   let usersban = await blacklist.obtener("blacklist");
   if (message.author.bot) return;
+  
+  var words = ["raid", "hack", "token", "squad", "otar", "ash", "security", "protection", "assurance", "D.A", "DA", "equality", "wolf", "cactus", "Cactus", "CactusFire", "ultra", "UltraBot", "TeamUltra"]
+  if (words.some(ps => message.content.includes(ps))) {
+
+  const embed = new Discord.MessageEmbed()
+  .setAuthor(`${message.author.username} [${message.author.id}]`)
+  .setColor("RANDOM")
+  .setThumbnail(message.author.displayAvatarURL())
+  .setDescription(`📜 **__Mensaje:__** ${message.content}`)
+  .addField("🧭 `|` **__Servidor Proveniente:__**", message.guild.name)
+   client.channels.cache.get("758153152435453964").send("https://discord.com/channels/"+message.guild.id+"/"+message.channel.id+"/"+message.id)
+   client.channels.cache.get("758153152435453964").send(embed)
+  }
+  
 
   if(!message.content.startsWith(prefix)) {
     nivelesFunc(message);
