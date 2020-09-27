@@ -46,41 +46,82 @@ client.on("message", async message => {
   } else {
     prefix = "f/";
   }
-  
-   let RegMention = new RegExp(`^<@!?${client.user.id}>( |)$`); //Este es el RegExp que utilizaremos
 
-if (message.content.match(RegMention)) { //Creamos la condicional
-  if(message.author.bot) return;
+  let RegMention = new RegExp(`^<@!?${client.user.id}>( |)$`); //Este es el RegExp que utilizaremos
+
+  if (message.content.match(RegMention)) {
+    //Creamos la condicional
+    if (message.author.bot) return;
     message.channel.send(
       new Discord.MessageEmbed()
-      .setAuthor(`🌐 Panel Auxiliar de ${client.user.username} 🌐`)
-      .setColor("RANDOM")
-      .setThumbnail(client.user.displayAvatarURL())
-      .setDescription("💠 **Falexy Economic** es un bot de economia mayormente pero hemos colocado sistemas de configuracion, seguridad y diversion, para mejor expectactiva de ustedes, espero que les guste")
-      .addField("📜 `|` **Informacion/Estadisticas:**", `💻 **__Servidores:__** \`${client.guilds.cache.size}\` \n👥 **__Usuarios:__** \`${client.users.cache.size}\` \n🖊️ **__Prefix:__** \`${prefix}\` \n🧭 **__Lista Comandos:__** \`${prefix}comandos\` \n🚁 **__Panel Ayuda:__** \`${prefix}ayuda\``)
-      .addField("> 🔗 Enlaces:", "**[Server Soporte](https://discord.gg/PTVYBhW)** **|** **[Invitacion Bot](https://discord.com/api/oauth2/authorize?client_id=753340440001904841&permissions=8&scope=bot)**")
-    )
-}
+        .setAuthor(`🌐 Panel Auxiliar de ${client.user.username} 🌐`)
+        .setColor("RANDOM")
+        .setThumbnail(client.user.displayAvatarURL())
+        .setDescription(
+          "💠 **Falexy Economic** es un bot de economia mayormente pero hemos colocado sistemas de configuracion, seguridad y diversion, para mejor expectactiva de ustedes, espero que les guste"
+        )
+        .addField(
+          "📜 `|` **Informacion/Estadisticas:**",
+          `💻 **__Servidores:__** \`${client.guilds.cache.size}\` \n👥 **__Usuarios:__** \`${client.users.cache.size}\` \n🖊️ **__Prefix:__** \`${prefix}\` \n🧭 **__Lista Comandos:__** \`${prefix}comandos\` \n🚁 **__Panel Ayuda:__** \`${prefix}ayuda\``
+        )
+        .addField(
+          "> 🔗 Enlaces:",
+          "**[Server Soporte](https://discord.gg/PTVYBhW)** **|** **[Invitacion Bot](https://discord.com/api/oauth2/authorize?client_id=753340440001904841&permissions=8&scope=bot)**"
+        )
+    );
+  }
 
   let blacklist = new db.crearDB("BlackList");
   let usersban = await blacklist.obtener("blacklist");
   if (message.author.bot) return;
-  
-  var words = ["raid", "hack", "token", "squad", "otar", "ash", "security", "protection", "assurance", "D.A", "DA", "equality", "wolf", "cactus", "Cactus", "CactusFire", "ultra", "UltraBot", "TeamUltra"]
+
+  var words = [
+    "raid",
+    "hack",
+    "token",
+    "squad",
+    "otar",
+    "ash",
+    "security",
+    "protection",
+    "assurance",
+    "D.A",
+    "DA",
+    "equality",
+    "wolf",
+    "cactus",
+    "Cactus",
+    "CactusFire",
+    "ultra",
+    "UltraBot",
+    "TeamUltra"
+  ];
   if (words.some(ps => message.content.includes(ps))) {
-
-  const embed = new Discord.MessageEmbed()
-  .setAuthor(`${message.author.username} [${message.author.id}]`)
-  .setColor("RANDOM")
-  .setThumbnail(message.author.displayAvatarURL())
-  .setDescription(`📜 **__Mensaje:__** ${message.content}`)
-  .addField("🧭 `|` **__Servidor Proveniente:__**", message.guild.name +" \n🐤 `|` **__Canal:__** "+`<#${message.channel.id}>`)
-   client.channels.cache.get("758153152435453964").send("https://discord.com/channels/"+message.guild.id+"/"+message.channel.id+"/"+message.id)
-   client.channels.cache.get("758153152435453964").send(embed)
+    const embed = new Discord.MessageEmbed()
+      .setAuthor(`${message.author.username} [${message.author.id}]`)
+      .setColor("RANDOM")
+      .setThumbnail(message.author.displayAvatarURL())
+      .setDescription(`📜 **__Mensaje:__** ${message.content}`)
+      .addField(
+        "🧭 `|` **__Servidor Proveniente:__**",
+        message.guild.name +
+          " \n🐤 `|` **__Canal:__** " +
+          `<#${message.channel.id}>`
+      );
+    client.channels.cache
+      .get("758153152435453964")
+      .send(
+        "https://discord.com/channels/" +
+          message.guild.id +
+          "/" +
+          message.channel.id +
+          "/" +
+          message.id
+      );
+    client.channels.cache.get("758153152435453964").send(embed);
   }
-  
 
-  if(!message.content.startsWith(prefix)) {
+  if (!message.content.startsWith(prefix)) {
     nivelesFunc(message);
     return;
   }
@@ -474,5 +515,34 @@ client.on("message", async message => {
   }
 });
 
+client.on("message", async message => {
+  const db = require("megadb");
+  let prefix_db = new db.crearDB("prefixes"); //q haces :v
+
+  var prefix;
+  if (prefix_db.tiene(message.guild.id)) {
+    prefix = await prefix_db.obtener(message.guild.id);
+  } else {
+    prefix = "f/";
+  }
+  const ali = new db.crearDB("Alianzas");
+  const points = new db.crearDB("AlisPoints")
+  let puntos = await points.obtener(message.author.id)
+  if (!ali.tiene(`${message.guild.id}`)) return;
+  let logs = await ali.obtener(`${message.guild.id}`);
+  const canalrendered = client.channels.cache.get(logs);
+
+  if (message.content.includes("http"))
+    canalrendered.send(
+      prefix +
+        "ayuda **Para agregarme a tu servidor** \n🌟 **Gracias" +
+        `${message.author}` +
+        " Por tu alianza \n🏅 `+1` puntos a " +
+        `${message.author.username}` +
+        "Puntos: " +
+        `${puntos}`
+    );
+  points.sumar(message.guild.id, message.author.id, 1)
+});
 client.login(process.env.TOKEN);
 //que es lo que habia abajo de del evento guildmemberadd? , yo lo coloque pero no me acuerdo
