@@ -515,41 +515,5 @@ client.on("message", async message => {
   }
 });
 
-client.on("message", async message => {
-  if(message.author.bot) return;
-  const db = require("megadb");
-  let prefix_db = new db.crearDB("prefixes"); //q haces :v
-
-  var prefix;
-  if (prefix_db.tiene(message.guild.id)) {
-    prefix = await prefix_db.obtener(message.guild.id);
-  } else {
-    prefix = "f/";
-  }
-  
-  
-  const ali = new db.crearDB("Alianzas");
-  const points = new db.crearDB("AlisPoints")
- let user = message.author;
-  let puntos = await points.obtener(`${message.guild.id}.${user.id}`)
-  if (!ali.tiene(`${message.guild.id}`)) return;
-  let logs = await ali.obtener(`${message.guild.id}`);
-  const canalrendered = client.channels.cache.get(logs);
-   if(!points.tiene(`${message.guild.id}.${user.id}`)) {
-    points.establecer(`${message.guild.id}.${user.id}`, 0)
-  }
-  if(!ali.tiene(message.guild.id)) return message.channel.send("NO HAY CANAL DE ALIANZAS DEFINIDO")
-  if (message.content.includes("http"))
-    canalrendered.send("🌐 `"+
-      prefix +
-        "ayuda` **Para agregarme a tu servidor** \n🌟 Gracias " +
-        `${message.author}` +
-        " Por tu alianza \n🏅 `+1` puntos a `" +
-        `${message.author.tag}` +
-        "` Puntos: **" +
-        `${puntos}`+ "**"
-    );
-  points.sumar(`${message.guild.id}.${user.id}`, 1)
-});
 client.login(process.env.TOKEN);
 //que es lo que habia abajo de del evento guildmemberadd? , yo lo coloque pero no me acuerdo
