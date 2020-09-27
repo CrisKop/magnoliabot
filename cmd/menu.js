@@ -91,7 +91,18 @@ exports.run = async (client, message, args) => {
     const role = new db.crearDB("AutoUser");
     let u = await role.obtener(message.guild.id);
     let b = await roleb.obtener(message.guild.id);
+    
+    const mencion = new db.crearDB("MencionSuggest")
+    let r = await mencion.obtener(message.guild.id)
 
+    let m;
+    if (mencion.tiene(message.guild.id)) {
+      m = `<@&${r}>`;
+    }
+    if (!mencion.tiene(message.guild.id)) {
+      m = "❌ No hay role definido sugerencias";
+    }
+    
     let su;
     if (sug.tiene(message.guild.id)) {
       su = `<#${s}>`;
@@ -131,7 +142,7 @@ exports.run = async (client, message, args) => {
       )
       .addField(
         "**__Configs Activadas/Desactivadas__**",
-        `**__Logs:__** ${l} \n**__Sugerencias:__** ${su} \n\n**__Autoroles:__** \n**Bots:** ${dx} \n**Usuarios:** ${xd}`
+        `**__Logs:__** ${l} \n**__Sugerencias:__** ${su} \n**__Mencion Sugerencia:__** ${m} \n\n**__Autoroles:__** \n**Bots:** ${dx} \n**Usuarios:** ${xd}`
       )
       .setColor("RANDOM")
       .setThumbnail(message.author.displayAvatarURL());

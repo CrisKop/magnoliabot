@@ -30,7 +30,7 @@ exports.run = async (client, message, args) => {
     )
     .setColor("RANDOM")
     .setThumbnail(message.author.displayAvatarURL());
-  canalrendered.send(`<@&${rol ? `${rol}>` : "No hay ningun role configurado para mencionar"}`)
+  canalrendered.send(`${rol ? `<@&${rol}>` : "()"}`) //"📛 `|` **__No hay ningun role configurado para mencionar__**"
   canalrendered.send(embed).then(msg => {
     msg.react("☑️");
     msg.react("❌");
