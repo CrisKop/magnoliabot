@@ -2,6 +2,10 @@ exports.run = async (client, message, args) => {
   let Discord = require("discord.js");
   const db = require("megadb");
   const mencion = new db.crearDB("MencionSuggest");
+  
+   if (!message.member.hasPermission("MANAGE_ROLES", "MANAGE_GUILD")) {
+     return message.channel.send("❌ `|` **Perdon "+`${message.author}`+", No tienes permisos de `Gestionar Servidor` y `Gestionar Roles` para ejecutar ese comando**")
+   }
 
   if(!args[0]) return message.channel.send(
   new Discord.MessageEmbed()
