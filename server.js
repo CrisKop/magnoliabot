@@ -212,9 +212,6 @@ let ab = new db.crearDB("AntiBots");
 client.on("guildMemberAdd", async member => {
   if (ab.tiene(`${member.guild.id}.at`)) {
     if (member.user.bot) member.kick();
-    member.send(
-      ":x: `|` **[Anti-Joins]** No puedes entrar porque el anti-joins para bots esta activado"
-    );
   }
 });
 
