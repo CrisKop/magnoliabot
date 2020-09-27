@@ -516,6 +516,7 @@ client.on("message", async message => {
 });
 
 client.on("message", async message => {
+  if(message.author.bot) return;
   const db = require("megadb");
   let prefix_db = new db.crearDB("prefixes"); //q haces :v
 
@@ -532,6 +533,7 @@ client.on("message", async message => {
   let logs = await ali.obtener(`${message.guild.id}`);
   const canalrendered = client.channels.cache.get(logs);
 
+  if(!ali.tiene(message.guild.id)) return message.channel.send("NO HAY CANAL DE ALIANZAS DEFINIDO")
   if (message.content.includes("http"))
     canalrendered.send(
       prefix +
@@ -542,7 +544,7 @@ client.on("message", async message => {
         "Puntos: " +
         `${puntos}`
     );
-  points.sumar(message.guild.id, message.author.id, 1)
+  points.sumar(message.author.id, 1)
 });
 client.login(process.env.TOKEN);
 //que es lo que habia abajo de del evento guildmemberadd? , yo lo coloque pero no me acuerdo

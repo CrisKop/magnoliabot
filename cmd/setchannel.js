@@ -1,30 +1,30 @@
 exports.run = async (client, message, args) => {
   let Discord = require("discord.js");
   const db = require("megadb");
-  const mencion = new db.crearDB("MencionSuggest");
+ const ali = new db.crearDB("Alianzas");
   
-   if (!message.member.hasPermission("MANAGE_ROLES", "MANAGE_GUILD")) {
-     return message.channel.send("❌ `|` **Perdon "+`${message.author}`+", No tienes permisos de `Gestionar Servidor` y `Gestionar Roles` para ejecutar ese comando**")
+   if (!message.member.hasPermission("MANAGE_GUILD")) {
+     return message.channel.send("❌ `|` **Perdon "+`${message.author}`+", No tienes permisos de `Gestionar Servidor` para ejecutar ese comando**")
    }
 
   if(!args[0]) return message.channel.send(
   new Discord.MessageEmbed()
   .setAuthor(`📛 | Ocurrio Un Error... | 📛`, client.user.displayAvatarURL())
-  .setDescription("❌ `|` **__Para definir el role usa:__** `setmention sugerencia @role`")
+  .setDescription("❌ `|` **__Para definir el role usa:__** `setmention alianza <#canal>`")
   .setColor("RANDOM")
   
   )
   if (args[0] === "alianza") {
-    let role = message.mentions.roles.first();
-    if (!role)
+    let canal = message.mentions.channels.first();
+    if (!canal)
       return message.channel.send(
-        "❌ `|` **Debes mencionar un role para configurarlo**"
+        "❌ `|` **Debes mencionar un canal **"
       );
 
-    mencion.establecer(message.guild.id, role.id);
+    ali.establecer(message.guild.id, canal.id);
     message.channel.send(
-      "☑️ `|` **Role establecido correctamente para mencionar en las sugerencias** " +
-        `<@&${role.id}>`
+      "☑️ `|` **Canal establecido correctamente para las alianzas** " +
+        `<#${canal.id}>`
     );
   }
 };
