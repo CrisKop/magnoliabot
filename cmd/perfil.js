@@ -33,7 +33,7 @@ exports.run = async (client, message, args) => {
   let cdinero = await dinero.obtener(`${message.guild.id}.${user.id}`);
   let cbanco = await banco.obtener(`${message.guild.id}.${user.id}`);
   var total = Math.floor(cdinero + cbanco);
-
+  
   //descripciones//
   const note = await desc.obtener(`${user.id}`);
   //ddescripciones//
