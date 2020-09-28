@@ -4,30 +4,26 @@ exports.run = async (client, message, args) => {
   let db_muterole = new db.crearDB("RoleMuted");
 
   let permiso = message.member.hasPermission("MANAGE_GUILD");
-  let mencionado = message.mentions.members.first();
-  let razon = args.slice(1).join(" ");
+  let user = message.mentions.users.first();
+  let razon = args.slice(1).join(" ") || "Razon Indefinida"
 
   if (!permiso)
     return message.reply(
-      "No tienes los permisos necesarios. \n`Gestionar_Servidor`"
+      "❌ `|` **Perdon "+`${message.author}`+", No tienes permisos de `Gestionar Server` para ejecutar ese comando**"
     );
-  if (!mencionado) return message.reply("Especifica a un miembro.");
-  if (!razon) return message.channel.send("Especifica el motivo.");
-
+  
   if (!db_muterole.tiene(message.guild.id))
-    return message.channel.send(
-      "En este servidor no esta el rol mute Establecido, Uso: **setmuterole [@rol]**"
-    );
+    return message.channel.send("**__No se ha establecido el role para mutear al usuario__** \nUsa: `setmuterole <@role>`");
+  
+  if (!user) return message.reply("❌ `|` **Debes mencionar un usuario**");
 
   let rol = await db_muterole.obtener(message.guild.id);
 
-  if (mencionado.roles.cache.has(rol)) return message.channel.send("Este miembro ya esta muteado.");
-  mencionado.roles.add(rol);
+  if (user.roles.cache.has(rol)) return message.channel.send("❌ `|` **Este usuario ya esta muteado**");
+  user.roles.add(rol);
 
   const embedmute = new Discord.MessageEmbed()
-    .setAuthor(`Muteado ${mencionado}`)
-    .addField(`Moderator:`, `${message.author.username}`)
-    .addField(`Miembro:`, `${mencionado}`)
-    .addField(`Razon:`, `${razon}`);
+  .setAuthor(`🔇 | Usuario ${user.username} Ha sido muteado | 🔇`, user.displayAvatarURL())
+  .addField("🏅 `|` **Datos Muteo:**", `👤 **__Usuario Muteado:__** ${user} [${user.id}] \n👮 **__Responsable:__** ${message.author.tag} [${message.author.id}] \n📜 **__Razon:__** ${razon}`)
   message.channel.send(embedmute); //enviamos
 };
