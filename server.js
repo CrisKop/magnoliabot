@@ -13,7 +13,6 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const { nivelesFunc } = require("./niveles.js");
 const db = require("megadb");
-const db2 = require("quick.db");
 
 client.snipes = new Map();
 
