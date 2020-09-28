@@ -9,9 +9,9 @@ exports.run = async (client, message, args) => {
     return message.channel.send(
       "❌ `|` **Debes mencionar un canal para seleccionar las sugerencias**"
     );
-
   sug.establecer(message.guild.id, canal.id);
   message.channel.send(
     "☑️ `|` **Canal de sugerencias seleccionado correctamente** " +
       `<#${canal.id}>`)
+  canal.send("☑️ `|` **El canal ha sido seleccionado para recibir sugerencias**")
 };
