@@ -1,4 +1,4 @@
-exports.run = async (client, message, args) => {
+exports.run = async (client, message, args) => { //q haces?
   //npms//
   const Discord = require("discord.js"),
     backup = require("discord-backup");

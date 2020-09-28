@@ -1,4 +1,4 @@
-let galex = require("galex")
+const galex = require("galex");
 
 exports.run = async (client, message, args) => {
   
