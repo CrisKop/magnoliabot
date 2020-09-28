@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const db = require("megadb");
 
 exports.run = async (client, message, args) => {
-  let db_muterole = new db.crearDB("RoleMuted");
+  let mute = new db.crearDB("RoleMuted");
 
   let permiso = message.member.hasPermission("ADMINISTRATOR");
   if (!permiso)
@@ -22,12 +22,13 @@ exports.run = async (client, message, args) => {
       )
     );
 
-  db_muterole.establecer(`${message.guild.id}`, `${role.id}`);
-  message.channel.send({
-    embed: {
-      color: "00f00f",
-      title: "Mute Role Updated.",
-      description: `Role: <@&${role.id}>`
-    }
-  });
-};
+  mute.establecer(message.guild.id, role.id)
+  message.channel.send(
+  new Discord.MessageEmbed()
+  .setAuthor(`✅ | Role Seleccionado Correctamente | ✅`, client.user.displayAvatarURL())
+  .setDescription("♾️ `|` **Informacion/Datos:**", `📌 **__Role:__** <@&${role}> \n👮 **Creado Por:__** ${message.author}`)
+  .setColor("RED")
+  
+  
+  )
+}
