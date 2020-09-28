@@ -6,6 +6,8 @@ dependencies:
   express: 4.17.1
   mech-aki: 0.1.4
   megadb: 3.4.0
+  moment: 2.29.0
+  moment-duration-format: 2.3.2
   ms: 2.1.2
   parse-ms: 2.1.0
   quick.db: 7.1.2
@@ -743,6 +745,14 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-NKmAlESf6jMGym1++R0Ra7wvhV+wFW63FaSOFPwRahvea0gMUcGUhVeAg/0BC0wiv9ih5NYPB1Wn1UEI1/L+xQ==
+  /moment-duration-format/2.3.2:
+    dev: false
+    resolution:
+      integrity: sha512-cBMXjSW+fjOb4tyaVHuaVE/A5TqkukDWiOfxxAjY+PEqmmBQlLwn+8OzwPiG3brouXKY5Un4pBjAeB6UToXHaQ==
+  /moment/2.29.0:
+    dev: false
+    resolution:
+      integrity: sha512-z6IJ5HXYiuxvFTI6eiQ9dm77uE0gyy1yXNApVHqTcnIKfY9tIwEjlzsZ6u1LQXvVgKeTnv9Xm7NDvJ7lso3MtA==
   /ms/2.0.0:
     dev: false
     resolution:
@@ -1361,6 +1371,8 @@ specifiers:
   express: ^4.17.1
   mech-aki: ^0.1.4
   megadb: ^3.4.0
+  moment: ^2.28.0
+  moment-duration-format: ^2.3.2
   ms: ^2.1.2
   parse-ms: ^2.1.0
   quick.db: ^7.1.2
