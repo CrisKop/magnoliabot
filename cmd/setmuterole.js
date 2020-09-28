@@ -22,16 +22,17 @@ exports.run = async (client, message, args) => {
       )
     );
 
-  mute.establecer(message.guild.id, `${role.id}`).then(role => { 
-message.guild.channels.cache.forEach(r => r.updateOverwrite(role.id, {  
-SEND_MESSAGES: false 
-  }))
+  mute.establecer(message.guild.id, `${role.id}`)
   message.channel.send(
-  new Discord.MessageEmbed()
-  .setAuthor(`✅ | Role Seleccionado Correctamente | ✅`, client.user.displayAvatarURL())
-  .addField("♾️ `|` **Informacion/Datos:**", `📌 **__Role:__** ${role} \n👮 **__Creado Por:__** ${message.author}`)
-  .setColor("RED")
-  
-  
+    new Discord.MessageEmbed()
+      .setAuthor(
+        `✅ | Role Seleccionado Correctamente | ✅`,
+        client.user.displayAvatarURL()
+      )
+      .addField(
+        "♾️ `|` **Informacion/Datos:**",
+        `📌 **__Role:__** ${role} \n👮 **__Creado Por:__** ${message.author}`
+      )
+      .setColor("RED")
   )
-}
+};

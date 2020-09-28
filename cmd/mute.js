@@ -2,7 +2,7 @@ exports.run = async (client, message, args) => {
   let Discord = require("discord.js");
   const db = require("megadb");
   let mute = new db.crearDB("RoleMuted");
-  let rol = await mute.obtener(message.guild.id)
+  let rol = await mute.obtener(message.guild.id);
   let permiso = message.member.hasPermission("MANAGE_GUILD");
   let mencionado = message.mentions.members.first();
   let razon = args.slice(1).join(" ") || "Razon Indefinida";
@@ -19,9 +19,20 @@ exports.run = async (client, message, args) => {
       "❌ `|` **__No se ha establecido el role para mutear al usuario__** \nUsa: `setmuterole <@role>`"
     );
 
-  if (!mencionado) return message.reply("❌ `|` **Debes mencionar un usuario**");
+  if (!mencionado)
+    return message.reply("❌ `|` **Debes mencionar un usuario**");
 
-  // if (user.roles.cache.has(rol)) return message.channel.send("❌ `|` **Este usuario ya esta muteado**")
+  if (!rol)
+    ({}.then(role => {
+      message.guild.channels.cache.forEach(r =>
+        r.updateOverwrite(role.id, {
+          SEND_MESSAGES: false
+        })
+      );
+    }));
+
+  if (mencionado.roles.cache.has(rol))
+    return message.channel.send("❌ `|` **Este usuario ya esta muteado**");
   mencionado.roles.add(rol);
   const embedmute = new Discord.MessageEmbed()
     .setAuthor(
