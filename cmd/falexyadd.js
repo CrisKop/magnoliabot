@@ -66,7 +66,7 @@ exports.run = async (client, message, args) => {
     if (err) console.log(err);
   });
   
-let canal = client.channels.cache.get("758066566062407752")
+let canal = client.channels.cache.get("758153160963129447")
 let embedd = new Discord.MessageEmbed()
 .setColor("GREEN")
 .setAuthor(`Forceban (Usuario Añadido)`)
