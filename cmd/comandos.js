@@ -60,7 +60,7 @@ let prefix_db = new db.crearDB("prefixes")
     .setThumbnail("https://cdn.discordapp.com/attachments/758040716340363385/759031098842939432/3447560.png")
     .setColor("RANDOM")
     .setAuthor(`Seguridad de ${client.user.username}`, client.user.displayAvatarURL())
-    .addField("Comandos/Seguridad:", "`deletewords` - `blockword` - `unlockword` - `wordslist` - `anti-loggers` - `anti-joins` - `anti-flood` - `falexydetectar` - `falexyban` - `snipe`")
+    .addField("Comandos/Seguridad:", "`sos` - `deletewords` - `blockword` - `unlockword` - `wordslist` - `anti-loggers` - `anti-channel` - `anti-roles` - `anti-joins` - `anti-flood` - `falexydetectar` - `falexyban` - `snipe`")
     .addField("Comandos/Seguridad(VIP):", "`backup` - `anti-message` - `anti-spam`")
     message.channel.send(se)
   }

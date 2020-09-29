@@ -2,6 +2,15 @@ exports.run = async (client, message, args) => {
   let Discord = require("discord.js");
   let channel = client.channels.cache.get("760576112563716167");
   let usuario = message.author;
+  const db = require("megadb")
+  let prefix_db = new db.crearDB("prefixes")
+
+    let prefix;
+  if (prefix_db.tiene(`${message.guild.id}`)) {
+    prefix = await prefix_db.obtener(`${message.guild.id}`);
+  } else {
+    prefix = "f/";
+  }
 
   message.channel.send(
     new Discord.MessageEmbed()
@@ -12,7 +21,7 @@ exports.run = async (client, message, args) => {
       )
       .addField(
         "🏅 **Confirma el reporte** 🏅",
-        "**Si desea confirmar el reporte coloca `si` \nSi desea cancelar el reporte coloca `no`**"
+        "**Si desea confirmar el reporte coloca `si` \nSi desea cancelar el reporte coloca `no`** \n\n**__Nota:__** \n`SE ACTIVO EL ANTI-CHANNELS Y ANTI-ROLES` coloca: `"+prefix+"menu config`"
       )
   );
 
@@ -40,6 +49,8 @@ exports.run = async (client, message, args) => {
         message.channel.send("**Has Advertido Al Staff**");
         let ac = new (require("megadb")).crearDB("AntiChannel");
         ac.establecer(`${message.guild.id}.at`, "activado");
+        let ar = new (require("megadb")).crearDB("AntiRoles");
+        ar.establecer(`${message.guild.id}.at`, "activado")
       });
     } else if (collected.content.toLowerCase() === "no") {
       message.channel.send("❌ `|` **Has cancelado el envio del reporte**"); // Si la respuesta es no enviara este mensaje.
