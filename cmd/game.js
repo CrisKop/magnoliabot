@@ -35,11 +35,8 @@ exports.run = async (client, message, args) => {
       .awaitMessages(filtro, { max: 1, time: 60000, errors: ["time"] })
       .then(msg => {
         message.channel.send(
-          `Gano ${msg.first().author} en ${humanize(
-            Date.now() - message.createdTimestamp,
-            { language: "es" }
-          )} \n**GANO: \`100\` De dinero**`
-        );
+        new Discord.MessageEmbed()
+        .setAuthor(`Ganaste ${message.aut`));
         dinero.sumar(`${message.guild.id}.${message.author.id}`, 100);
       dbs.set(`game_${message.guild.id}_${user.id}`, Date.now());
       })
