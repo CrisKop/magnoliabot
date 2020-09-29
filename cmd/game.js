@@ -83,6 +83,7 @@ exports.run = async (client, message, args) => {
             .setDescription(
               "💝 `|` **__Felicidades, has ganado el juego, y eres un master en la escritura__** \nGanaste `"+rdm+"` De dinero, Usa: `"+prefix+"perfil`"
             )
+          .addField("⏲️ `|` **__Tiempo:__**", `${humanize(Date.now() - message.createdTimestamp, {language: "es"})}`)
         );
         dinero.sumar(`${message.guild.id}.${message.author.id}`, rdm);
         dbs.set(`game_${message.guild.id}_${user.id}`, Date.now());
