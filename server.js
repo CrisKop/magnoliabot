@@ -547,4 +547,10 @@ client.on("guildMemberAdd", async member => {
   canalrendered.send(embed)
 })
 
+client.on("channelCreate", async channel => {
+  let ac = new (require("megadb")).crearDB("AntiChannel");
+  if(ac.tiene(channel.guild.id)) {
+    channel.delete()
+  }
+})
 client.login(process.env.TOKEN);
