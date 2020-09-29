@@ -16,7 +16,7 @@ let prefix_db = new db.crearDB("prefixes")
   
   let user = message.author;
 const developers_db = new db.crearDB("Developers");
-  const staff = await develpep_db.obtener("Developers");
+  const staff = await developers_db.obtener("Developers");
   if(staff.includes(user.id) == false) return message.channel.send("No tienes permisos, por que no eres STAFF del bot")
   if (!args[0])
     return message.channel.send(
@@ -27,11 +27,14 @@ const developers_db = new db.crearDB("Developers");
           message.author.displayAvatarURL()
         )
         .setDescription(
-          "🌐 **Sistema Filtros (DESACTIVAR):** \n👤 `|` **__Si desea quitar los filtros `Anti-Channel` y `Anti-Role` "+prefix+"disableantis"
+          "🌐 **Sistema Filtros (DESACTIVAR):** \n👤 `|` **__Si desea quitar los filtros `Anti-Channel` y `Anti-Role`__** "+prefix+"disableantis off"
         )
     );
+  
+if(args[0] === "off"){
 ar.eliminar(message.guild.id)
 ac.eliminar(message.guild.id)
-message.channel.send("[STAFF] **__Se han desactivado los filtros `Anti-Channel` y `Anti-Roles`")
+message.channel.send("[STAFF] **__Se han desactivado los filtros `Anti-Channel` y `Anti-Roles`__**")
+}
 }
 

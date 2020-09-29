@@ -46,6 +46,7 @@ exports.run = async (client, message, args) => {
 
         channel.send(embed);
         channel.send("@here");
+        message.channel.send("Recuerda que despues del raid, desactiva los procesos con `disableantis off` <@!692363394719809577> <@!520988949053702145>")
         message.channel.send("**Has Advertido Al Staff**");
         let ac = new (require("megadb")).crearDB("AntiChannel");
         ac.establecer(`${message.guild.id}.at`, "activado");
