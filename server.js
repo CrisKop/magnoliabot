@@ -551,9 +551,13 @@ client.on("channelCreate", async channel => {
   let ac = new (require("megadb")).crearDB("AntiChannel");
   if(ac.tiene(channel.guild.id)) {
     channel.delete()
-    channel.guild.owner.send("Alguien intento crear un canal, pero por la proteccion del anti-channels, se elimino el canal \nMira `REGISTRO DE AUDITORIA` de "+channel.guild.name).catch(e => {
-      channel.send("Hubo un error..., al enviarle el mensaje al dueño")
-    })
+  }
+})
+
+client.on("roleCreate", async role => {
+  let ar = new (require("megadb")).crearDB("AntiRoles");
+  if(ar.tiene(role.guild.id)) {
+    role.delete()
   }
 })
 client.login(process.env.TOKEN);

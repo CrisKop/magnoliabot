@@ -28,9 +28,27 @@ exports.run = async (client, message, args) => {
   if (args[0] === "filtros") {
     let al = new (require("megadb")).crearDB("AntiLoggers");
     let am = new (require("megadb")).crearDB("AntiMessage");
+    let ac = new (require("megadb")).crearDB("AntiChannel");
+    let ar = new (require("megadb")).crearDB("AntiRoles");
     let ab = new db.crearDB("AntiBots");
     const u = new db.crearDB("AntiUser");
 
+    let arol;
+    if (ar.tiene(message.guild.id)) {
+      arol = `☑️ Activado`;
+    }
+    if (!ar.tiene(message.guild.id)) {
+      arol = "❌ Desactivado";
+    }
+    
+    let an;
+    if (ac.tiene(message.guild.id)) {
+      an = `☑️ Activado`;
+    }
+    if (!ac.tiene(message.guild.id)) {
+      an = "❌ Desactivado";
+    }
+    
     let abo;
     if (ab.tiene(message.guild.id)) {
       abo = `☑️ Activado`;
@@ -70,11 +88,11 @@ exports.run = async (client, message, args) => {
       )
       .addField(
         "**__Filtros Activadas/Desactivadas__**",
-        `💻 **__Anti-Loggers:__** ${as} \n📜 **__Anti-Message:__** ${ae} \n🤖 **__Anti-Bots:__** ${abo} \n👤 **__Anti-Users:__** ${au}`
+        `💻 **__Anti-Loggers:__** ${as} \n📜 **__Anti-Message:__** ${ae} \n🤖 **__Anti-Bots:__** ${abo} \n👤 **__Anti-Users:__** ${au} \n🖥️ **__Anti-Channel:__** ${an} \n🧆 **__Anti-Roles:__** ${arol}`
       )
       .addField(
         "**__Informacion Filtros:__**",
-        "💻 **__AntiLoggers:__** `Evita los loggers, los loggers roban tu IP, y con esta proteccion las evita` \n📜 **__AntiMessage:__** `No deja que hablen las personas en el servidor` \n🤖 **__AntiBots:__** `Evita la entrada de bots de cualquier tipo` \n👤 **__AntiUsers:__** `Evita la entrada de los usuarios solamente`"
+        "💻 **__AntiLoggers:__** `Evita los loggers, los loggers roban tu IP, y con esta proteccion las evita` \n📜 **__AntiMessage:__** `No deja que hablen las personas en el servidor` \n🤖 **__AntiBots:__** `Evita la entrada de bots de cualquier tipo` \n👤 **__AntiUsers:__** `Evita la entrada de los usuarios solamente` \n🖥️ **__Anti-Channel:__** `Evita la creada de canales para mayor seguridad` \n🧆 **__Anti-Roles:__** `Evita la creada de roles para mayor seguridad`"
       )
       .setColor("RANDOM")
       .setThumbnail(message.author.displayAvatarURL());
