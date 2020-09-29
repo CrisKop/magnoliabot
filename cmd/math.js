@@ -47,7 +47,7 @@ case "*":
 			respuesta = valor1 * valor2
 break
 }
-await message.reply(stripIndents`Tienes 10 segundos para contestar\nOperacion: \`${valor1} ${operacion} ${valor2}\`\n Dificultad: \`${dificultad}\``)
+await message.reply(`Tienes 10 segundos para contestar\nOperacion: \`${valor1} ${operacion} ${valor2}\`\n Dificultad: \`${dificultad}\``)
 
 const msgs = await message.channel.awaitMessages(
 res => res.author.id === message.author.id,{
