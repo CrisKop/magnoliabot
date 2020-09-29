@@ -8,7 +8,7 @@ exports.run = async (client, message, args) => {
 
   let user = message.author;
   let author = await dbs.fetch(`game_${message.guild.id}_${user.id}`);
-  let timeout = 300000;
+  let timeout = 180000;
   if (author !== null && timeout - (Date.now() - author) > 0) {
     let time = ms(timeout - (Date.now() - author));
 
@@ -19,11 +19,12 @@ exports.run = async (client, message, args) => {
       );
     message.channel.send(timeEmbed);
   } else {
-    let palabras = ["Seguridad", "Falexy", "Wolf", "Fargan", "Wolf Security", "Barcelona", "Parangaricutirimicuaro"];
+    let palabras = ["ElSkay", "Dinero", "Banco", "La Casa De Papel", "Sex Education.", "Elite", "Seguridad", "Falexy", "Wolf", "Fargan", "Wolf Security", "Barcelona", "Parangaricutirimicuaro", "GaTos", "Perros", "MineCraft", "Youtube", "Netflix"];
     let palabra = palabras[Math.floor(Math.random() * palabras.length)];
     let filtro = m => m.content === palabra;
     message.channel.send(
       new Discord.MessageEmbed()
+        .setThumbnail("https://cdn.discordapp.com/attachments/760318470112935936/760519980906446918/3520277.png")
         .setAuthor(`🎲 | Juego Rapido | 🎲`, client.user.displayAvatarURL())
         .setDescription(
           "🎮 `|` **__Tienes que escribir la palabra que se muestra rapidamente para ganar__**"
