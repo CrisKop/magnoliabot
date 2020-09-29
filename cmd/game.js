@@ -19,7 +19,7 @@ exports.run = async (client, message, args) => {
       );
     message.channel.send(timeEmbed);
   } else {
-    let palabras = ["ElSkay", "Dinero", "Banco", "La Casa De Papel", "Sex Education.", "Elite", "Seguridad", "Falexy", "Wolf", "Fargan", "Wolf Security", "Barcelona", "Parangaricutirimicuaro", "GaTos", "Perros", "MineCraft", "Youtube", "Netflix"];
+    let palabras = ["ElSkay", "Dinero", "Banco", "La Casa De Papel", "Sex Education.", "Elite", "Seguridad", "Falexy", "Wolf", "Fargan", "Wolf Security", "Barcelona", "Parangaricutirimicuaro", "GaTos", "Perros", "MineCraft", "Youtube", "Netflix", "Monkey Security", "Monkey", "Pepe la Rana", "El Pepino"];
     let palabra = palabras[Math.floor(Math.random() * palabras.length)];
     let filtro = m => m.content === palabra;
     message.channel.send(
