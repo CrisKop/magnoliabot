@@ -68,6 +68,8 @@ exports.run = async (client, message, args) => {
   let emojis2 = emojis.slice(0, 10).join("**|**");
 
   const embed = new Discord.MessageEmbed()
+    .setColor("RANDOM")
+    .setThumbnail(message.guild.iconURL())
     .setAuthor(
       `🌐 | Informacion de: ${message.guild.name} | 🌐`,
       client.user.displayAvatarURL()
@@ -90,7 +92,7 @@ exports.run = async (client, message, args) => {
         guild.members.cache.filter(m => m.presence.status === "dnd").size
       } 🖤 **Desconectado:** ${
         guild.members.cache.filter(m => m.presence.status === "offline").size
-      } \n💻 **Escritorio:** ${
+      } \n🧭 \`\|\` **__Plataformas:__** \n💻 **Escritorio:** ${
         message.guild.members.cache.filter(
           o => o.presence.clientStatus && o.presence.clientStatus.desktop
         ).size
@@ -130,7 +132,7 @@ exports.run = async (client, message, args) => {
 
     .addField(
       "🥫 `|` **__Canales:__**",
-      `🏕️ **Categoria(s):** ${
+      `🥂 **Total Canales:** ${guild.channels.cache.size} \n🏕️ **Categoria(s):** ${
         guild.channels.cache.filter(c => c.type === "category").size
       } \n📜 **Canales de Texto:** ${
         guild.channels.cache.filter(c => c.type === "text").size
