@@ -94,7 +94,11 @@ exports.run = async (client, message, args) => {
     
     const mencion = new db.crearDB("MencionSuggest")
     let r = await mencion.obtener(message.guild.id)
-
+    
+    let welcome_db = new db.crearDB("setwelcome", "welcomeleave");
+    let wel = await welcome_db.obtener(message.guild.id)
+    
+    
     let m;
     if (mencion.tiene(message.guild.id)) {
       m = `<@&${r}>`;

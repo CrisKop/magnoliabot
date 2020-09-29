@@ -523,4 +523,28 @@ client.on("message", async message => {
   }
 });
 
+client.on("guildMemberAdd", async member => {
+  
+  //DBS//
+    const db = require("megadb");
+  let welcome_db = new db.crearDB("setwelcome", "welcomeleave");
+  let imagen_db = new db.crearDB("setwelcomeimg", "welcomeleave");
+  if (!welcome_db.tiene(`${member.guild.id}`)) return;
+  if (!imagen_db.tiene(member.guild.id)) return;
+  let imagen = await imagen_db.obtener(`${member.guild.id}`);
+  let welcome = await welcome_db.obtener(`${member.guild.id}`);
+  const canalrendered = client.channels.cache.get(welcome);
+  if (!welcome_db.tiene(`${member.guild.id}`)) return;
+  //dbs
+  
+  const embed = new Discord.MessageEmbed()
+  .setThumbnail(member.user.displayAvatarURL())
+  .setColor("RANDOM")
+  .setAuthor(`🌐 | Bienvenido ${member.user.username} | 🌐`, member.user.displayAvatarURL())
+  .setDescription("🔥 `|` **__Espero te diviertas en `"+member.guild.name+"` Respeta las reglas y no tendras problemas__**")
+  //.setImage(imagen)
+  canalrendered.send(`${member}`+ " 💠 Bienvenido a `"+member.guild.name+"` Espero te diviertas y respetes a todos 💠")
+  canalrendered.send(embed)
+})
+
 client.login(process.env.TOKEN);
