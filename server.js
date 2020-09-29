@@ -524,4 +524,3 @@ client.on("message", async message => {
 });
 
 client.login(process.env.TOKEN);
-//que es lo que habia abajo de del evento guildmemberadd? , yo lo coloque pero no me acuerdo
