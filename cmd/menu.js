@@ -98,6 +98,13 @@ exports.run = async (client, message, args) => {
     let welcome_db = new db.crearDB("setwelcome", "welcomeleave");
     let wel = await welcome_db.obtener(message.guild.id)
     
+    let w;
+    if (welcome_db.tiene(message.guild.id)) {
+      w = `<#${wel}>`;
+    }
+    if (!welcome_db.tiene(message.guild.id)) {
+      w = "❌ No hay canal definido";
+    }
     
     let m;
     if (mencion.tiene(message.guild.id)) {
@@ -145,8 +152,8 @@ exports.run = async (client, message, args) => {
         client.user.displayAvatarURL()
       )
       .addField(
-        "**__Configs Activadas/Desactivadas__**",
-        `**__Logs:__** ${l} \n**__Sugerencias:__** ${su} \n**__Mencion Sugerencia:__** ${m} \n\n**__Autoroles:__** \n**Bots:** ${dx} \n**Usuarios:** ${xd}`
+        "🎛️ `|` **__Configs Activadas/Desactivadas__**",
+        `🐾 **__Bienvenidas:__** ${w} \n🛠️ **__Logs:__** ${l} \n📜 **__Sugerencias:__** ${su} \n🏖️ **__Mencion Sugerencia:__** ${m} \n\n🛺 **__Autoroles:__** \n🤖 **Bots:** ${dx} \n👤 **Usuarios:** ${xd}`
       )
       .setColor("RANDOM")
       .setThumbnail(message.author.displayAvatarURL());

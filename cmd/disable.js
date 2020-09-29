@@ -10,7 +10,7 @@ exports.run = async (client, message, args) => {
           message.author.displayAvatarURL()
         )
         .setDescription(
-          "🌐 **Sistema Sugerencias:** \n👤 `|` **__Si desea eliminar el canal de sugerencias:__** `disable sugerencias` \n📜 `|` **__Si desea establecer el canal de sugerencias:__** `setsugerencia <#canal>` \n🧻 `|` **__Si desea eliminar la mencion de la sugerencia__** `disable suggmencion` \n🖍️ `|` **__Si desea configurar la mencion para las sugerencias__** `setmention <@role>`"
+          "🌐 **Sistema Sugerencias:** \n👤 `|` **__Si desea eliminar el canal de sugerencias:__** `disable sugerencias` \n📜 `|` **__Si desea establecer el canal de sugerencias:__** `setsugerencia <#canal>` \n🧻 `|` **__Si desea eliminar la mencion de la sugerencia__** `disable suggmencion` \n🖍️ `|` **__Si desea configurar la mencion para las sugerencias__** `setmention <@role>` \n\n🥊 **Sistema Bienvenidas:** \n🍹 `|` **__Si desea configurar las bienvenidas usa:__** `setwelcome <#canal>` \n🖼️ `|` **__Si desea configurar la imagen usa:__** `setwelcomeimg <url>` \n☣️ `|` **__Si desea eliminar las bienvenidas usa:__** `disable bienvenidas`"
         )
     );
 
@@ -46,5 +46,21 @@ exports.run = async (client, message, args) => {
       );
   mencion.eliminar(message.guild.id)
   message.channel.send("☑️ `|` **La mencion de las sugerencias han sido eliminadas correctamente**")
+}
+if(args[0] === "bienvenidas"){
+    let Discord = require("discord.js")
+  const db = require("megadb")
+  let welcome_db = new db.crearDB("setwelcome", "welcomeleave");
+   if (!welcome_db.tiene(message.guild.id))
+      return message.channel.send(
+        new Discord.MessageEmbed()
+          .setAuthor(`❌ | Ha Ocurrido Un Error | ❌`)
+          .setDescription(
+            "🏭 `|` **__ny__**"
+          )
+          .setColor("RED")
+      );
+  welcome_db.eliminar(message.guild.id)
+  message.channel.send("☑️ `|` **Las bienvenidas han sido eliminadas correctamente**")
 }
 };
