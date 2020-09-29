@@ -4,13 +4,13 @@ exports.run = async (client, message, args) => {
 
   let guild = message.guild;
 
-      const features = guild.features.join("\n");
-    if (!features) {
-      var features2 = "Ninguna";
-    } else {
-      var features2 = features;
-    }
-  
+  const features = guild.features.join("\n");
+  if (!features) {
+    var features2 = "Ninguna";
+  } else {
+    var features2 = features;
+  }
+
   let novedades = {
     NEWS: "**:newspaper: `|` Noticias**",
     ANIMATED_ICON: "**<:arrowgreen:739203436066635826> `|` Icono Animado**",
@@ -54,33 +54,57 @@ exports.run = async (client, message, args) => {
     amsterdam: "Amsterdam :flag_nl:",
     india: "India :flag_in:"
   };
+  
+   let normal = message.guild.emojis.cache.filter(e => !e.animated).size
+ let animated2 = message.guild.emojis.cache.filter(e => e.animated).size
+let animated = message.guild.emojis.cache.filter(e => e.animated).map(x => x.toString())
+  let anima2 = animated.slice(0,10).join("**|**")
+  let emojis = message.guild.emojis.cache.filter(e => !e.animated).map(x => x.toString())
+
+let emojis2 = emojis.slice(0,10).join("**|**")
 
   const embed = new Discord.MessageEmbed()
     .setAuthor(
-      `Informacion de: ${message.guild.name}`,
+      `🌐 | Informacion de: ${message.guild.name} | 🌐`,
       client.user.displayAvatarURL()
     )
     .addField(
-      " `|` **__Info Server:__**",
-      `Nombre: ${guild.name} \nID: ${guild.id} \nDueño: ${
+      "📜 `|` **__Info Server:__**",
+      `📰 **Nombre:** ${guild.name} \n🆔 **ID:** ${guild.id} \n💠 **Dueño:** ${
         guild.owner
-      } \nFecha Creacion: ${new Date(guild.createdAt).toString()} \nRegion: ${
+      } \n📅 **Fecha Creacion:** ${new Date(guild.createdAt).toString()} \n🌍 **Region:** ${
         region[guild.region]
       }`
     )
     .addField(
-      " `|` **__Actividad:__**",
-      `Total Miembros: ${guild.memberCount} \nEn Linea: ${
+      "☢️ `|` **__Actividad:__**",
+      `👥 **Total Miembros:** ${guild.memberCount} \n💚 **En Linea:** ${
         guild.members.cache.filter(m => m.presence.status === "online").size
-      } Ausente: ${
+      } 💛 **Ausente:** ${
         guild.members.cache.filter(m => m.presence.status === "idle").size
-      } Ocupado: ${
+      } ❤️ **Ocupado:** ${
         guild.members.cache.filter(m => m.presence.status === "dnd").size
-      } Desconectado: ${
+      } 🖤 **Desconectado:** ${
         guild.members.cache.filter(m => m.presence.status === "offline").size
       }`
     )
     .addField(
-      " `|` **__Boosteos/Nivel:__**", `**Nº Boost:** ${message.guild.premiumSubscriptionCount} \n**Nivel Boost:** ${nivel[server.premiumTier]} \n**Ventajas Boost:** ${message.guild.features.length > 0 ? message.guild.features.map(fea => novedades[fea]) : "**No Tiene Ventajas**"}`)`Mejoras`
+      "💥 `|` **__Boosteos/Nivel:__**",
+      `🔖 **Nº Boost:** ${
+        message.guild.premiumSubscriptionCount
+      } \n🥥 **Nivel Boost:** ${nivel[guild.premiumTier]} \n🚦 **Ventajas Boost:** ${
+        message.guild.features.length > 0
+          ? message.guild.features.map(fea => novedades[fea])
+          : "No Tiene Ventajas"
+      }`
+    )
+  .addField("🍋 `|` **__Emojis:__**", `Total Emojis: ${guild.emojis.cache.size} \nAnimados: ${animated.length == 0? "No hay emojis animados en este servidor" : anima2} \nNormales: ${emojis.length == 0? "No hay emojis en este servidor" : emojis2}`)
+  
+  .addField("🥫 `|` **__Canales:__**", `Categoria(s): ${guild.channels.cache.filter(c => c.type === "category").size} \nCanales de Texto: ${guild.channels.cache.filter(c => c.type === "text").size} \nCanales de Voz: ${guild.channels.cache.filter(c => c.type === "voice").size} `)
+
+  .addField(" `|` *__Roles:__**", `Total Roles: ${guild.roles.cache.size} \n${gui}`)
+
+  .addField("`|` **__Plataformas/Info:__**", `💻 **Escritorio:** ${message.guild.members.cache.filter(o => o.presence.clientStatus && o.presence.clientStatus.desktop).size} \n📱 **Celular/Movil:** ${message.guild.members.cache.filter(o => o.presence.clientStatus && o.presence.clientStatus.mobile).size} \n🖇️ **Web/Pagina:** ${message.guild.members.cache.filter(o => o.presence.clientStatus && o.presence.clientStatus.web).size}`)
+  
   message.channel.send(embed); 
-};
+}
