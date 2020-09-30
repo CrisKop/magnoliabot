@@ -64,7 +64,8 @@ exports.run = async (client, message, args) => {
             if (reaction.emoji.name === "❌") {
               const embed2 = new Discord.MessageEmbed().setDescription(
                 "Cerrando Panel..."
-              );
+              )
+              .setColor("RED")
               msg.edit(embed2).then(m => m.delete({ timeout: 2000 }));
             }
           });
@@ -106,7 +107,8 @@ exports.run = async (client, message, args) => {
             if (reaction.emoji.name === "❌") {
               const embed2 = new Discord.MessageEmbed().setDescription(
                 "Cerrando Panel..."
-              );
+              )
+              .setColor("RED")
               msg.edit(embed2).then(m => m.delete({ timeout: 2000 }));
             }
           });
@@ -119,7 +121,8 @@ exports.run = async (client, message, args) => {
       if (reaction.emoji.name === "❌") {
         const embed2 = new Discord.MessageEmbed().setDescription(
           "Cerrando Panel..."
-        );
+        )
+        .setColor("RED")
         msg.edit(embed2).then(m => m.delete({ timeout: 2000 }));
       }
     });
