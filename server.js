@@ -558,11 +558,4 @@ client.on("roleCreate", async role => {
     role.delete()
   }
 })
-
-client.on("guildBanAdd", async (guild, member) => {
-  let aba = new (require("megadb")).crearDB("AntiBan");
-  if(aba.tiene(guild.id)) {
-    member.unban()
-  }
-})
 client.login(process.env.TOKEN);
