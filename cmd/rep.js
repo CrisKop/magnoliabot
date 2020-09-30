@@ -6,7 +6,7 @@ var ms = require("parse-ms");
 
 exports.run = async (client, message, args) => {
 let tiempo = 3600000
-let user = message.mentions.users.first() || client.users.get(args[0])
+let user = message.mentions.users.first() || client.users.cache.get(args[0])
 if (!user)
   return message.channel.send(
     new Discord.MessageEmbed()
