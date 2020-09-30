@@ -37,6 +37,11 @@ exports.run = async (client, message, args) => {
           `👤 **Desactiva Anti-Users** ${prefix}anti-joins uoff \n🤖 **Desactiva Anti-Bots** ${prefix}anti-joins boff \n🧭 **Desactiva Todo** ${prefix}anti-joins offall`
         )
     );
+  
+  const reason = new db.crearDB("RazonesAntiJoins")
+  
+  let razon = args.slice(2).join(" ") || "Razon Indefinida"
+  reason.establecer(message.guild.id, razon)
 
   if (args[0] === "users") {
     const u = new db.crearDB("AntiUser");
@@ -59,6 +64,7 @@ exports.run = async (client, message, args) => {
     return message.channel.send(
       "☑️ Anti-Joins Bots **Desactivada** Correctamente"
     );
+    reason.eliminar(message.guild.id)
   }
   if (args[0] === "uoff") {
     const u = new db.crearDB("AntiUser");
@@ -66,6 +72,8 @@ exports.run = async (client, message, args) => {
     return message.channel.send(
       "☑️ Anti-Joins Users **Desactivada** Correctamente"
     );
+    reason.eliminar(message.guild.id)
+
   }
 
   if (args[0] === "onall") {
@@ -86,5 +94,6 @@ exports.run = async (client, message, args) => {
     return message.channel.send(
       "☑️ Anti-Joins `USERS Y BOTS` **Desactivada** Correctamente"
     );
+    reason.eliminar(message.guild.id)
   }
 };
