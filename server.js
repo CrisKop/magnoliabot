@@ -266,13 +266,11 @@ client.on("guildMemberAdd", async member => {
 
 client.on("guildMemberAdd", async member => {
   const u = new db.crearDB("AntiUser");
-const reason = new db.crearDB("RazonesAntiJoins")
-let r = await reason.obtener(member.guild.id)
   if (u.tiene(`${member.guild.id}.at`)) {
     if (member.user.bot) return;
     member.kick();
     member.send(
-      ":x: `|` **[Anti-Joins]** No puedes entrar porque el anti-joins para usuarios esta activado \nRazon: "+r
+      ":x: `|` **[Anti-Joins]** No puedes entrar porque el anti-joins para usuarios esta activado"
     );
   }
 });
@@ -280,13 +278,11 @@ let r = await reason.obtener(member.guild.id)
 client.on("guildMemberAdd", async member => {
   const u = new db.crearDB("AntiUser");
   let ab = new db.crearDB("AntiBots");
-const reason = new db.crearDB("RazonesAntiJoins")
-let ra = await reason.obtener(member.guild.id)
   if (u.tiene(`${member.guild.id}.at`)) {
     if (ab.tiene(`${member.guild.id}.at`)) {
       member.kick();
       member.send(
-        ":x: `|` **[Anti-Joins All]** No puedes entrar porque el anti-joins para todos esta activado \nRazon: "+ra
+        ":x: `|` **[Anti-Joins All]** No puedes entrar porque el anti-joins para todos esta activado"
       );
     }
   }
