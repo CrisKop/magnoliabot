@@ -16,11 +16,15 @@ exports.run = async (client, message, args) => {
     .addField(
       "☣️ `|` **__Bots Aliados:__**",
       "**SD Protection:** `Reacciona con: 🏅` \n**Wolf Security** `Reacciona con: 🐺`"
+    )
+    .addField(
+      "❌ `|` **__Cierra Panel:__**",
+      "**Para cerrar el panel** `Reacciona con: ❌`"
     );
   message.channel.send(embed).then(msg => {
     msg.react("🐺");
     msg.react("🏅");
-    msg.react("🔴");
+    msg.react("❌")
     msg.awaitReactions((reaction, user) => {
       if (message.author.id !== user.id) return;
       if (user.bot) return;
@@ -41,17 +45,27 @@ exports.run = async (client, message, args) => {
           .addField(
             "🍎 `|` **__Vuelve a este PANEL:__**",
             "**Para volver al panel principal** `Reacciona con: 🔴`"
+          )
+          .addField(
+            "❌ `|` **__Cierra Panel:__**",
+            "**Para cerrar el panel** `Reacciona con: ❌`"
           );
         reaction.users.remove(user);
         msg.edit(wolf).then(msg => {
           msg.react("🔴");
+          msg.react("❌");
           msg.awaitReactions((reaction, user) => {
             if (message.author.id !== user.id) return;
             if (user.bot) return;
             if (reaction.emoji.name === "🔴") {
               msg.edit(embed);
               reaction.users.remove(user);
-               msg.reactions.removeAll()
+            }
+            if (reaction.emoji.name === "❌") {
+              const embed2 = new Discord.MessageEmbed().setDescription(
+                "Cerrando Panel..."
+              );
+              msg.edit(embed2).then(m => m.delete({ timeout: 2000 }));
             }
           });
         });
@@ -73,17 +87,27 @@ exports.run = async (client, message, args) => {
           .addField(
             "🍎 `|` **__Vuelve a este PANEL:__**",
             "**Para volver al panel principal** `Reacciona con: 🔴`"
+          )
+          .addField(
+            "❌ `|` **__Cierra Panel:__**",
+            "**Para cerrar el panel** `Reacciona con: ❌`"
           );
         reaction.users.remove(user);
         msg.edit(sd).then(msg => {
           msg.react("🔴");
+          msg.react("❌");
           msg.awaitReactions((reaction, user) => {
             if (message.author.id !== user.id) return;
             if (user.bot) return;
             if (reaction.emoji.name === "🔴") {
               msg.edit(embed);
               reaction.users.remove(user);
-              msg.reactions.removeAll()
+            }
+            if (reaction.emoji.name === "❌") {
+              const embed2 = new Discord.MessageEmbed().setDescription(
+                "Cerrando Panel..."
+              );
+              msg.edit(embed2).then(m => m.delete({ timeout: 2000 }));
             }
           });
         });
@@ -91,6 +115,12 @@ exports.run = async (client, message, args) => {
       if (reaction.emoji.name === "🔴") {
         msg.edit(embed);
         reaction.users.remove(user);
+      }
+      if (reaction.emoji.name === "❌") {
+        const embed2 = new Discord.MessageEmbed().setDescription(
+          "Cerrando Panel..."
+        );
+        msg.edit(embed2).then(m => m.delete({ timeout: 2000 }));
       }
     });
   });
