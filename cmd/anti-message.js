@@ -21,8 +21,6 @@ exports.run = async (client, message, args) => {
     prefix = "f/";
   }
   
-  if(ap.tiene(message.guild.id) === false) return message.channel.send("No puedes usar este comando, porque el servidor no tiene las ventajas premium \n`Usa: "+prefix+"interpoll genkey` SI ERES VIP, si no eres VIP no podras usarlo") 
-  if (ap.tiene(`${message.guild.id}`)) { 
   if (!xd)
     return message.channel.send(
       "☑️ Activa usando `anti-message enable` \n❌ Desactiva usando `anti-message disable`"
@@ -38,6 +36,5 @@ exports.run = async (client, message, args) => {
      if (am.tiene(message.guild.id)) return message.channel.send("☑️ Los Anti-Message Ya estan activados");
      am.establecer(`${message.guild.id}.at`, "activado");
     return message.channel.send("☑️ AntiMessage **Activada** Correctamente");
-  }
   }
 }
