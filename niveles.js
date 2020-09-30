@@ -4,6 +4,8 @@ let levels_db = new db.crearDB("niveles");
 const dinero = new db.crearDB("Dinero");
 module.exports = {
   nivelesFunc: async message => {
+  
+    
     if (!levels_db.tiene(message.guild.id))
       levels_db.establecer(message.guild.id, {});
     if (!levels_db.tiene(`${message.guild.id}.${message.author.id}`))
@@ -27,7 +29,7 @@ module.exports = {
         nivel: parseInt(nivel + 1)
       });
 
-    message.channel.send(
+    canalrendered.send(
           `🟢 **Felicidades**, ${
             message.member
           }, **Subiste al nivel:** ${parseInt(nivel + 1)} 🟢`
