@@ -584,13 +584,13 @@ client.on("message", async message => {
   const args = message.content;
 
   if (ate.tiene(message.guild.id)) {
-    let msg = message.delete()
+    let msg = args.join(" ")
     if (msg.length > 300)
       return message.channel.send(
         "Se ha borrado un mensaje de " +
           msg.length +
           ", procura enviar mensajes menor a 300 caracteres"
-      );
+      ).then(m => m.delete)
   }
 });
 client.login(process.env.TOKEN);
