@@ -522,9 +522,8 @@ client.on("message", async message => {
 });
 
 client.on("guildMemberAdd", async member => {
-  
   //DBS//
-    const db = require("megadb");
+  const db = require("megadb");
   let welcome_db = new db.crearDB("setwelcome", "welcomeleave");
   let imagen_db = new db.crearDB("setwelcomeimg", "welcomeleave");
   if (!welcome_db.tiene(`${member.guild.id}`)) return;
@@ -534,28 +533,64 @@ client.on("guildMemberAdd", async member => {
   const canalrendered = client.channels.cache.get(welcome);
   if (!welcome_db.tiene(`${member.guild.id}`)) return;
   //dbs
-  
+
   const embed = new Discord.MessageEmbed()
-  .setThumbnail(member.user.displayAvatarURL())
-  .setColor("RANDOM")
-  .setAuthor(`🌐 | Bienvenido ${member.user.username} | 🌐`, member.user.displayAvatarURL())
-  .setDescription("🔥 `|` **__Espero te diviertas en `"+member.guild.name+"` Respeta las reglas y no tendras problemas__**")
+    .setThumbnail(member.user.displayAvatarURL())
+    .setColor("RANDOM")
+    .setAuthor(
+      `🌐 | Bienvenido ${member.user.username} | 🌐`,
+      member.user.displayAvatarURL()
+    )
+    .setDescription(
+      "🔥 `|` **__Espero te diviertas en `" +
+        member.guild.name +
+        "` Respeta las reglas y no tendras problemas__**"
+    );
   //.setImage(imagen)
-  canalrendered.send(`${member}`+ " 💠 Bienvenido a `"+member.guild.name+"` Espero te diviertas y respetes a todos 💠")
-  canalrendered.send(embed)
-})
+  canalrendered.send(
+    `${member}` +
+      " 💠 Bienvenido a `" +
+      member.guild.name +
+      "` Espero te diviertas y respetes a todos 💠"
+  );
+  canalrendered.send(embed);
+});
 
 client.on("channelCreate", async channel => {
   let ac = new (require("megadb")).crearDB("AntiChannel");
-  if(ac.tiene(channel.guild.id)) {
-    channel.delete()
+  if (ac.tiene(channel.guild.id)) {
+    channel.delete();
   }
-})
+});
 
 client.on("roleCreate", async role => {
   let ar = new (require("megadb")).crearDB("AntiRoles");
-  if(ar.tiene(role.guild.id)) {
-    role.delete()
+  if (ar.tiene(role.guild.id)) {
+    role.delete();
   }
-})
+});
+
+client.on("message", async message => {
+  const db = require("megadb");
+  const ate = new db.crearDB("AntiTextos");
+  let prefix_db = new db.crearDB("prefixes"); //q haces :v
+
+  var prefix;
+  if (prefix_db.tiene(message.guild.id)) {
+    prefix = await prefix_db.obtener(message.guild.id);
+  } else {
+    prefix = "f/";
+  }
+  const args = message.content;
+
+  if (ate.tiene(message.guild.id)) {
+    let msg = message.delete()
+    if (msg.length > 300)
+      return message.channel.send(
+        "Se ha borrado un mensaje de " +
+          msg.length +
+          ", procura enviar mensajes menor a 300 caracteres"
+      );
+  }
+});
 client.login(process.env.TOKEN);
