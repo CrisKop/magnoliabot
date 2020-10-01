@@ -573,24 +573,16 @@ client.on("roleCreate", async role => {
 client.on("message", async message => {
   const db = require("megadb");
   const ate = new db.crearDB("AntiTextos");
-  let prefix_db = new db.crearDB("prefixes"); //q haces :v
-
-  var prefix;
-  if (prefix_db.tiene(message.guild.id)) {
-    prefix = await prefix_db.obtener(message.guild.id);
-  } else {
-    prefix = "f/";
-  }
-  const args = message.content;
 
   if (ate.tiene(message.guild.id)) {
-    let msg = args.join(" ")
-    if (msg.length > 300)
+    if(message.content.length > 300){
+       message.delete()
       return message.channel.send(
         "Se ha borrado un mensaje de " +
-          msg.length +
+          message.content.length +
           ", procura enviar mensajes menor a 300 caracteres"
-      ).then(m => m.delete)
+      ).then(m => m.delete({ timeout: 5000 }))
+  }
   }
 });
 client.login(process.env.TOKEN);

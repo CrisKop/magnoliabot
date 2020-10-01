@@ -32,6 +32,15 @@ exports.run = async (client, message, args) => {
     let ar = new (require("megadb")).crearDB("AntiRoles");
     let ab = new db.crearDB("AntiBots");
     const u = new db.crearDB("AntiUser");
+    const ate = new db.crearDB("AntiTextos");
+
+    let ant;
+    if (ate.tiene(message.guild.id)) {
+      ant = `☑️ Activado`;
+    }
+    if (!ate.tiene(message.guild.id)) {
+      ant = "❌ Desactivado";
+    }
 
     let arol;
     if (ar.tiene(message.guild.id)) {
@@ -40,7 +49,7 @@ exports.run = async (client, message, args) => {
     if (!ar.tiene(message.guild.id)) {
       arol = "❌ Desactivado";
     }
-    
+
     let an;
     if (ac.tiene(message.guild.id)) {
       an = `☑️ Activado`;
@@ -48,7 +57,7 @@ exports.run = async (client, message, args) => {
     if (!ac.tiene(message.guild.id)) {
       an = "❌ Desactivado";
     }
-    
+
     let abo;
     if (ab.tiene(message.guild.id)) {
       abo = `☑️ Activado`;
@@ -88,11 +97,11 @@ exports.run = async (client, message, args) => {
       )
       .addField(
         "**__Filtros Activadas/Desactivadas__**",
-        `💻 **__Anti-Loggers:__** ${as} \n📜 **__Anti-Message:__** ${ae} \n🤖 **__Anti-Bots:__** ${abo} \n👤 **__Anti-Users:__** ${au} \n🖥️ **__Anti-Channel:__** ${an} \n🧆 **__Anti-Roles:__** ${arol}`
+        `💻 **__Anti-Loggers:__** ${as} \n📜 **__Anti-Message:__** ${ae} \n🤖 **__Anti-Bots:__** ${abo} \n👤 **__Anti-Users:__** ${au} \n🖥️ **__Anti-Channel:__** ${an} \n🧆 **__Anti-Roles:__** ${arol} \n🍜 **__Anti-Textos:__** ${ant}`
       )
       .addField(
         "**__Informacion Filtros:__**",
-        "💻 **__AntiLoggers:__** `Evita los loggers, los loggers roban tu IP, y con esta proteccion las evita` \n📜 **__AntiMessage:__** `No deja que hablen las personas en el servidor` \n🤖 **__AntiBots:__** `Evita la entrada de bots de cualquier tipo` \n👤 **__AntiUsers:__** `Evita la entrada de los usuarios solamente` \n🖥️ **__Anti-Channel:__** `Evita la creada de canales para mayor seguridad` \n🧆 **__Anti-Roles:__** `Evita la creada de roles para mayor seguridad`"
+        "💻 **__AntiLoggers:__** `Evita los loggers, los loggers roban tu IP, y con esta proteccion las evita` \n📜 **__AntiMessage:__** `No deja que hablen las personas en el servidor` \n🤖 **__AntiBots:__** `Evita la entrada de bots de cualquier tipo` \n👤 **__AntiUsers:__** `Evita la entrada de los usuarios solamente` \n🖥️ **__Anti-Channel:__** `Evita la creada de canales para mayor seguridad` \n🧆 **__Anti-Roles:__** `Evita la creada de roles para mayor seguridad` \n📜 **__Anti-Textos:__** `Evita mensaje de mas de 300 caracteres y los borra`"
       )
       .setColor("RANDOM")
       .setThumbnail(message.author.displayAvatarURL());
@@ -109,13 +118,13 @@ exports.run = async (client, message, args) => {
     const role = new db.crearDB("AutoUser");
     let u = await role.obtener(message.guild.id);
     let b = await roleb.obtener(message.guild.id);
-    
-    const mencion = new db.crearDB("MencionSuggest")
-    let r = await mencion.obtener(message.guild.id)
-    
+
+    const mencion = new db.crearDB("MencionSuggest");
+    let r = await mencion.obtener(message.guild.id);
+
     let welcome_db = new db.crearDB("setwelcome", "welcomeleave");
-    let wel = await welcome_db.obtener(message.guild.id)
-    
+    let wel = await welcome_db.obtener(message.guild.id);
+
     let w;
     if (welcome_db.tiene(message.guild.id)) {
       w = `<#${wel}>`;
@@ -123,7 +132,7 @@ exports.run = async (client, message, args) => {
     if (!welcome_db.tiene(message.guild.id)) {
       w = "❌ No hay canal definido";
     }
-    
+
     let m;
     if (mencion.tiene(message.guild.id)) {
       m = `<@&${r}>`;
@@ -131,7 +140,7 @@ exports.run = async (client, message, args) => {
     if (!mencion.tiene(message.guild.id)) {
       m = "❌ No hay role definido sugerencias";
     }
-    
+
     let su;
     if (sug.tiene(message.guild.id)) {
       su = `<#${s}>`;
