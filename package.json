@@ -25,7 +25,8 @@
     "moment": "^2.28.0",
     "humanize-duration": "^3.23.1",
     "superagent": "^6.1.0",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.1",
+    "fs": "^0.0.2"
   },
   "engines": {
     "node": "12.x"
