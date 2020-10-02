@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-
+const Invites = new Discord.Collection();
 const Database = require("../../Helpers/Database");
 
 exports.run = async (client, message, args) => {

@@ -680,4 +680,18 @@ client.on("guildMemberRemove", (member) => {
     }
 });
 });
+
+client.on("ready", () => {
+    client.guilds.cache.forEach(guild => {
+        guild.fetchInvites().then(_invites => {
+            Invites.set(guild.id, _invites);
+        }).catch(err => { });
+    });
+});
+
+client.on("guildCreate", (guild) => {
+    guild.fetchInvites().then(invites => {
+        Invites.set(guild.id, invites);
+    }).catch(e => {})
+});
 client.login(process.env.TOKEN);
