@@ -534,8 +534,8 @@ client.on("guildMemberAdd", async member => {
   if (!welcome_db.tiene(`${member.guild.id}`)) return;
   //dbs
 
-  let days = user.createdAt.toLocaleString(), 
-          ca = user.createdAt.toDateString().split(' '),
+  let days = member.user.createdAt.toLocaleString(), 
+          ca = member.user.createdAt.toDateString().split(' '),
           ja = member.joinedAt.toDateString().split(' ')
   
   const embed = new Discord.MessageEmbed()
@@ -548,8 +548,8 @@ client.on("guildMemberAdd", async member => {
     .setDescription(
       "🔥 `|` **__Espero te diviertas en `" +
         member.guild.name +
-        "` Respeta las reglas y no tendras problemas__**"
-    .addField('» Cuenta', `• Creada el: ${ca[2]}/${ca[1]}/${ca[3]} (Hace ${days})\n• Ingreso al servidor: ${ja[2]}/${ja[1]}/${ja[3]} (Hace ${member.joinedAt}`))
+        "` Respeta las reglas y no tendras problemas__**")
+    .addField('» Cuenta', `• Creada el: ${ca[2]}/${ca[1]}/${ca[3]} (Hace ${days})\n• Ingreso al servidor: ${ja[2]}/${ja[1]}/${ja[3]} (Hace ${member.joinedAt}`)
   //.setImage(imagen)
   canalrendered.send(
     `${member}` +
