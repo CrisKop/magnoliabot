@@ -153,6 +153,7 @@ client.on("message", async message => {
         )
     );
 
+  
   try {
     let comandos = require(`./cmd/${command}.js`);
     comandos.run(client, message, args);
