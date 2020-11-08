@@ -290,19 +290,15 @@ client.on("guildMemberAdd", async member => {
 });
 
 client.on(`guildCreate`, (guild, message) => {
-  //Empezamos poniendo un let que guardara la ID del canal en donde se enviara el mensaje
   let canal = "758153148266315817";
-  //Ahora creamos un Embed (Para que se vea un poco mas lindo)
-  let embed = new Discord.MessageEmbed() //Para la V12... Si usas V11 solo cambia "MessagEmbed" por "RichEmbed"
+  let embed = new Discord.MessageEmbed() 
     .setTitle("Evento guildCreate")
-    .setColor("RANDOM") //Lo pondre RANDOM, lo pueden cambiar ;)
+    .setColor("RANDOM")
     .addField("Nombre", `${guild.name}`)
     .addField(`Dueño`, `${guild.owner}`)
     .addField("ID", `${guild.id}`)
     .addField("Miembros", `${guild.memberCount}`)
-    .setImage(guild.iconURL()); //Aca si usas la V11 quita el () y lo que esta entre el
-
-  //Ya terminamos por enviar el Embed al canal puesto en el "let canal"
+    .setImage(guild.iconURL()); 
   client.channels.resolve(canal).send(embed);
 });
 
