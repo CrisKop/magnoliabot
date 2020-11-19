@@ -2,9 +2,9 @@ exports.run = async (client, message, args) => {
   const Discord = require("discord.js");
   const db = require("megadb");
   if (
-    message.author.id !== "692363394719809577" 
+    message.author.id !== "711003655150501899" 
   )
-    return;
+    return message.channel.send("no puedes utilizar este comando!")
   let forceadd = new db.crearDB("Ids");
   let forceadd2 = new db.crearDB("Razones");
   let reason = args.slice(1).join(" ");
