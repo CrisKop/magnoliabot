@@ -26,7 +26,7 @@ const db = require("megadb");
 client.snipes = new Map();
 
 client.on("ready", () => {
-  console.log("Estoy listo!");
+  console.log("Estoy bien para utilizarme");
   setInterval(function() {
     let statuses = [
       `f/ayuda 🎸 ${client.guilds.cache.size} Servidores`,

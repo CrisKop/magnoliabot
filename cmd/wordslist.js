@@ -7,7 +7,7 @@ exports.run = async (client, message, args) => {
   medallas = await words.obtener(`${message.guild.id}`);
 
   if (!words.tiene(`${message.guild.id}`)) {
-    await words.set(`${message.guild.id}`, []); //Esto se ocupa
+    await words.set(`${message.guild.id}`, []);
     return (medallas = "❌ **__No hay palabras bloqueadas__**");
   }
   let med = await words.get(`${message.guild.id}`);

@@ -30,6 +30,5 @@ exports.run = async (client, message, args) => {
         "🆔 **ID Usuario:**" + args[0] + " \n📌 **Razon** " + reason
       )
       .setColor("RANDOM")
-      .setFooter("Command Forceadd | Bertrix ")
   );
 };
