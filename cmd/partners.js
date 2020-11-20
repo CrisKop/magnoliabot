@@ -15,7 +15,7 @@ exports.run = async (client, message, args) => {
     )
     .addField(
       "☣️ `|` **__Bots Aliados:__**",
-      "**SD Protection:** `Reacciona con: 🏅` \n**Wolf Security** `Reacciona con: 🐺`"
+      "**NovaPvP Network:** `Reacciona con: 🏅` \n**NicaHosting** `Reacciona con: 🐺`"
     )
     .addField(
       "❌ `|` **__Cierra Panel:__**",
